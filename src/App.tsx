@@ -1,26 +1,36 @@
+import 'typeface-roboto';
+import Box from '@material-ui/core/Box';
+import { blue, blueGrey, red } from '@material-ui/core/colors';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from 'react-redux';
+import { Router } from 'react-router-dom';
+import { AppMenu } from './layout/components/AppMenu';
+import { AppContent } from './layout/components/AppContent';
+import { history } from './history';
+import { store } from './store';
 
-function App() {
+const theme = createMuiTheme({
+  palette: {
+    primary: blue,
+    secondary: blueGrey,
+    error: red,
+  },
+});
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <Router history={history}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Box>
+            <AppMenu />
+            <AppContent />
+          </Box>
+        </ThemeProvider>
+      </Router>
+    </Provider>
   );
 }
-
-export default App;

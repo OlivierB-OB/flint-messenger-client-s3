@@ -1,0 +1,1 @@
+node_modules\.bin\prettier --write src/**/*.ts src/**/*.tsx
