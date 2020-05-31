@@ -1,5 +1,4 @@
 import { IProfileFormFields, IProfileFormState, IUpdateProfileFormAction, IFormField, IPasswordField } from '../types';
-import { deepClone } from '../../utility/deepClone';
 
 function validateNameField(field: IFormField<string>): void {
   field.isValid = /^[a-zA-Z]{1,20}$/.test(field.value);
@@ -30,18 +29,26 @@ function validateConfirmationField(confirmation: IFormField<string>, password: I
 
 export function updateProfileFormCase<T extends keyof IProfileFormFields>(
   state: IProfileFormState,
-  action: IUpdateProfileFormAction<T>,
+  { field, value }: IUpdateProfileFormAction<T>,
 ): IProfileFormState {
-  const newState = deepClone(state);
-  newState.fields[action.field].value = action.value;
-  if (['firstName', 'lastName'].includes(action.field)) {
-    const field = newState.fields[action.field];
-    validateNameField(field);
-  } else if (action.field === 'password') {
+  const newState = {
+    ...state,
+    fields: {
+      ...state.fields,
+      [field]: {
+        ...state.fields[field],
+        value: value,
+      },
+    }
+  }
+  if (['firstName', 'lastName'].includes(field)) {
+    const formField = newState.fields[field];
+    validateNameField(formField);
+  } else if (field === 'password') {
     const { password } = newState.fields;
     validatePasswordField(password);
   }
-  if (action.field === 'password' || action.field === 'confirmation') {
+  if (['password', 'confirmation'].includes(field)) {
     const { password, confirmation } = newState.fields;
     validateConfirmationField(confirmation, password);
   }

@@ -54,7 +54,7 @@ export interface IToggleConversationListAction {
 
 export interface IUpdateMessageEditionAction {
   type: typeof UPDATE_MESSAGE_EDITION;
-  text: string;
+  messageEdition: string;
 }
 
 export type IConversationsAction =

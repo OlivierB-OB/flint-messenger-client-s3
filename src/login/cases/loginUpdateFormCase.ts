@@ -1,11 +1,8 @@
 import { ILoginState, ILoginUpdateFormAction, ILoginForm } from '../types';
-import { deepClone } from '../../utility/deepClone';
 
 export function loginUpdateFormCase<T extends keyof ILoginForm>(
   state: ILoginState,
-  action: ILoginUpdateFormAction<T>,
+  { field, value }: ILoginUpdateFormAction<T>,
 ): ILoginState {
-  const newState = deepClone(state);
-  newState.form[action.field] = action.value;
-  return newState;
+  return { ...state, form: { ...state.form, [field]: value } };
 }

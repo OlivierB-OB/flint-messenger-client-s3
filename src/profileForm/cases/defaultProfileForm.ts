@@ -11,7 +11,7 @@ const defaultPwdField = () => ({
 });
 
 // FIXME
-export const defaultProfileForm: IProfileFormState = {
+export const defaultProfileForm = (): IProfileFormState => ({
   status: 'unavailable',
   fields: {
     email: defaultStrField(),
@@ -20,4 +20,4 @@ export const defaultProfileForm: IProfileFormState = {
     password: defaultPwdField(),
     confirmation: defaultStrField(),
   },
-};
+});
