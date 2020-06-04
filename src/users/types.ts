@@ -1,14 +1,8 @@
-export type IUserStatus = 'available' | 'incall' | 'offline';
-
-export interface IUserInfo {
-  _id: string;
-  lastName: string;
-  firstName: string;
-  status: IUserStatus;
-  updatedAt: string;
-}
+import { IProfile } from '../identity/types';
 
 export type IUsersStateStatus = 'unavailable' | 'ready';
+
+export type IUserInfo = Pick<IProfile, '_id' | 'lastName' | 'firstName' | 'status' | 'updatedAt'>;
 
 export interface IUsersState {
   status: IUsersStateStatus;

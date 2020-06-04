@@ -1,30 +1,42 @@
 import { IConversationsState, IUpdateConversationAction } from '../types';
 import { conversationFactory } from './conversationFactory';
+import { messageComparator } from './utils/messageComparator';
+import { countUnseenMessages } from './utils/countUnseenMessages';
+import { conversationComparator } from './utils/conversationComparator';
+import { consolidateUnseenMessages } from './utils/consolidateUnseenMessages';
 
 export function updateConversationCase(
   state: IConversationsState,
-  { data }: IUpdateConversationAction,
+  { conversationId, lastSeen, ...data }: IUpdateConversationAction,
 ): IConversationsState {
-  let conversation = state.conversations.find((c) => c._id === data.conversationId);
-  if (!conversation) conversation = conversationFactory(data.conversationId, data.emitter, data.createdAt);
+  const messages = [...data.messages];
+  messages.sort(messageComparator);
+
+  const { createdAt, emitter } = messages[messages.length - 1];
+
+  let conversation = state.conversations.find((c) => c._id === conversationId) ||
+    conversationFactory(conversationId, emitter, createdAt);
+
   conversation = {
     ...conversation,
-    messages: [...conversation.messages, { ...data }],
-    updatedAt: data.createdAt,
+    messages: [...conversation.messages, ...messages],
+    updatedAt: createdAt,
   };
-  conversation.messages.sort((a, b) => (a.createdAt < b.createdAt ? -1 : 1));
-  const { lastSeen } = conversation;
-  conversation.unseenMessages = conversation.messages.slice(
-    lastSeen ? conversation.messages.findIndex(({ createdAt }) => createdAt > lastSeen) : 0,
-  ).length;
+  conversation.messages.sort(messageComparator);
+  conversation.unseenMessages = countUnseenMessages(lastSeen, conversation.messages);
+
   const newState = {
     ...state,
     conversations: [
-      ...state.conversations.filter((c) => c._id !== data.conversationId),
+      ...state.conversations.filter((c) => c._id !== conversationId),
       conversation,
     ]
   };
-  newState.conversations.sort((a, b) => (a.updatedAt < b.updatedAt ? 1 : -1));
-  newState.unseenMessages = newState.conversations.reduce((res, { unseenMessages }) => res + unseenMessages, 0);
+  newState.conversations.sort(conversationComparator);
+  newState.unseenMessages = consolidateUnseenMessages(newState.conversations);
   return newState;
 }
+
+
+
+

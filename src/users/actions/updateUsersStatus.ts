@@ -1,4 +1,4 @@
-import { IUpdateUsersStatusAction, IUsersStateStatus, UPDATE_USERS_STATUS } from '../types';
+import { IUpdateUsersStatusAction, UPDATE_USERS_STATUS, IUsersStateStatus } from '../types';
 
 export function updateUsersStatus(status: IUsersStateStatus): IUpdateUsersStatusAction {
   return {

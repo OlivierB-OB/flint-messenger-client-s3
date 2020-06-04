@@ -3,9 +3,9 @@ import { batch } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { IAppState } from '../../appReducer';
-import { updateConversation } from './updateConversation';
 import { updateMessageEdition } from './updateMessageEdition';
 import { updateConversationStatus } from './updateConversationStatus';
+import { makeUpdateConversation } from './makeUpdateConversation';
 
 export function makeSendMessage(conversationId: string) {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
@@ -31,7 +31,7 @@ export function makeSendMessage(conversationId: string) {
         content: messageEdition,
       }, { withCredentials: true });
       batch(() => {
-        dispatch(updateConversation(response.data));
+        dispatch(makeUpdateConversation([response.data]));
         dispatch(updateConversationStatus('ready'));
       })
     } catch (error) {

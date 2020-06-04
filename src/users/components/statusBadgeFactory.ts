@@ -1,7 +1,7 @@
 import Badge from '@material-ui/core/Badge';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { red, grey, green } from '@material-ui/core/colors';
-import { IUserStatus } from '../types';
+import { IUserStatus } from '../../identity/types';
 
 const cache = new Map();
 

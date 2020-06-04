@@ -4,7 +4,7 @@ import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { IAppState } from '../../appReducer';
 import { updateConversationStatus } from './updateConversationStatus';
-import { updateConversation } from './updateConversation';
+import { makeUpdateConversation } from './makeUpdateConversation';
 
 export function makeFetchConversations() {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>) => {
@@ -14,7 +14,7 @@ export function makeFetchConversations() {
       const response = await axios.get(`${process.env.REACT_APP_BACKEND}/messages`, { withCredentials: true });
       batch(() => {
         dispatch(updateConversationStatus('ready'));
-        for (const message of response.data) dispatch(updateConversation(message));
+        dispatch(makeUpdateConversation(response.data));
       });
     } catch (error) {
       dispatch(updateConversationStatus('unavailable'));

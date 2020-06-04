@@ -1,8 +1,10 @@
+
 export interface IConversationMessage {
   _id: string;
   conversationId: string;
   createdAt: string;
   emitter: string;
+  target: string;
   content: string;
 }
 
@@ -10,7 +12,6 @@ export interface IConversation {
   _id: string;
   target: string;
   updatedAt: string;
-  lastSeen?: string;
   unseenMessages: number;
   messages: IConversationMessage[];
 }
@@ -41,12 +42,15 @@ export interface ICreateConversationAction {
 
 export interface IUpdateConversationAction {
   type: typeof UPDATE_CONVERSATION;
-  data: IConversationMessage;
+  conversationId: string;
+  lastSeen: string | undefined;
+  messages: IConversationMessage[];
 }
 
 export interface IConversationSeenAction {
   type: typeof CONVERSATION_SEEN;
   id: string;
+  seenDate: string;
 }
 
 export interface IUpdateConversationStatusAction {

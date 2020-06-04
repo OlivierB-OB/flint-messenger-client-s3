@@ -1,26 +1,27 @@
 import { IConversationsState, IConversationSeenAction } from '../types';
+import { consolidateUnseenMessages } from './utils/consolidateUnseenMessages';
+import { conversationComparator } from './utils/conversationComparator';
+import { countUnseenMessages } from './utils/countUnseenMessages';
 
 export function conversationSeenCase(
   state: IConversationsState,
-  { id }: IConversationSeenAction,
+  { id, seenDate }: IConversationSeenAction,
 ): IConversationsState {
-  let conversation = state.conversations.find((c) => c._id === id);
-  if (!conversation) return state; // IGNORE
+  const conversation = state.conversations.find((c) => c._id === id);
+  if (!conversation) throw Error('Conversation not found');
 
-  const lastMessage = conversation.messages[conversation.messages.length - 1];
-  conversation = {
+  const newConversation = {
     ...conversation,
-    lastSeen: lastMessage && lastMessage.createdAt,
-    unseenMessages: 0,
+    unseenMessages: countUnseenMessages(seenDate, conversation.messages)
   };
   const newState = {
     ...state,
     conversations: [
       ...state.conversations.filter((c) => c._id !== id),
-      conversation,
+      newConversation,
     ]
   };
-  newState.conversations.sort((a, b) => (a.updatedAt < b.updatedAt ? 1 : -1));
-  newState.unseenMessages = newState.conversations.reduce((res, { unseenMessages }) => res + unseenMessages, 0);
+  newState.conversations.sort(conversationComparator);
+  newState.unseenMessages = consolidateUnseenMessages(newState.conversations);
   return newState;
 }

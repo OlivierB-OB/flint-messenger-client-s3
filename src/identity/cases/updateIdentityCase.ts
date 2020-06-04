@@ -1,5 +1,6 @@
-import { IIdentityState, IUpdateIdentityAction } from '../types';
+import { IIdentityState, IUpdateIdentityAction, IProfile } from '../types';
 
 export function updateIdentityCase(state: IIdentityState, { info }: IUpdateIdentityAction): IIdentityState {
-  return { ...state, status: 'ready', info: { ...info } };
+  const newInfo = { ...(state.info || {}), ...info } as IProfile;
+  return { ...state, status: 'ready', info: newInfo };
 }
