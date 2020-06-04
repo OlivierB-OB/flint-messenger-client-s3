@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { batch } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
@@ -6,38 +7,35 @@ import { updateConversation } from './updateConversation';
 import { updateMessageEdition } from './updateMessageEdition';
 import { updateConversationStatus } from './updateConversationStatus';
 
-const SLEEP = (delay: number) => new Promise((resolve) => setTimeout(resolve, delay));
-
 export function makeSendMessage(conversationId: string) {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
     const { conversations, identity } = getState();
     const { messageEdition } = conversations;
-
+    
     if (!messageEdition) return; // abort
-
-    const createdAt = new Date().toISOString();
 
     batch(() => {
       dispatch(updateMessageEdition(''));
       dispatch(updateConversationStatus('sending'));
     });
 
-    const { info } = identity;
-    if (!info) return dispatch(updateConversationStatus('error'));
-
-    // FIXME HTTP call goes here
-    await SLEEP(500);
-
-    batch(() => {
-      dispatch(
-        updateConversation({
-          conversationId,
-          createdAt,
-          emitter: info.uid,
-          content: messageEdition,
-        }),
-      );
-      dispatch(updateConversationStatus('ready'));
-    });
+    try {
+      const { info } = identity;
+      const conversation = conversations.conversations.find(({ _id }) => _id === conversationId);
+      if (!info || !conversation) throw Error('Unable to send');
+      
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND}/messages`, {
+        conversationId,
+        emitter: info._id,
+        target: conversation.target,
+        content: messageEdition,
+      }, { withCredentials: true });
+      batch(() => {
+        dispatch(updateConversation(response.data));
+        dispatch(updateConversationStatus('ready'));
+      })
+    } catch (error) {
+      dispatch(updateConversationStatus('error'));
+    }
   };
 }

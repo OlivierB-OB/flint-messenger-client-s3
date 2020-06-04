@@ -10,6 +10,6 @@ export function createConversationCase(
   const conversationId = [action.myId, action.targetId, new Date().toISOString()].join('_');
   const newConversation = conversationFactory(conversationId, action.targetId);
   newState.conversations.unshift(newConversation);
-  history.push(`/conversation/${conversationId}`);
+  history.push(`/conversation/${conversationId}`); // FIXME
   return newState;
 }

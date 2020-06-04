@@ -33,7 +33,7 @@ export function ConversationList({ status, list, show, hideConversationList }: I
             </ListItem>
           )}
           {list.map((conversation) => (
-            <ListItem button component={Link} to={`/conversation/${conversation.uid}`} key={conversation.uid}>
+            <ListItem button component={Link} to={`/conversation/${conversation._id}`} key={conversation._id}>
               <ConversationListItem conversation={conversation} />
             </ListItem>
           ))}

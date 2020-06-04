@@ -1,14 +1,23 @@
 {
   "name": "flint-messenger-client-s3",
   "version": "0.1.0",
-  "description": "Yet Another State Management Utils",
+  "description": "Flint messenger client",
   "author": "Olivier BERNARD",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/OlivierB-OB/flint-messenger-client-s3.git"
   },
+  "bugs": {
+    "url": "https://github.com/OlivierB-OB/flint-messenger-client-s3/issues"
+  },
   "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "@material-ui/core": "^4.10.0",
     "@material-ui/icons": "^4.9.1",
@@ -22,6 +31,7 @@
     "@types/react-dom": "^16.9.8",
     "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "^5.1.5",
+    "axios": "^0.19.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
@@ -32,11 +42,9 @@
     "typeface-roboto": "0.0.75",
     "typescript": "^3.9.3"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "prettier": "^2.0.5"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -52,8 +60,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "prettier": "^2.0.5"
   }
 }

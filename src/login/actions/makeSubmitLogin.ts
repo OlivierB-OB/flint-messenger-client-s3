@@ -1,24 +1,36 @@
+import axios from 'axios';
+import { batch } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { IAppState } from '../../appReducer';
 import { history } from '../../history';
-import { makeFetchIdentity } from '../../identity/actions/makeFetchIdentity';
 import { updateLoginStatus } from './updateLoginStatus';
-
-const SLEEP = (delay: number) => new Promise((resolve) => setTimeout(resolve, delay));
+import { updateIdentity } from '../../identity/actions/updateIdentity';
+import { makeFetchUsers } from '../../users/actions/makeFetchUsers';
+import { makeFetchConversations } from '../../conversations/actions/makeFetchConversations';
 
 export function makeSubmitLogin() {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
     dispatch(updateLoginStatus('unavailable'));
 
-    // FIXME HTTP call goes here
-    await SLEEP(3000);
+    const { login } = getState();
+    const { email, password } = login.form;
+    
+    // FIXME validate form before sending
 
-    // const { profileForm, identity } = getState();
-    // if (!info) dispatch(updateProfileFormStatus('error'));
-    // else {
-    dispatch(makeFetchIdentity());
-    history.push(`/profile`);
-    // }
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND}/login`, {
+        username: email,
+        password,
+      }, { withCredentials: true });
+      batch(() => {
+        dispatch(updateIdentity(response.data));
+        dispatch(makeFetchUsers());
+        dispatch(makeFetchConversations());
+      });
+      history.push(`/profile`);
+    } catch (error) {
+      dispatch(updateLoginStatus('error'));
+    }
   };
 }

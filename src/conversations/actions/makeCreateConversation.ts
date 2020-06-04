@@ -16,6 +16,6 @@ export function makeCreateConversation(target: string) {
   return (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
     const { info } = getState().identity;
     dispatch(hideUsersList());
-    if (info) dispatch(createConversation(info.uid, target));
+    if (info) dispatch(createConversation(info._id, target));
   };
 }

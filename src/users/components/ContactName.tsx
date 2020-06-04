@@ -7,7 +7,7 @@ export interface IContactNameProps {
 }
 
 const mapStateToProps = ({ identity, users }: IAppState, { target }: IContactNameProps) => ({
-  info: identity.info?.uid === target ? identity.info : users.list.find((user) => user.uid === target),
+  info: identity.info?._id === target ? identity.info : users.list.find((user) => user._id === target),
 });
 
 export const ContactName = connect(mapStateToProps)(UserName);

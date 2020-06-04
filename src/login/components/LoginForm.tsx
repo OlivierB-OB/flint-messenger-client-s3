@@ -8,20 +8,25 @@ import { connect } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { IAppState } from '../../appReducer';
-import { ILoginForm } from '../types';
+import { ILoginForm, ILoginStatus } from '../types';
 import { loginUpdateForm } from '../actions/loginUpdateForm';
 import { makeSubmitLogin } from '../actions/makeSubmitLogin';
+import { Alert } from '../../layout/components/Alert';
 
 interface ILoginFormDisplayProps {
+  status: ILoginStatus;
   email: string;
   password: string;
   update<T extends keyof ILoginForm>(field: T, value: string): void;
   submit(): void;
 }
 
-function LoginFormDisplay({ email, password, update, submit }: ILoginFormDisplayProps) {
+function LoginFormDisplay({ status, email, password, update, submit }: ILoginFormDisplayProps) {
   return (
     <Container maxWidth="xs">
+      <Box style={{ margin: '2rem 0' }}>
+        <Alert status={status} />
+      </Box>
       <Box style={{ margin: '2rem 0' }}>
         <TextField
           label="Email"
@@ -52,6 +57,7 @@ function LoginFormDisplay({ email, password, update, submit }: ILoginFormDisplay
 }
 
 const mapStateToProps = ({ login }: IAppState) => ({
+  status: login.status,
   ...login.form,
 });
 

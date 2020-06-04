@@ -1,28 +1,23 @@
+import axios from 'axios';
 import { batch } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { IAppState } from '../../appReducer';
 import { updateConversationStatus } from './updateConversationStatus';
-import { defaultConversationsState } from '../cases/defaultConversationsState';
 import { updateConversation } from './updateConversation';
 
-const SLEEP = (delay: number) => new Promise((resolve) => setTimeout(resolve, delay));
-
 export function makeFetchConversations() {
-  return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
+  return async (dispatch: ThunkDispatch<IAppState, void, Action>) => {
     dispatch(updateConversationStatus('unavailable'));
 
-    // FIXME HTTP call goes here
-    await SLEEP(3000);
-    const { conversations } = defaultConversationsState;
-    const messages = conversations.map((c) => c.messages).flat();
-
-    if (!messages) dispatch(updateConversationStatus('unavailable'));
-    else {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND}/messages`, { withCredentials: true });
       batch(() => {
         dispatch(updateConversationStatus('ready'));
-        for (const message of messages) dispatch(updateConversation(message));
+        for (const message of response.data) dispatch(updateConversation(message));
       });
+    } catch (error) {
+      dispatch(updateConversationStatus('unavailable'));
     }
   };
 }

@@ -11,7 +11,7 @@ import { resetProfileFormCase } from './cases/resetProfileFormCase';
 import { updateProfileFormStatusCase } from './cases/updateProfileFormStatusCase';
 
 export function profileForm(
-  state: IProfileFormState = defaultProfileForm,
+  state: IProfileFormState = defaultProfileForm(),
   action: IProfileFormAction,
 ): IProfileFormState {
   switch (action.type) {

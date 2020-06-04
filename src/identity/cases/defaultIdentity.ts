@@ -4,9 +4,11 @@ import { IIdentityState } from '../types';
 export const defaultIdentity: IIdentityState = {
   status: 'ready',
   info: {
-    uid: 'olivier.bernard.ob@gmail.com',
+    _id: 'anything',
+    // email: 'olivier.bernard.ob@gmail.com',
     firstName: 'Olivier',
     lastName: 'Bernard',
     status: 'available',
+    updatedAt: new Date().toISOString(),
   },
 };

@@ -36,7 +36,7 @@ export function ContactList(props: IContactListProps) {
             </ListItem>
           )}
           {list.map((user) => (
-            <ListItem button onClick={() => createConversation(user.uid)} key={user.uid}>
+            <ListItem button onClick={() => createConversation(user._id)} key={user._id}>
               <ContactListItem info={user} />
             </ListItem>
           ))}

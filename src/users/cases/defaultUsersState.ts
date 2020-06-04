@@ -6,16 +6,18 @@ export const defaultUsersState: IUsersState = {
   show: false,
   list: [
     {
-      uid: 'pv1',
+      _id: 'pv1',
       lastName: 'Vannier',
       firstName: 'Pierre',
       status: 'available',
+      updatedAt: new Date().toISOString(),
     },
     {
-      uid: 'ac1',
+      _id: 'ac1',
       lastName: 'Castelltor',
       firstName: 'Arnaud',
       status: 'incall',
+      updatedAt: new Date().toISOString(),
     },
   ],
 };

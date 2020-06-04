@@ -3,31 +3,26 @@ import { ThunkDispatch } from 'redux-thunk';
 import { IAppState } from '../../appReducer';
 import { updateIdentity } from './updateIdentity';
 import { updateIdentityStatus } from './updateIdentityStatus';
-import { defaultIdentity } from '../cases/defaultIdentity';
 import { makeFetchUsers } from '../../users/actions/makeFetchUsers';
 import { makeFetchConversations } from '../../conversations/actions/makeFetchConversations';
-import { history } from '../../history';
+import axios from 'axios';
 import { batch } from 'react-redux';
-
-const SLEEP = (delay: number) => new Promise((resolve) => setTimeout(resolve, delay));
+import { history } from '../../history';
 
 export function makeFetchIdentity() {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
     dispatch(updateIdentityStatus('unavailable'));
 
-    // FIXME HTTP call goes here
-    await SLEEP(3000);
-    const { info } = defaultIdentity;
-
-    if (!info) {
-      dispatch(updateIdentityStatus('unavailable'));
-      history.push(`/login`);
-    } else {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND}/profile`, { withCredentials: true });
       batch(() => {
-        dispatch(updateIdentity(info));
+        dispatch(updateIdentity(response.data));
         dispatch(makeFetchUsers());
         dispatch(makeFetchConversations());
       });
+    } catch (error) {
+      dispatch(updateIdentityStatus('unavailable'));
+      history.push(`/login`);
     }
   };
 }

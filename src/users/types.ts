@@ -1,10 +1,11 @@
 export type IUserStatus = 'available' | 'incall' | 'offline';
 
 export interface IUserInfo {
-  uid: string;
+  _id: string;
   lastName: string;
   firstName: string;
   status: IUserStatus;
+  updatedAt: string;
 }
 
 export type IUsersStateStatus = 'unavailable' | 'ready';

@@ -1,4 +1,5 @@
 export interface IConversationMessage {
+  _id: string;
   conversationId: string;
   createdAt: string;
   emitter: string;
@@ -6,11 +7,10 @@ export interface IConversationMessage {
 }
 
 export interface IConversation {
-  uid: string;
+  _id: string;
   target: string;
-  createdAt: string;
   updatedAt: string;
-  lastSeen: string;
+  lastSeen?: string;
   unseenMessages: number;
   messages: IConversationMessage[];
 }
@@ -27,6 +27,7 @@ export interface IConversationsState {
 }
 export const CREATE_CONVERSATION = 'CREATE_CONVERSATION';
 export const UPDATE_CONVERSATION = 'UPDATE_CONVERSATION';
+export const CONVERSATION_SEEN = 'CONVERSATION_SEEN';
 export const UPDATE_CONVERSATION_STATUS = 'UPDATE_CONVERSATION_STATUS';
 export const TOGGLE_CONVERSATION_LIST = 'TOGGLE_CONVERSATION_LIST';
 export const UPDATE_MESSAGE_EDITION = 'UPDATE_MESSAGE_EDITION';
@@ -40,6 +41,11 @@ export interface ICreateConversationAction {
 export interface IUpdateConversationAction {
   type: typeof UPDATE_CONVERSATION;
   data: IConversationMessage;
+}
+
+export interface IConversationSeenAction {
+  type: typeof CONVERSATION_SEEN;
+  id: string;
 }
 
 export interface IUpdateConversationStatusAction {
@@ -60,6 +66,7 @@ export interface IUpdateMessageEditionAction {
 export type IConversationsAction =
   | ICreateConversationAction
   | IUpdateConversationAction
+  | IConversationSeenAction
   | IUpdateConversationStatusAction
   | IToggleConversationListAction
   | IUpdateMessageEditionAction;

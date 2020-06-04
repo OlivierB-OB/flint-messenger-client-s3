@@ -4,7 +4,7 @@ export function updateUserInfoCase(state: IUsersState, { data }: IUpdateUserInfo
   const newState = {
     ...state,
     list: [
-      ...state.list.filter((user) => user.uid !== data.uid),
+      ...state.list.filter((user) => user._id !== data._id),
       { ...data },
     ],
   };

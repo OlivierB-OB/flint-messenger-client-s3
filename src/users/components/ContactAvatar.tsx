@@ -7,7 +7,7 @@ export interface IContactAvatarProps {
 }
 
 const mapStateToProps = ({ users, identity }: IAppState, { target }: IContactAvatarProps) => ({
-  info: identity.info?.uid === target ? identity.info : users.list.find((user) => user.uid === target),
+  info: identity.info?._id === target ? identity.info : users.list.find((user) => user._id === target),
 });
 
 export const ContactAvatar = connect(mapStateToProps)(UserAvatar);
