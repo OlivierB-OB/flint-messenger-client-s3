@@ -8,6 +8,7 @@ import { updateLoginStatus } from './updateLoginStatus';
 import { updateIdentity } from '../../identity/actions/updateIdentity';
 import { makeFetchUsers } from '../../users/actions/makeFetchUsers';
 import { makeFetchConversations } from '../../conversations/actions/makeFetchConversations';
+import { showNavigation } from '../../layout/actions/showNavigation';
 
 export function makeSubmitLogin() {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
@@ -27,6 +28,7 @@ export function makeSubmitLogin() {
         dispatch(updateIdentity(response.data));
         dispatch(makeFetchUsers());
         dispatch(makeFetchConversations());
+        dispatch(showNavigation());
       });
       history.push(`/profile`);
     } catch (error) {

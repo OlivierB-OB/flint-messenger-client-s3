@@ -8,6 +8,7 @@ import { makeFetchConversations } from '../../conversations/actions/makeFetchCon
 import axios from 'axios';
 import { batch } from 'react-redux';
 import { history } from '../../history';
+import { showNavigation } from '../../layout/actions/showNavigation';
 
 export function makeFetchIdentity() {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
@@ -19,6 +20,7 @@ export function makeFetchIdentity() {
         dispatch(updateIdentity(response.data));
         dispatch(makeFetchUsers());
         dispatch(makeFetchConversations());
+        dispatch(showNavigation());
       });
     } catch (error) {
       dispatch(updateIdentityStatus('unavailable'));

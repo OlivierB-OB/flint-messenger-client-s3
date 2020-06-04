@@ -4,12 +4,25 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Forum from '@material-ui/icons/Forum';
 import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
+import { IAppState } from '../../appReducer';
 import { MyConversationsButton } from '../../conversations/components/MyConversationsButton';
 import { MyName } from '../../identity/components/MyName';
 import { MyProfileLink } from '../../profileForm/components/MyProfileLink';
 import { MyContactsButton } from '../../users/components/MyContactsButton';
 
-export function AppMenu() {
+interface MenuDisplay {
+  allowNavigation: boolean;
+}
+
+function Menu({ allowNavigation }: MenuDisplay) {
+  const navigation = !allowNavigation ? null : (
+    <Toolbar>
+      <MyConversationsButton />
+      <MyContactsButton />
+      <MyProfileLink />
+    </Toolbar>
+  )
   return (
     <Fragment>
       <AppBar position="static" style={{ height: '10vh' }}>
@@ -26,14 +39,16 @@ export function AppMenu() {
             </Toolbar>
           </Grid>
           <Grid item>
-            <Toolbar>
-              <MyConversationsButton />
-              <MyContactsButton />
-              <MyProfileLink />
-            </Toolbar>
+            {navigation}
           </Grid>
         </Grid>
       </AppBar>
     </Fragment>
   );
 }
+
+const mapStateToProps = ({ layout }: IAppState) => ({
+  allowNavigation: layout.allowNavigation,
+});
+
+export const AppMenu = connect(mapStateToProps)(Menu);

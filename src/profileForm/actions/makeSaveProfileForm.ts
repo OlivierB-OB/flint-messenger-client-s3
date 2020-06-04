@@ -6,6 +6,7 @@ import { IAppState } from '../../appReducer';
 import { updateIdentity } from '../../identity/actions/updateIdentity';
 import { makeResetProfileForm } from './makeResetProfileForm';
 import { updateProfileFormStatus } from './updateProfileFormStatus';
+import { showNavigation } from '../../layout/actions/showNavigation';
 
 export function makeSaveProfileForm() {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
@@ -28,6 +29,7 @@ export function makeSaveProfileForm() {
         dispatch(updateIdentity(response.data));
         dispatch(makeResetProfileForm());
         dispatch(updateProfileFormStatus('success'));
+        dispatch(showNavigation());
       });
     } catch (error) {
       dispatch(updateProfileFormStatus('error'));
