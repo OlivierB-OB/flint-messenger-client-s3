@@ -13,9 +13,10 @@
   },
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm install -g serve && serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "dev-env": "react-scripts start",
     "eject": "react-scripts eject"
   },
   "dependencies": {
