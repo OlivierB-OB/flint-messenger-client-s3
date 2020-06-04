@@ -9,7 +9,7 @@ import { makeUpdateConversation } from './makeUpdateConversation';
 
 export function makeSendMessage(conversationId: string) {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
-    const { conversations, identity } = getState();
+    const { conversations } = getState();
     const { messageEdition } = conversations;
     
     if (!messageEdition) return; // abort
@@ -20,13 +20,11 @@ export function makeSendMessage(conversationId: string) {
     });
 
     try {
-      const { info } = identity;
       const conversation = conversations.conversations.find(({ _id }) => _id === conversationId);
-      if (!info || !conversation) throw Error('Unable to send');
+      if (!conversation) throw Error('Unable to send');
       
       const response = await axios.post(`${process.env.REACT_APP_BACKEND}/messages`, {
         conversationId,
-        emitter: info._id,
         target: conversation.target,
         content: messageEdition,
       }, { withCredentials: true });
