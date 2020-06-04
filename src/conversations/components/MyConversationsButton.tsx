@@ -2,8 +2,10 @@ import IconButton from '@material-ui/core/IconButton';
 import Forum from '@material-ui/icons/Forum';
 import React from 'react';
 import { connect } from 'react-redux';
-import { Action, Dispatch } from 'redux';
-import { showConversationList } from '../actions/showConversationList';
+import { Action } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { IAppState } from '../../appReducer';
+import { makeShowConversationList } from '../actions/makeShowConversationList';
 
 interface IShowConversationsButtonProps {
   showConversationList: () => void;
@@ -16,8 +18,8 @@ function ShowConversationsButton({ showConversationList }: IShowConversationsBut
     </IconButton>
   );
 }
-const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
-  showConversationList: () => dispatch(showConversationList()),
+const mapDispatchToProps = (dispatch: ThunkDispatch<IAppState, void, Action>) => ({
+  showConversationList: () => dispatch(makeShowConversationList()),
 });
 
 export const MyConversationsButton = connect(undefined, mapDispatchToProps)(ShowConversationsButton);

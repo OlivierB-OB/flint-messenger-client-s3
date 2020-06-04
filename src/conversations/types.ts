@@ -25,6 +25,7 @@ export interface IConversationsState {
   currentConversation?: string;
   conversations: IConversation[];
 }
+
 export const CREATE_CONVERSATION = 'CREATE_CONVERSATION';
 export const UPDATE_CONVERSATION = 'UPDATE_CONVERSATION';
 export const CONVERSATION_SEEN = 'CONVERSATION_SEEN';

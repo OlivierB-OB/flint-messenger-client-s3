@@ -6,10 +6,9 @@ import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router-dom';
-import { AppMenu } from './layout/components/AppMenu';
-import { AppContent } from './layout/components/AppContent';
 import { history } from './history';
 import { store } from './store';
+import { AppLayout } from './layout/components/AppLayout';
 
 const theme = createMuiTheme({
   palette: {
@@ -26,8 +25,7 @@ export default function App() {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Box>
-            <AppMenu />
-            <AppContent />
+            <AppLayout />
           </Box>
         </ThemeProvider>
       </Router>
