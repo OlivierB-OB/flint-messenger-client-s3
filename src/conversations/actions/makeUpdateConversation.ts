@@ -6,12 +6,14 @@ import { IUpdateConversationAction, UPDATE_CONVERSATION, IConversationMessage } 
 
 function updateConversation(
   conversationId: string,
+  conversationTarget: string,
   lastSeen: string | undefined,
   messages: IConversationMessage[],
 ): IUpdateConversationAction {
   return {
     type: UPDATE_CONVERSATION,
     conversationId,
+    conversationTarget,
     lastSeen,
     messages,
   };
@@ -29,8 +31,11 @@ export function makeUpdateConversation(messages: IConversationMessage[]) {
 
     batch(() => {
       for (const conversationId in batches) {
+        const messages = batches[conversationId];
+        const [{ emitter, target }] = messages;
+        const conversationTarget = [emitter, target].find((id) => id !== info._id) as string;
         const lastSeen = info.conversationsSeen?.[conversationId];
-        dispatch(updateConversation(conversationId, lastSeen, batches[conversationId]))
+        dispatch(updateConversation(conversationId, conversationTarget, lastSeen, messages))
       }
     })
   };

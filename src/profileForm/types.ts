@@ -1,4 +1,4 @@
-import { IUserInfo } from '../users/types';
+import { IProfile } from '../identity/types';
 
 export interface IFormField<T> {
   value: T;
@@ -46,7 +46,7 @@ export interface IUpdateProfileFormStatusAction {
 
 export interface IResetProfileFormAction {
   type: typeof RESET_PROFILE_FORM;
-  info?: IUserInfo;
+  info?: IProfile;
 }
 
 export type IProfileFormAction =

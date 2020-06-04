@@ -1,6 +1,7 @@
 import Box from '@material-ui/core/Box';
 import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import ArrowBackIos from '@material-ui/icons/ArrowBackIos';
 import React from 'react';
 import { connect } from 'react-redux';
@@ -8,7 +9,6 @@ import { Dispatch, Action } from 'redux';
 import { IAppState } from '../../appReducer';
 import { IDrawerContent } from '../types';
 import { hideDrawer } from '../actions/hideDrawer';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { MyContacts } from '../../users/components/MyContacts';
 import { MyConversations } from '../../conversations/components/MyConverstions';
 
@@ -20,12 +20,15 @@ export interface IDrawerDisplayProps {
 
 export const drawerWidth = 500;
 
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     drawerHeader: {
       textAlign: 'right',
       position: "sticky",
       top: 0,
+      zIndex: 100,
+      backgroundColor: theme.palette.background.paper,
+      borderBottom: `1px solid ${theme.palette.divider}`,
     },
     paper: {
       width: drawerWidth,

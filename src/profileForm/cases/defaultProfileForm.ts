@@ -10,7 +10,6 @@ const defaultPwdField = () => ({
   hasValidLength: false,
 });
 
-// FIXME
 export const defaultProfileForm = (): IProfileFormState => ({
   status: 'unavailable',
   fields: {

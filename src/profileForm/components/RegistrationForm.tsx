@@ -29,31 +29,33 @@ export function RegistrationFormDisplay({ status, fields, update, saveProfile }:
       <Box style={{ margin: '2rem 0' }}>
         <Alert status={status} />
       </Box>
-      <Box style={{ margin: '2rem 0' }}>
-        <Grid container justify="space-evenly" alignItems="flex-start">
-          <Grid item xs={4}>
-            <IdentitySection
-              allowEmailEdition={true}
-              email={email}
-              firstName={firstName}
-              lastName={lastName}
-              update={update}
-            />
+      <form onSubmit={saveProfile}>
+        <Box style={{ margin: '2rem 0' }}>
+          <Grid container justify="space-evenly" alignItems="flex-start">
+            <Grid item xs={4}>
+              <IdentitySection
+                allowEmailEdition={true}
+                email={email}
+                firstName={firstName}
+                lastName={lastName}
+                update={update}
+              />
+            </Grid>
+            <Grid item xs={4}>
+              <CredentialsSection password={password} confirmation={confirmation} update={update} />
+            </Grid>
           </Grid>
-          <Grid item xs={4}>
-            <CredentialsSection password={password} confirmation={confirmation} update={update} />
+        </Box>
+        <Box style={{ margin: '2rem 0' }}>
+          <Grid container justify="flex-end">
+            <Grid item xs={2}>
+              <Button variant="contained" color="primary" fullWidth={true} type="submit">
+                Register
+              </Button>
+            </Grid>
           </Grid>
-        </Grid>
-      </Box>
-      <Box style={{ margin: '2rem 0' }}>
-        <Grid container justify="flex-end">
-          <Grid item xs={2}>
-            <Button variant="contained" color="primary" fullWidth={true} onClick={saveProfile}>
-              Register
-            </Button>
-          </Grid>
-        </Grid>
-      </Box>
+        </Box>
+      </form>
     </Container>
   );
 }

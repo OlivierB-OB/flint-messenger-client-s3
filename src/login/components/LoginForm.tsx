@@ -27,31 +27,33 @@ function LoginFormDisplay({ status, email, password, update, submit }: ILoginFor
       <Box style={{ margin: '2rem 0' }}>
         <Alert status={status} />
       </Box>
-      <Box style={{ margin: '2rem 0' }}>
-        <TextField
-          label="Email"
-          value={email}
-          required={true}
-          fullWidth={true}
-          onChange={(event) => update('email', event.target.value)}
-        />
-        <TextField
-          type="password"
-          label="Password"
-          value={password}
-          fullWidth={true}
-          onChange={(event) => update('password', event.target.value)}
-        />
-      </Box>
-      <Box style={{ margin: '2rem 0' }}>
-        <Grid container justify="flex-end">
-          <Grid item xs={4}>
-            <Button color="primary" variant="contained" fullWidth={true} onClick={() => submit()}>
-              Submit
-            </Button>
+      <form onSubmit={submit}>
+        <Box style={{ margin: '2rem 0' }}>
+          <TextField
+            label="Email"
+            value={email}
+            required={true}
+            fullWidth={true}
+            onChange={(event) => update('email', event.target.value)}
+          />
+          <TextField
+            type="password"
+            label="Password"
+            value={password}
+            fullWidth={true}
+            onChange={(event) => update('password', event.target.value)}
+          />
+        </Box>
+        <Box style={{ margin: '2rem 0' }}>
+          <Grid container justify="flex-end">
+            <Grid item xs={4}>
+              <Button color="primary" variant="contained" fullWidth={true} type="submit">
+                Submit
+              </Button>
+            </Grid>
           </Grid>
-        </Grid>
-      </Box>
+        </Box>
+      </form>
     </Container>
   );
 }

@@ -43,6 +43,7 @@ export interface ICreateConversationAction {
 export interface IUpdateConversationAction {
   type: typeof UPDATE_CONVERSATION;
   conversationId: string;
+  conversationTarget: string;
   lastSeen: string | undefined;
   messages: IConversationMessage[];
 }

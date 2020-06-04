@@ -7,15 +7,15 @@ import { consolidateUnseenMessages } from './utils/consolidateUnseenMessages';
 
 export function updateConversationCase(
   state: IConversationsState,
-  { conversationId, lastSeen, ...data }: IUpdateConversationAction,
+  { conversationId, conversationTarget, lastSeen, ...data }: IUpdateConversationAction,
 ): IConversationsState {
   const messages = [...data.messages];
   messages.sort(messageComparator);
 
-  const { createdAt, emitter } = messages[messages.length - 1];
+  const { createdAt } = messages[messages.length - 1];
 
   let conversation = state.conversations.find((c) => c._id === conversationId) ||
-    conversationFactory(conversationId, emitter, createdAt);
+    conversationFactory(conversationId, conversationTarget, createdAt);
 
   conversation = {
     ...conversation,
