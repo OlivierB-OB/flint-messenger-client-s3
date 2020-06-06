@@ -2,11 +2,12 @@ import axios from 'axios';
 import { batch } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
+import { action } from '../../utils/action';
 import { IAppState } from '../../appReducer';
 import { updateConversationStatus } from './updateConversationStatus';
 import { makeUpdateConversation } from './makeUpdateConversation';
 
-export function makeFetchConversations() {
+export const makeFetchConversations = action(() => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>) => {
     dispatch(updateConversationStatus('unavailable'));
 
@@ -20,4 +21,4 @@ export function makeFetchConversations() {
       dispatch(updateConversationStatus('unavailable'));
     }
   };
-}
+});

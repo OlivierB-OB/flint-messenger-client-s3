@@ -5,6 +5,9 @@ export function updateDrawerContentCase(
   { drawerContent }: IUpdateDrawerContentAction,
 ): ILayoutState {
   const newState = { ...state, drawerContent };
-  if (!newState.drawerContent) delete newState.drawerContent;
+  if (!newState.drawerContent) {
+    delete newState.drawerContent;
+    newState.showDrawer = false;
+  }
   return newState;
 }

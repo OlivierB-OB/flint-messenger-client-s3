@@ -14,7 +14,8 @@ export function updateConversationCase(
 
   const { createdAt } = messages[messages.length - 1];
 
-  let conversation = state.conversations.find((c) => c._id === conversationId) ||
+  let conversation =
+    state.conversations.find((c) => c._id === conversationId) ||
     conversationFactory(conversationId, conversationTarget, createdAt);
 
   conversation = {
@@ -27,16 +28,9 @@ export function updateConversationCase(
 
   const newState = {
     ...state,
-    conversations: [
-      ...state.conversations.filter((c) => c._id !== conversationId),
-      conversation,
-    ]
+    conversations: [...state.conversations.filter((c) => c._id !== conversationId), conversation],
   };
   newState.conversations.sort(conversationComparator);
   newState.unseenMessages = consolidateUnseenMessages(newState.conversations);
   return newState;
 }
-
-
-
-

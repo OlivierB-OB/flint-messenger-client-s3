@@ -29,13 +29,18 @@ export function ConversationListItem({ conversation }: IConversationListItemProp
           <ContactAvatar target={target} />
         </Badge>
       </ListItemAvatar>
-      <ListItemText primary={snippet} secondary={<span>
-        <ContactName target={target} />
-        {' - '}
-        {fdate.format(lastUpdate)}
-        {' at '}
-        {ftime.format(lastUpdate)}
-      </span>} />
+      <ListItemText
+        primary={snippet}
+        secondary={
+          <span>
+            <ContactName target={target} />
+            {' - '}
+            {fdate.format(lastUpdate)}
+            {' at '}
+            {ftime.format(lastUpdate)}
+          </span>
+        }
+      />
     </Fragment>
   );
 }

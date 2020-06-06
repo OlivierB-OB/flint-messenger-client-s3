@@ -3,16 +3,15 @@ import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Action } from 'redux';
-import { ThunkDispatch } from 'redux-thunk';
+import { Dispatch } from 'redux';
 import { RegistrationForm } from '../../profileForm/components/RegistrationForm';
-import { makeResetRegistrationForm } from '../../profileForm/actions/makeResetRegistrationForm';
 import { IProfileFormStatus } from '../../profileForm/types';
 import { Loading } from '../../layout/components/Loading';
 import { IAppState } from '../../appReducer';
 import { ILoginStatus } from '../types';
 import { LoginTabPanel } from './LoginTabPanel';
 import { LoginForm } from './LoginForm';
+import { resetProfileForm } from '../../profileForm/actions/resetProfileForm';
 
 export interface ILoginScreenDisplayProps {
   loginStatus: ILoginStatus;
@@ -55,8 +54,8 @@ const mapStateToProps = ({ login, profileForm }: IAppState) => ({
   registrationStatus: profileForm.status,
 });
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<IAppState, void, Action>) => ({
-  resetRegistrationForm: () => dispatch(makeResetRegistrationForm()),
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  resetRegistrationForm: () => dispatch(resetProfileForm()),
 });
 
 export const LoginScreen = connect(mapStateToProps, mapDispatchToProps)(LoginScreenDisplay);

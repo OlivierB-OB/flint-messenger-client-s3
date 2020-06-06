@@ -2,13 +2,12 @@ import axios from 'axios';
 import { batch } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
+import { action } from '../../utils/action';
 import { IAppState } from '../../appReducer';
-import { updateIdentity } from '../../identity/actions/updateIdentity';
-import { makeResetProfileForm } from './makeResetProfileForm';
 import { updateProfileFormStatus } from './updateProfileFormStatus';
-import { showNavigation } from '../../layout/actions/showNavigation';
+import { updateIdentity } from '../../identity/actions/updateIdentity';
 
-export function makeSaveProfileForm() {
+export const makeSaveProfileForm = action(() => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
     dispatch(updateProfileFormStatus('unavailable'));
 
@@ -27,12 +26,10 @@ export function makeSaveProfileForm() {
       const response = await axios.patch(`${process.env.REACT_APP_BACKEND}/profile`, data, { withCredentials: true });
       batch(() => {
         dispatch(updateIdentity(response.data));
-        dispatch(makeResetProfileForm());
         dispatch(updateProfileFormStatus('success'));
-        dispatch(showNavigation());
       });
     } catch (error) {
       dispatch(updateProfileFormStatus('error'));
     }
   };
-}
+});

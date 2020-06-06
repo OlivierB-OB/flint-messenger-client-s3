@@ -22,7 +22,7 @@ function Menu({ allowNavigation }: MenuDisplay) {
       <MyContactsButton />
       <MyProfileLink />
     </Toolbar>
-  )
+  );
   return (
     <Fragment>
       <AppBar position="static" style={{ height: '10vh' }}>
@@ -38,9 +38,7 @@ function Menu({ allowNavigation }: MenuDisplay) {
               <MyName />
             </Toolbar>
           </Grid>
-          <Grid item>
-            {navigation}
-          </Grid>
+          <Grid item>{navigation}</Grid>
         </Grid>
       </AppBar>
     </Fragment>

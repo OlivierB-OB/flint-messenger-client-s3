@@ -1,6 +1,10 @@
 import { IConversation } from '../types';
 
-export function conversationFactory(_id: string, target: string, updatedAt: string = new Date().toISOString()): IConversation {
+export function conversationFactory(
+  _id: string,
+  target: string,
+  updatedAt: string = new Date().toISOString(),
+): IConversation {
   return {
     _id,
     target,

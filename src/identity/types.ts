@@ -1,4 +1,3 @@
-
 export type IUserStatus = 'available' | 'incall' | 'offline';
 
 export interface IProfile {

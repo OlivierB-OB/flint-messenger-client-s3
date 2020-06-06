@@ -1,4 +1,3 @@
-
 export type IDrawerContent = 'contacts' | 'conversations';
 
 export interface ILayoutState {
@@ -18,7 +17,7 @@ export interface IToggleDrawerAction {
 
 export interface IUpdateDrawerContentAction {
   type: typeof UPDATE_DRAWER_CONTENT;
-  drawerContent: IDrawerContent;
+  drawerContent?: IDrawerContent;
 }
 
 export interface IToggleNavigationAction {
@@ -26,7 +25,4 @@ export interface IToggleNavigationAction {
   allowNavigation: boolean;
 }
 
-export type ILayoutAction =
-  | IToggleDrawerAction
-  | IUpdateDrawerContentAction
-  | IToggleNavigationAction;
+export type ILayoutAction = IToggleDrawerAction | IUpdateDrawerContentAction | IToggleNavigationAction;

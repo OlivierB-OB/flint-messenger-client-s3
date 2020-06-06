@@ -12,14 +12,11 @@ export function conversationSeenCase(
 
   const newConversation = {
     ...conversation,
-    unseenMessages: countUnseenMessages(seenDate, conversation.messages)
+    unseenMessages: countUnseenMessages(seenDate, conversation.messages),
   };
   const newState = {
     ...state,
-    conversations: [
-      ...state.conversations.filter((c) => c._id !== id),
-      newConversation,
-    ]
+    conversations: [...state.conversations.filter((c) => c._id !== id), newConversation],
   };
   newState.conversations.sort(conversationComparator);
   newState.unseenMessages = consolidateUnseenMessages(newState.conversations);

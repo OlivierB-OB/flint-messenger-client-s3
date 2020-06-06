@@ -2,11 +2,12 @@ import axios from 'axios';
 import { batch } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
+import { action } from '../../utils/action';
 import { IAppState } from '../../appReducer';
 import { updateUsersStatus } from './updateUsersStatus';
 import { updateUserInfo } from './updateUserInfo';
 
-export function makeFetchUsers() {
+export const makeFetchUsers = action(() => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
     dispatch(updateUsersStatus('unavailable'));
 
@@ -14,10 +15,10 @@ export function makeFetchUsers() {
       const response = await axios.get(`${process.env.REACT_APP_BACKEND}/users`, { withCredentials: true });
       batch(() => {
         dispatch(updateUsersStatus('ready'));
-        for (const user of response.data) dispatch(updateUserInfo(user));
+        dispatch(updateUserInfo(response.data));
       });
     } catch (error) {
       dispatch(updateUsersStatus('unavailable'));
     }
   };
-}
+});

@@ -42,7 +42,6 @@ export function ContactList(props: IContactListProps) {
 
 const mapStateToProps = ({ users }: IAppState) => ({
   status: users.status,
-  show: users.show,
   list: users.list,
 });
 

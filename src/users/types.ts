@@ -6,12 +6,10 @@ export type IUserInfo = Pick<IProfile, '_id' | 'lastName' | 'firstName' | 'statu
 
 export interface IUsersState {
   status: IUsersStateStatus;
-  show: boolean;
   list: IUserInfo[];
 }
 
 export const UPDATE_USERS_STATUS = 'UPDATE_USERS_STATUS';
-export const TOGGLE_USER_LIST = 'TOGGLE_USER_LIST';
 export const UPDATE_USER_INFO = 'UPDATE_USER_INFO';
 
 export interface IUpdateUsersStatusAction {
@@ -19,14 +17,9 @@ export interface IUpdateUsersStatusAction {
   status: IUsersStateStatus;
 }
 
-export interface IToggleUserListAction {
-  type: typeof TOGGLE_USER_LIST;
-  data: boolean;
-}
-
 export interface IUpdateUserInfoAction {
   type: typeof UPDATE_USER_INFO;
-  data: IUserInfo;
+  data: IUserInfo[];
 }
 
-export type IUsersAction = IUpdateUsersStatusAction | IToggleUserListAction | IUpdateUserInfoAction;
+export type IUsersAction = IUpdateUsersStatusAction | IUpdateUserInfoAction;

@@ -1,30 +1,21 @@
+import axios from 'axios';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
+import { action } from '../../utils/action';
 import { IAppState } from '../../appReducer';
-import { updateIdentity } from './updateIdentity';
 import { updateIdentityStatus } from './updateIdentityStatus';
-import { makeFetchUsers } from '../../users/actions/makeFetchUsers';
-import { makeFetchConversations } from '../../conversations/actions/makeFetchConversations';
-import axios from 'axios';
-import { batch } from 'react-redux';
-import { history } from '../../history';
-import { showNavigation } from '../../layout/actions/showNavigation';
+import { makeExitApplication } from '../../layout/actions/makeExitApplication';
+import { makeInitializeApplication } from '../../layout/actions/makeInitializeApplication';
 
-export function makeFetchIdentity() {
+export const makeFetchIdentity = action(() => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
     dispatch(updateIdentityStatus('unavailable'));
 
     try {
       const response = await axios.get(`${process.env.REACT_APP_BACKEND}/profile`, { withCredentials: true });
-      batch(() => {
-        dispatch(updateIdentity(response.data));
-        dispatch(makeFetchUsers());
-        dispatch(makeFetchConversations());
-        dispatch(showNavigation());
-      });
+      dispatch(makeInitializeApplication(response.data));
     } catch (error) {
-      dispatch(updateIdentityStatus('unavailable'));
-      history.push(`/login`);
+      dispatch(makeExitApplication());
     }
   };
-}
+});

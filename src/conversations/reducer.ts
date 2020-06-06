@@ -3,7 +3,6 @@ import {
   IConversationsAction,
   CREATE_CONVERSATION,
   UPDATE_CONVERSATION,
-  TOGGLE_CONVERSATION_LIST,
   UPDATE_MESSAGE_EDITION,
   UPDATE_CONVERSATION_STATUS,
   CONVERSATION_SEEN,
@@ -11,13 +10,11 @@ import {
 import { updateConversationCase } from './cases/updateConversationCase';
 import { updateConversationStatusCase } from './cases/updateConversationStatusCase';
 import { createConversationCase } from './cases/createConversationCase';
-import { toggleConversationListCase } from './cases/toggleConversationListCase';
 import { updateMessageEditionCase } from './cases/updateMessageEditionCase';
 import { conversationSeenCase } from './cases/conversationSeenCase';
 
 const defaultConversationsState: IConversationsState = {
   status: 'unavailable',
-  show: false,
   messageEdition: '',
   unseenMessages: 0,
   conversations: [],
@@ -36,8 +33,6 @@ export function conversations(
       return conversationSeenCase(state, action);
     case UPDATE_CONVERSATION_STATUS:
       return updateConversationStatusCase(state, action);
-    case TOGGLE_CONVERSATION_LIST:
-      return toggleConversationListCase(state, action);
     case UPDATE_MESSAGE_EDITION:
       return updateMessageEditionCase(state, action);
     default:

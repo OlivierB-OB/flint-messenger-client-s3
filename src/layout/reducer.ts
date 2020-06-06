@@ -1,10 +1,4 @@
-import {
-  ILayoutState,
-  ILayoutAction,
-  TOGGLE_DRAWER,
-  UPDATE_DRAWER_CONTENT,
-  TOGGLE_NAVIGATION,
-} from './types';
+import { ILayoutState, ILayoutAction, TOGGLE_DRAWER, UPDATE_DRAWER_CONTENT, TOGGLE_NAVIGATION } from './types';
 import { toggleDrawerCase } from './cases/toggleDrawerCase';
 import { updateDrawerContentCase } from './cases/updateDrawerContentCase';
 import { toggleNavigationCase } from './cases/toggleNavigationCase';

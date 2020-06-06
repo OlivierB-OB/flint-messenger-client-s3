@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     drawerHeader: {
       textAlign: 'right',
-      position: "sticky",
+      position: 'sticky',
       top: 0,
       zIndex: 100,
       backgroundColor: theme.palette.background.paper,
@@ -38,9 +38,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function DrawerDisplay({ show, content, hideDrawer }: IDrawerDisplayProps) {
   const { drawerHeader, paper } = useStyles();
-  const contentDisplay = content === 'contacts' ? <MyContacts /> :
-    content === 'conversations' ? <MyConversations /> :
-    null;
+  const contentDisplay =
+    content === 'contacts' ? <MyContacts /> : content === 'conversations' ? <MyConversations /> : null;
   return (
     <Drawer variant="persistent" anchor="left" open={show} onClose={hideDrawer} classes={{ paper }}>
       <Box className={drawerHeader}>
@@ -48,9 +47,7 @@ function DrawerDisplay({ show, content, hideDrawer }: IDrawerDisplayProps) {
           <ArrowBackIos />
         </IconButton>
       </Box>
-      <Box>
-        {contentDisplay}
-      </Box>
+      <Box>{contentDisplay}</Box>
     </Drawer>
   );
 }
