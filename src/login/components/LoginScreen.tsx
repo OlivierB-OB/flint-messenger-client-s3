@@ -11,7 +11,7 @@ import { IAppState } from '../../appReducer';
 import { ILoginStatus } from '../types';
 import { LoginTabPanel } from './LoginTabPanel';
 import { LoginForm } from './LoginForm';
-import { resetProfileForm } from '../../profileForm/actions/resetProfileForm';
+import { resetProfileFormContent } from '../../profileForm/actions/resetProfileFormContent';
 
 export interface ILoginScreenDisplayProps {
   loginStatus: ILoginStatus;
@@ -55,7 +55,7 @@ const mapStateToProps = ({ login, profileForm }: IAppState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  resetRegistrationForm: () => dispatch(resetProfileForm()),
+  resetRegistrationForm: () => dispatch(resetProfileFormContent()),
 });
 
 export const LoginScreen = connect(mapStateToProps, mapDispatchToProps)(LoginScreenDisplay);

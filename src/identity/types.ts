@@ -17,8 +17,18 @@ export interface IIdentityState {
   info?: IProfile;
 }
 
+export const IDENTITY_RESET = 'IDENTITY_RESET';
 export const UPDATE_IDENTITY = 'UPDATE_IDENTITY';
 export const UPDATE_IDENTITY_STATUS = 'UPDATE_IDENTITY_STATUS';
+
+export interface IIdentityResetAction {
+  type: typeof IDENTITY_RESET;
+}
+
+export interface IUpdateIdentityAction {
+  type: typeof UPDATE_IDENTITY;
+  info: Partial<IProfile>;
+}
 
 export interface IUpdateIdentityAction {
   type: typeof UPDATE_IDENTITY;
@@ -30,4 +40,4 @@ export interface IUpdateIdentityStatusAction {
   status: IIdentityStatus;
 }
 
-export type IIdentityAction = IUpdateIdentityAction | IUpdateIdentityStatusAction;
+export type IIdentityAction = IIdentityResetAction | IUpdateIdentityAction | IUpdateIdentityStatusAction;

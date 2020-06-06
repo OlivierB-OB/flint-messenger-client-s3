@@ -1,8 +1,11 @@
-import { IProfileFormState, IResetProfileFormAction } from '../types';
-import { defaultProfileForm } from './defaultProfileForm';
+import { IProfileFormState, IResetProfileFormContentAction } from '../types';
+import { defaultProfileFormState } from '../utils';
 
-export function resetProfileFormCase(_: IProfileFormState, { info }: IResetProfileFormAction): IProfileFormState {
-  const newState = defaultProfileForm();
+export function resetProfileFormCase(
+  _: IProfileFormState,
+  { info }: IResetProfileFormContentAction,
+): IProfileFormState {
+  const newState = defaultProfileFormState();
   if (info) {
     const { email, firstName, lastName } = info;
     newState.fields.email.value = email;

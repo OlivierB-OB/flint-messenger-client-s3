@@ -1,11 +1,13 @@
 import { profileForm } from '../reducer';
-import { resetProfileForm } from '../actions/resetProfileForm';
+import { resetProfileFormContent } from '../actions/resetProfileFormContent';
+import { defaultProfileFormState } from '../utils';
 
 describe('resetProfileForm', () => {
   it('should allow reseting the profileForm content', async () => {
     expect(
       profileForm(
         {
+          ...defaultProfileFormState(),
           status: 'unavailable',
           fields: {
             email: {
@@ -35,7 +37,7 @@ describe('resetProfileForm', () => {
             },
           },
         },
-        resetProfileForm({
+        resetProfileFormContent({
           _id: '1234',
           email: 'test@test.com',
           firstName: 'foo',
@@ -45,8 +47,10 @@ describe('resetProfileForm', () => {
         }),
       ),
     ).toEqual({
+      ...defaultProfileFormState(),
       status: 'ready',
       fields: {
+        ...defaultProfileFormState().fields,
         email: {
           value: 'test@test.com',
           isValid: true,
@@ -59,20 +63,49 @@ describe('resetProfileForm', () => {
           value: 'bar',
           isValid: true,
         },
-        password: {
-          value: '',
-          isValid: true,
-          hasLower: false,
-          hasUpper: false,
-          hasNumber: false,
-          hasSymbol: false,
-          hasValidLength: false,
-        },
-        confirmation: {
-          value: '',
-          isValid: true,
-        },
       },
+    });
+  });
+
+  it('should support an undefined identity', async () => {
+    expect(
+      profileForm(
+        {
+          ...defaultProfileFormState(),
+          status: 'unavailable',
+          fields: {
+            email: {
+              value: 'test',
+              isValid: false,
+            },
+            firstName: {
+              value: 'test',
+              isValid: false,
+            },
+            lastName: {
+              value: 'test',
+              isValid: false,
+            },
+            password: {
+              value: 'test',
+              isValid: false,
+              hasLower: true,
+              hasUpper: true,
+              hasNumber: true,
+              hasSymbol: true,
+              hasValidLength: true,
+            },
+            confirmation: {
+              value: 'test',
+              isValid: false,
+            },
+          },
+        },
+        resetProfileFormContent(undefined),
+      ),
+    ).toEqual({
+      ...defaultProfileFormState(),
+      status: 'ready',
     });
   });
 });

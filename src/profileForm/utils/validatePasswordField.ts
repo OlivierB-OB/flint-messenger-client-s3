@@ -1,4 +1,4 @@
-import { IPasswordField } from '../../types';
+import { IPasswordField } from '../types';
 
 export function validatePasswordField(password: IPasswordField): void {
   password.hasLower = /[a-z]+/.test(password.value);

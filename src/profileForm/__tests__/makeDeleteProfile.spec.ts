@@ -30,7 +30,9 @@ describe('makeDeleteProfile', () => {
     axiosMock.get.mockReturnValueOnce(deleteProfile);
     store.dispatch(makeDeleteProfile() as any);
 
-    expect(axiosMock.delete).toHaveBeenCalledWith(`${process.env.REACT_APP_BACKEND}/profile`, { withCredentials: true });
+    expect(axiosMock.delete).toHaveBeenCalledWith(`${process.env.REACT_APP_BACKEND}/profile`, {
+      withCredentials: true,
+    });
 
     expect(store.getActions()).toEqual([
       {
@@ -56,7 +58,9 @@ describe('makeDeleteProfile', () => {
     axiosMock.delete.mockReturnValueOnce(deleteProfile);
     store.dispatch(makeDeleteProfile() as any);
 
-    expect(axiosMock.delete).toHaveBeenCalledWith(`${process.env.REACT_APP_BACKEND}/profile`, { withCredentials: true });
+    expect(axiosMock.delete).toHaveBeenCalledWith(`${process.env.REACT_APP_BACKEND}/profile`, {
+      withCredentials: true,
+    });
 
     expect(store.getActions()).toEqual([
       {

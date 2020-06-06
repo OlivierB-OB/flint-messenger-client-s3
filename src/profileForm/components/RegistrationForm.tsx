@@ -13,7 +13,7 @@ import { IdentitySection } from './IdentitySection';
 import { CredentialsSection } from './CredentialsSection';
 import { Alert } from '../../layout/components/Alert';
 import { makeSubmitRegistrationForm } from '../actions/makeSubmitRegistrationForm';
-import { resetProfileForm } from '../actions/resetProfileForm';
+import { resetProfileFormContent } from '../actions/resetProfileFormContent';
 
 export interface IRegistrationDisplayFormProps {
   status: IProfileFormStatus;
@@ -68,7 +68,7 @@ const mapStateToProps = ({ profileForm }: IAppState) => ({
 const mapDispatchToProps = (dispatch: ThunkDispatch<IAppState, void, Action>) => ({
   update: <T extends keyof IProfileFormFields>(field: T, value: IProfileFormFields[T]['value']) =>
     dispatch(updateProfileForm(field, value)),
-  resetForm: () => dispatch(resetProfileForm()),
+  resetForm: () => dispatch(resetProfileFormContent()),
   saveProfile: () => dispatch(makeSubmitRegistrationForm()),
 });
 

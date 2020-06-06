@@ -1,20 +1,21 @@
 import { layout } from '../reducer';
 import { updateDrawerContent } from '../actions/updateDrawerContent';
+import { defaultLayoutState } from '../utils';
 
 describe('updateDrawerContent', () => {
   it('should allow updating the drawer content', async () => {
     expect(
       layout(
         {
+          ...defaultLayoutState(),
           showDrawer: true,
-          allowNavigation: false,
           drawerContent: 'conversations',
         },
         updateDrawerContent('contacts'),
       ),
     ).toEqual({
+      ...defaultLayoutState(),
       showDrawer: true,
-      allowNavigation: false,
       drawerContent: 'contacts',
     });
   });
@@ -23,15 +24,15 @@ describe('updateDrawerContent', () => {
     expect(
       layout(
         {
+          ...defaultLayoutState(),
           showDrawer: true,
-          allowNavigation: false,
           drawerContent: 'conversations',
         },
         updateDrawerContent(),
       ),
     ).toEqual({
+      ...defaultLayoutState(),
       showDrawer: false,
-      allowNavigation: false,
     });
   });
 });

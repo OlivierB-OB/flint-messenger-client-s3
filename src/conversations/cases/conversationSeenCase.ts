@@ -1,14 +1,12 @@
 import { IConversationsState, IConversationSeenAction } from '../types';
-import { consolidateUnseenMessages } from './utils/consolidateUnseenMessages';
-import { conversationComparator } from './utils/conversationComparator';
-import { countUnseenMessages } from './utils/countUnseenMessages';
+import { consolidateUnseenMessages, conversationComparator, countUnseenMessages } from '../utils';
 
 export function conversationSeenCase(
   state: IConversationsState,
   { id, seenDate }: IConversationSeenAction,
 ): IConversationsState {
   const conversation = state.conversations.find((c) => c._id === id);
-  if (!conversation) throw Error('Conversation not found');
+  if (!conversation) return state;
 
   const newConversation = {
     ...conversation,

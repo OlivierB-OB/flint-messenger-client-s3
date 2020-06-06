@@ -1,11 +1,12 @@
 import { identity } from '../reducer';
 import { updateIdentity } from '../actions/updateIdentity';
+import { defaultIdentityState } from '../utils';
 
 describe('updateIdentity', () => {
   it('should allow updating user profile', async () => {
     expect(
       identity(
-        { status: 'unavailable' },
+        defaultIdentityState(),
         updateIdentity({
           _id: '1234',
           firstName: 'Foo',
@@ -15,6 +16,7 @@ describe('updateIdentity', () => {
         }),
       ),
     ).toEqual({
+      ...defaultIdentityState(),
       status: 'ready',
       info: {
         _id: '1234',
@@ -30,6 +32,7 @@ describe('updateIdentity', () => {
     expect(
       identity(
         {
+          ...defaultIdentityState(),
           status: 'ready',
           info: {
             _id: '1234',
@@ -49,6 +52,7 @@ describe('updateIdentity', () => {
         }),
       ),
     ).toEqual({
+      ...defaultIdentityState(),
       status: 'ready',
       info: {
         _id: '1234',

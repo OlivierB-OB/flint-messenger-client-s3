@@ -1,4 +1,4 @@
-import { IFormField } from '../../types';
+import { IFormField } from '../types';
 
 export function validateNameField(field: IFormField<string>): void {
   field.isValid = /^[a-zA-Z]{1,20}$/.test(field.value);

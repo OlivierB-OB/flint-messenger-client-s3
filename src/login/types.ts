@@ -10,9 +10,14 @@ export interface ILoginState {
   form: ILoginForm;
 }
 
+export const LOGIN_RESET = 'LOGIN_RESET';
 export const LOGIN_UPDATE_STATUS = 'LOGIN_UPDATE_STATUS';
 export const LOGIN_UPDATE_FORM = 'LOGIN_UPDATE_FORM';
 export const LOGIN_AUTHENTICATION = 'LOGIN_AUTHENTICATION';
+
+export interface ILoginResetAction {
+  type: typeof LOGIN_RESET;
+}
 
 export interface ILoginUpdateStatusAction {
   type: typeof LOGIN_UPDATE_STATUS;
@@ -29,4 +34,8 @@ export interface ILoginAuthenticationAction {
   type: typeof LOGIN_AUTHENTICATION;
 }
 
-export type ILoginAction = ILoginUpdateStatusAction | ILoginAuthenticationAction | ILoginUpdateFormAction<any>;
+export type ILoginAction =
+  | ILoginResetAction
+  | ILoginUpdateStatusAction
+  | ILoginAuthenticationAction
+  | ILoginUpdateFormAction<any>;

@@ -1,14 +1,12 @@
 import { users } from '../reducer';
 import { updateUserInfo } from '../actions/updateUserInfo';
+import { defaultUsersState } from '../utils';
 
 describe('updateUserInfo', () => {
   it('should allow updating user info - add 1', async () => {
     expect(
       users(
-        {
-          status: 'ready',
-          list: [],
-        },
+        defaultUsersState(),
         updateUserInfo([
           {
             _id: '1234',
@@ -20,7 +18,7 @@ describe('updateUserInfo', () => {
         ]),
       ),
     ).toEqual({
-      status: 'ready',
+      ...defaultUsersState(),
       list: [
         {
           _id: '1234',
@@ -37,7 +35,7 @@ describe('updateUserInfo', () => {
     expect(
       users(
         {
-          status: 'ready',
+          ...defaultUsersState(),
           list: [
             {
               _id: '4321',
@@ -59,7 +57,7 @@ describe('updateUserInfo', () => {
         ]),
       ),
     ).toEqual({
-      status: 'ready',
+      ...defaultUsersState(),
       list: [
         {
           _id: '1234',
@@ -83,7 +81,7 @@ describe('updateUserInfo', () => {
     expect(
       users(
         {
-          status: 'ready',
+          ...defaultUsersState(),
           list: [
             {
               _id: '4321',
@@ -112,7 +110,7 @@ describe('updateUserInfo', () => {
         ]),
       ),
     ).toEqual({
-      status: 'ready',
+      ...defaultUsersState(),
       list: [
         {
           _id: '1234',
@@ -136,7 +134,7 @@ describe('updateUserInfo', () => {
     expect(
       users(
         {
-          status: 'ready',
+          ...defaultUsersState(),
           list: [
             {
               _id: '4321',
@@ -172,7 +170,7 @@ describe('updateUserInfo', () => {
         ]),
       ),
     ).toEqual({
-      status: 'ready',
+      ...defaultUsersState(),
       list: [
         {
           _id: '4444',

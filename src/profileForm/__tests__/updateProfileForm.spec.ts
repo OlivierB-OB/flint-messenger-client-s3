@@ -1,10 +1,10 @@
 import { profileForm } from '../reducer';
 import { updateProfileForm } from '../actions/updateProfileForm';
-import { defaultProfileForm } from '../cases/defaultProfileForm';
+import { defaultProfileFormState } from '../utils';
 
 describe('updateProfileForm', () => {
   it('should allow updating profile field email', async () => {
-    const defaultState = defaultProfileForm();
+    const defaultState = defaultProfileFormState();
     expect(profileForm({ ...defaultState }, updateProfileForm('email', 'test@test.com'))).toEqual({
       ...defaultState,
       fields: {
@@ -18,7 +18,7 @@ describe('updateProfileForm', () => {
   });
 
   it('should validate the field email on update', async () => {
-    const defaultState = defaultProfileForm();
+    const defaultState = defaultProfileFormState();
     expect(profileForm({ ...defaultState }, updateProfileForm('email', 'test'))).toEqual({
       ...defaultState,
       fields: {
@@ -33,7 +33,7 @@ describe('updateProfileForm', () => {
   });
 
   it('should allow updating profile field firstName', async () => {
-    const defaultState = defaultProfileForm();
+    const defaultState = defaultProfileFormState();
     expect(profileForm({ ...defaultState }, updateProfileForm('firstName', 'bar'))).toEqual({
       ...defaultState,
       fields: {
@@ -47,7 +47,7 @@ describe('updateProfileForm', () => {
   });
 
   it('should validate the field firstName on update', async () => {
-    const defaultState = defaultProfileForm();
+    const defaultState = defaultProfileFormState();
     expect(profileForm({ ...defaultState }, updateProfileForm('firstName', '222'))).toEqual({
       ...defaultState,
       fields: {
@@ -62,7 +62,7 @@ describe('updateProfileForm', () => {
   });
 
   it('should allow updating profile field lastName', async () => {
-    const defaultState = defaultProfileForm();
+    const defaultState = defaultProfileFormState();
     expect(profileForm({ ...defaultState }, updateProfileForm('lastName', 'foo'))).toEqual({
       ...defaultState,
       fields: {
@@ -76,7 +76,7 @@ describe('updateProfileForm', () => {
   });
 
   it('should validate the field lastName on update', async () => {
-    const defaultState = defaultProfileForm();
+    const defaultState = defaultProfileFormState();
     expect(profileForm({ ...defaultState }, updateProfileForm('lastName', '222'))).toEqual({
       ...defaultState,
       fields: {
@@ -91,7 +91,7 @@ describe('updateProfileForm', () => {
   });
 
   it('should allow updating profile field password', async () => {
-    const defaultState = defaultProfileForm();
+    const defaultState = defaultProfileFormState();
     expect(profileForm({ ...defaultState }, updateProfileForm('password', 'aB1/aB1/'))).toEqual({
       ...defaultState,
       fields: {
@@ -115,7 +115,7 @@ describe('updateProfileForm', () => {
   });
 
   it('should validate the field password on update - lower', async () => {
-    const defaultState = defaultProfileForm();
+    const defaultState = defaultProfileFormState();
     expect(profileForm({ ...defaultState }, updateProfileForm('password', 'aaaaaaaa'))).toEqual({
       ...defaultState,
       fields: {
@@ -140,7 +140,7 @@ describe('updateProfileForm', () => {
   });
 
   it('should validate the field password on update - upper', async () => {
-    const defaultState = defaultProfileForm();
+    const defaultState = defaultProfileFormState();
     expect(profileForm({ ...defaultState }, updateProfileForm('password', 'AAAAAAAA'))).toEqual({
       ...defaultState,
       fields: {
@@ -165,7 +165,7 @@ describe('updateProfileForm', () => {
   });
 
   it('should validate the field password on update - number', async () => {
-    const defaultState = defaultProfileForm();
+    const defaultState = defaultProfileFormState();
     expect(profileForm({ ...defaultState }, updateProfileForm('password', '11111111'))).toEqual({
       ...defaultState,
       fields: {
@@ -190,7 +190,7 @@ describe('updateProfileForm', () => {
   });
 
   it('should validate the field password on update - symbol', async () => {
-    const defaultState = defaultProfileForm();
+    const defaultState = defaultProfileFormState();
     expect(profileForm({ ...defaultState }, updateProfileForm('password', '********'))).toEqual({
       ...defaultState,
       fields: {
@@ -215,7 +215,7 @@ describe('updateProfileForm', () => {
   });
 
   it('should validate the field password on update - length', async () => {
-    const defaultState = defaultProfileForm();
+    const defaultState = defaultProfileFormState();
     expect(profileForm({ ...defaultState }, updateProfileForm('password', 'aA1/aA1'))).toEqual({
       ...defaultState,
       fields: {
@@ -240,7 +240,7 @@ describe('updateProfileForm', () => {
   });
 
   it('should allow updating profile field confirmation', async () => {
-    const defaultState = defaultProfileForm();
+    const defaultState = defaultProfileFormState();
     expect(
       profileForm(
         {
@@ -282,7 +282,7 @@ describe('updateProfileForm', () => {
   });
 
   it('should validate the field confirmation on update', async () => {
-    const defaultState = defaultProfileForm();
+    const defaultState = defaultProfileFormState();
     expect(
       profileForm(
         {
@@ -325,7 +325,7 @@ describe('updateProfileForm', () => {
   });
 
   it('should validate the field confirmation on password update', async () => {
-    const defaultState = defaultProfileForm();
+    const defaultState = defaultProfileFormState();
     expect(
       profileForm(
         {

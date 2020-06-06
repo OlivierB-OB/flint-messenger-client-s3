@@ -1,16 +1,14 @@
 import { login } from '../reducer';
 import { loginUpdateForm } from '../actions/loginUpdateForm';
+import { defaultLoginState } from '../utils';
 
 describe('loginUpdateForm', () => {
   it('should allow updating login form field email', async () => {
     expect(
       login(
         {
+          ...defaultLoginState(),
           status: 'ready',
-          form: {
-            email: '',
-            password: '',
-          },
         },
         loginUpdateForm('email', 'test'),
       ),
@@ -27,11 +25,8 @@ describe('loginUpdateForm', () => {
     expect(
       login(
         {
+          ...defaultLoginState(),
           status: 'ready',
-          form: {
-            email: '',
-            password: '',
-          },
         },
         loginUpdateForm('password', 'test'),
       ),

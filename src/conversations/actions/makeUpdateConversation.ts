@@ -1,11 +1,12 @@
 import { batch } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
+import { action } from '../../utils/action';
 import { IAppState } from '../../appReducer';
 import { IConversationMessage } from '../types';
 import { updateConversation } from './updateConversation';
 
-export function makeUpdateConversation(messages: IConversationMessage[]) {
+export const makeUpdateConversation = action((messages: IConversationMessage[]) => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
     const { info } = getState().identity;
     if (!info) throw Error('profile unavailable');
@@ -28,4 +29,4 @@ export function makeUpdateConversation(messages: IConversationMessage[]) {
       }
     });
   };
-}
+});

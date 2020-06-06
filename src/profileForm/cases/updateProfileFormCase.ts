@@ -1,8 +1,5 @@
-import { IProfileFormFields, IProfileFormState, IUpdateProfileFormAction, IFormField, IPasswordField } from '../types';
-import { validateNameField } from './utils/validateNameField';
-import { validatePasswordField } from './utils/validatePasswordField';
-import { validateConfirmationField } from './utils/validateConfirmationField';
-import { validateEmailField } from './utils/validateEmailField';
+import { IProfileFormFields, IProfileFormState, IUpdateProfileFormAction } from '../types';
+import { validateNameField, validatePasswordField, validateConfirmationField, validateEmailField } from '../utils';
 
 export function updateProfileFormCase<T extends keyof IProfileFormFields>(
   state: IProfileFormState,

@@ -1,5 +1,5 @@
 import { IUsersState, IUpdateUserInfoAction } from '../types';
-import { userComparator } from './utils/userComparator';
+import { userComparator } from '../utils';
 
 export function updateUserInfoCase(state: IUsersState, { data }: IUpdateUserInfoAction): IUsersState {
   const updated = data.map(({ _id }) => _id);

@@ -1,4 +1,4 @@
-import { IFormField, IPasswordField } from '../../types';
+import { IFormField, IPasswordField } from '../types';
 
 export function validateConfirmationField(confirmation: IFormField<string>, password: IPasswordField): void {
   confirmation.isValid = password.value === confirmation.value;

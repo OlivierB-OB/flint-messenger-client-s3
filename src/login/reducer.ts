@@ -1,17 +1,12 @@
-import { ILoginState, ILoginAction, LOGIN_UPDATE_STATUS, LOGIN_UPDATE_FORM } from './types';
+import { ILoginState, ILoginAction, LOGIN_UPDATE_STATUS, LOGIN_UPDATE_FORM, LOGIN_RESET } from './types';
 import { loginUpdateFormCase } from './cases/loginUpdateFormCase';
 import { updateLoginStatusCase } from './cases/updateLoginStatusCase';
+import { defaultLoginState } from './utils';
 
-const defaultLogin: ILoginState = {
-  status: 'ready',
-  form: {
-    email: '',
-    password: '',
-  },
-};
-
-export function login(state: ILoginState = defaultLogin, action: ILoginAction): ILoginState {
+export function login(state: ILoginState = defaultLoginState(), action: ILoginAction): ILoginState {
   switch (action.type) {
+    case LOGIN_RESET:
+      return defaultLoginState();
     case LOGIN_UPDATE_STATUS:
       return updateLoginStatusCase(state, action);
     case LOGIN_UPDATE_FORM:

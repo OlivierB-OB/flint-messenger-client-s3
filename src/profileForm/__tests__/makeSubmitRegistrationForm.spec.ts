@@ -43,19 +43,23 @@ describe('makeSubmitRegistrationForm', () => {
           password: {
             value: 'baz',
           },
-        }
-      }
+        },
+      },
     });
 
     axiosMock.post.mockReturnValueOnce(postRegister);
     store.dispatch(makeSubmitRegistrationForm() as any);
 
-    expect(axiosMock.post).toHaveBeenCalledWith(`${process.env.REACT_APP_BACKEND}/register`, {
-      email: 'foo@test.com',
-      firstName: 'foo',
-      lastName: 'bar',
-      password: 'baz',
-    }, { withCredentials: true });
+    expect(axiosMock.post).toHaveBeenCalledWith(
+      `${process.env.REACT_APP_BACKEND}/register`,
+      {
+        email: 'foo@test.com',
+        firstName: 'foo',
+        lastName: 'bar',
+        password: 'baz',
+      },
+      { withCredentials: true },
+    );
 
     expect(store.getActions()).toEqual([
       {
@@ -65,7 +69,7 @@ describe('makeSubmitRegistrationForm', () => {
     ]);
     store.clearActions();
 
-    resolvePostRegister({ data: 'new updated profile'});
+    resolvePostRegister({ data: 'new updated profile' });
 
     await sleep(10);
 
@@ -94,19 +98,23 @@ describe('makeSubmitRegistrationForm', () => {
           password: {
             value: 'baz',
           },
-        }
-      }
+        },
+      },
     });
 
     axiosMock.post.mockReturnValueOnce(postRegister);
     store.dispatch(makeSubmitRegistrationForm() as any);
 
-    expect(axiosMock.post).toHaveBeenCalledWith(`${process.env.REACT_APP_BACKEND}/register`, {
-      email: 'foo@test.com',
-      firstName: 'foo',
-      lastName: 'bar',
-      password: 'baz',
-    }, { withCredentials: true });
+    expect(axiosMock.post).toHaveBeenCalledWith(
+      `${process.env.REACT_APP_BACKEND}/register`,
+      {
+        email: 'foo@test.com',
+        firstName: 'foo',
+        lastName: 'bar',
+        password: 'baz',
+      },
+      { withCredentials: true },
+    );
 
     expect(store.getActions()).toEqual([
       {

@@ -32,18 +32,22 @@ describe('makeSaveProfileForm', () => {
           password: {
             value: 'baz',
           },
-        }
-      }
+        },
+      },
     });
 
     axiosMock.patch.mockReturnValueOnce(patchProfile);
     store.dispatch(makeSaveProfileForm() as any);
 
-    expect(axiosMock.patch).toHaveBeenCalledWith(`${process.env.REACT_APP_BACKEND}/profile`, {
-      firstName: 'foo',
-      lastName: 'bar',
-      password: 'baz',
-    }, { withCredentials: true });
+    expect(axiosMock.patch).toHaveBeenCalledWith(
+      `${process.env.REACT_APP_BACKEND}/profile`,
+      {
+        firstName: 'foo',
+        lastName: 'bar',
+        password: 'baz',
+      },
+      { withCredentials: true },
+    );
 
     expect(store.getActions()).toEqual([
       {
@@ -53,7 +57,7 @@ describe('makeSaveProfileForm', () => {
     ]);
     store.clearActions();
 
-    resolvePatchProfile({ data: 'new updated profile'});
+    resolvePatchProfile({ data: 'new updated profile' });
 
     await sleep(10);
 
@@ -85,17 +89,21 @@ describe('makeSaveProfileForm', () => {
           password: {
             value: '',
           },
-        }
-      }
+        },
+      },
     });
 
     axiosMock.patch.mockReturnValueOnce(patchProfile);
     store.dispatch(makeSaveProfileForm() as any);
 
-    expect(axiosMock.patch).toHaveBeenCalledWith(`${process.env.REACT_APP_BACKEND}/profile`, {
-      firstName: 'foo',
-      lastName: 'bar',
-    }, { withCredentials: true });
+    expect(axiosMock.patch).toHaveBeenCalledWith(
+      `${process.env.REACT_APP_BACKEND}/profile`,
+      {
+        firstName: 'foo',
+        lastName: 'bar',
+      },
+      { withCredentials: true },
+    );
 
     expect(store.getActions()).toEqual([
       {
@@ -137,18 +145,22 @@ describe('makeSaveProfileForm', () => {
           password: {
             value: 'baz',
           },
-        }
-      }
+        },
+      },
     });
 
     axiosMock.patch.mockReturnValueOnce(patchProfile);
     store.dispatch(makeSaveProfileForm() as any);
 
-    expect(axiosMock.patch).toHaveBeenCalledWith(`${process.env.REACT_APP_BACKEND}/profile`, {
-      firstName: 'foo',
-      lastName: 'bar',
-      password: 'baz',
-    }, { withCredentials: true });
+    expect(axiosMock.patch).toHaveBeenCalledWith(
+      `${process.env.REACT_APP_BACKEND}/profile`,
+      {
+        firstName: 'foo',
+        lastName: 'bar',
+        password: 'baz',
+      },
+      { withCredentials: true },
+    );
 
     expect(store.getActions()).toEqual([
       {

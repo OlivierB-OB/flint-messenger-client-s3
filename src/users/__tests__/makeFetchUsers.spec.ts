@@ -37,13 +37,15 @@ describe('makeFetchUsers', () => {
     ]);
     store.clearActions();
 
-    const users = [{
-      _id: '1234',
-      email: 'any.user@test.com',
-      firstName: 'any',
-      lastName: 'user',
-      status: 'available',
-    }];
+    const users = [
+      {
+        _id: '1234',
+        email: 'any.user@test.com',
+        firstName: 'any',
+        lastName: 'user',
+        status: 'available',
+      },
+    ];
     resolveGetUsers({ data: users });
 
     await sleep(10);

@@ -6,25 +6,22 @@ import {
   UPDATE_MESSAGE_EDITION,
   UPDATE_CONVERSATION_STATUS,
   CONVERSATION_SEEN,
+  CONVERSATIONS_RESET,
 } from './types';
 import { updateConversationCase } from './cases/updateConversationCase';
 import { updateConversationStatusCase } from './cases/updateConversationStatusCase';
 import { createConversationCase } from './cases/createConversationCase';
 import { updateMessageEditionCase } from './cases/updateMessageEditionCase';
 import { conversationSeenCase } from './cases/conversationSeenCase';
-
-const defaultConversationsState: IConversationsState = {
-  status: 'unavailable',
-  messageEdition: '',
-  unseenMessages: 0,
-  conversations: [],
-};
+import { defaultConversationsState } from './utils';
 
 export function conversations(
-  state: IConversationsState = defaultConversationsState,
+  state: IConversationsState = defaultConversationsState(),
   action: IConversationsAction,
 ): IConversationsState {
   switch (action.type) {
+    case CONVERSATIONS_RESET:
+      return defaultConversationsState();
     case CREATE_CONVERSATION:
       return createConversationCase(state, action);
     case UPDATE_CONVERSATION:

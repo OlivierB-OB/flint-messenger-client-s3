@@ -33,17 +33,21 @@ describe('makeSubmitLogin', () => {
         form: {
           email: 'foo@test.com',
           password: 'baz',
-        }
-      }
+        },
+      },
     });
 
     axiosMock.post.mockReturnValueOnce(postLogin);
     store.dispatch(makeSubmitLogin() as any);
 
-    expect(axiosMock.post).toHaveBeenCalledWith(`${process.env.REACT_APP_BACKEND}/login`, {
-      username: 'foo@test.com',
-      password: 'baz',
-    }, { withCredentials: true });
+    expect(axiosMock.post).toHaveBeenCalledWith(
+      `${process.env.REACT_APP_BACKEND}/login`,
+      {
+        username: 'foo@test.com',
+        password: 'baz',
+      },
+      { withCredentials: true },
+    );
 
     expect(store.getActions()).toEqual([
       {
@@ -53,7 +57,7 @@ describe('makeSubmitLogin', () => {
     ]);
     store.clearActions();
 
-    resolvePostLogin({ data: 'user profile'});
+    resolvePostLogin({ data: 'user profile' });
 
     await sleep(10);
 
@@ -72,17 +76,21 @@ describe('makeSubmitLogin', () => {
         form: {
           email: 'foo@test.com',
           password: 'baz',
-        }
-      }
+        },
+      },
     });
 
     axiosMock.post.mockReturnValueOnce(postLogin);
     store.dispatch(makeSubmitLogin() as any);
 
-    expect(axiosMock.post).toHaveBeenCalledWith(`${process.env.REACT_APP_BACKEND}/login`, {
-      username: 'foo@test.com',
-      password: 'baz',
-    }, { withCredentials: true });
+    expect(axiosMock.post).toHaveBeenCalledWith(
+      `${process.env.REACT_APP_BACKEND}/login`,
+      {
+        username: 'foo@test.com',
+        password: 'baz',
+      },
+      { withCredentials: true },
+    );
 
     expect(store.getActions()).toEqual([
       {

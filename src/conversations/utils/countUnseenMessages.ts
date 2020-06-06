@@ -1,4 +1,4 @@
-import { IConversationMessage } from '../../types';
+import { IConversationMessage } from '../types';
 
 export function countUnseenMessages(lastSeen: string | undefined, messages: IConversationMessage[]): number {
   if (!lastSeen) return messages.length;

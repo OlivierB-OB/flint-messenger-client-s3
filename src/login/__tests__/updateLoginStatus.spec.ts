@@ -1,25 +1,20 @@
 import { login } from '../reducer';
 import { updateLoginStatus } from '../actions/updateLoginStatus';
+import { defaultLoginState } from '../utils';
 
 describe('updateLoginStatus', () => {
   it('should allow updating login status', async () => {
     expect(
       login(
         {
+          ...defaultLoginState(),
           status: 'unavailable',
-          form: {
-            email: '',
-            password: '',
-          },
         },
         updateLoginStatus('ready'),
       ),
     ).toEqual({
+      ...defaultLoginState(),
       status: 'ready',
-      form: {
-        email: '',
-        password: '',
-      },
     });
   });
 });

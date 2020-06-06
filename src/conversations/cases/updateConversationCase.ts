@@ -1,9 +1,12 @@
 import { IConversationsState, IUpdateConversationAction } from '../types';
-import { conversationFactory } from './conversationFactory';
-import { messageComparator } from './utils/messageComparator';
-import { countUnseenMessages } from './utils/countUnseenMessages';
-import { conversationComparator } from './utils/conversationComparator';
-import { consolidateUnseenMessages } from './utils/consolidateUnseenMessages';
+import {
+  conversationFactory,
+  messageComparator,
+  countUnseenMessages,
+  conversationComparator,
+  consolidateUnseenMessages,
+  lastMessageDate,
+} from '../utils';
 
 export function updateConversationCase(
   state: IConversationsState,
@@ -21,9 +24,9 @@ export function updateConversationCase(
   conversation = {
     ...conversation,
     messages: [...conversation.messages, ...messages],
-    updatedAt: createdAt,
   };
   conversation.messages.sort(messageComparator);
+  conversation.updatedAt = lastMessageDate(conversation.messages);
   conversation.unseenMessages = countUnseenMessages(lastSeen, conversation.messages);
 
   const newState = {

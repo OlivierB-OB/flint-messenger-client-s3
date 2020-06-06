@@ -1,19 +1,19 @@
 import { profileForm } from '../reducer';
 import { updateProfileFormStatus } from '../actions/updateProfileFormStatus';
-import { defaultProfileForm } from '../cases/defaultProfileForm';
+import { defaultProfileFormState } from '../utils';
 
 describe('updateProfileFormStatus', () => {
   it('should allow updating profileForm status', async () => {
     expect(
       profileForm(
         {
-          ...defaultProfileForm(),
+          ...defaultProfileFormState(),
           status: 'unavailable',
         },
         updateProfileFormStatus('ready'),
       ),
     ).toEqual({
-      ...defaultProfileForm(),
+      ...defaultProfileFormState(),
       status: 'ready',
     });
   });

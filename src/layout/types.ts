@@ -6,9 +6,14 @@ export interface ILayoutState {
   allowNavigation: boolean;
 }
 
+export const LAYOUT_RESET = 'LAYOUT_RESET';
 export const TOGGLE_DRAWER = 'TOGGLE_DRAWER';
 export const UPDATE_DRAWER_CONTENT = 'UPDATE_DRAWER_CONTENT';
 export const TOGGLE_NAVIGATION = 'TOGGLE_NAVIGATION';
+
+export interface ILayoutResetAction {
+  type: typeof LAYOUT_RESET;
+}
 
 export interface IToggleDrawerAction {
   type: typeof TOGGLE_DRAWER;
@@ -25,4 +30,8 @@ export interface IToggleNavigationAction {
   allowNavigation: boolean;
 }
 
-export type ILayoutAction = IToggleDrawerAction | IUpdateDrawerContentAction | IToggleNavigationAction;
+export type ILayoutAction =
+  | ILayoutResetAction
+  | IToggleDrawerAction
+  | IUpdateDrawerContentAction
+  | IToggleNavigationAction;

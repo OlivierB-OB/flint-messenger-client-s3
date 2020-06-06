@@ -1,4 +1,4 @@
-import { IFormField } from '../../types';
+import { IFormField } from '../types';
 
 export function validateEmailField(field: IFormField<string>): void {
   field.isValid = /^[a-z0-9-.]+@[a-z0-9-.]+\.[a-z]+$/gi.test(field.value);

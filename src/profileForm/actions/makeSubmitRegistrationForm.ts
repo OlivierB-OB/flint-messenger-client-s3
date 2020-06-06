@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
+import { action } from '../../utils/action';
 import { IAppState } from '../../appReducer';
 import { history } from '../../history';
 import { updateProfileFormStatus } from './updateProfileFormStatus';
 import { makeInitializeApplication } from '../../layout/actions/makeInitializeApplication';
 
-export function makeSubmitRegistrationForm() {
+export const makeSubmitRegistrationForm = action(() => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
     dispatch(updateProfileFormStatus('unavailable'));
 
@@ -32,4 +33,4 @@ export function makeSubmitRegistrationForm() {
       dispatch(updateProfileFormStatus('error'));
     }
   };
-}
+});
