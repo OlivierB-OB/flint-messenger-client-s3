@@ -32,10 +32,10 @@ describe('makeSubmitLogin', () => {
       login: {
         form: {
           email: {
-            value: 'foo@test.com'
+            value: 'foo@test.com',
           },
           password: {
-            value: 'baz'
+            value: 'baz',
           },
         },
       },

@@ -8,9 +8,7 @@ describe('ConversationList', () => {
       status: 'unavailable',
       list: [],
     };
-    const component = shallow(
-      <ConversationList {...props} />,
-    ).dive();
+    const component = shallow(<ConversationList {...props} />).dive();
     expect(component).toMatchSnapshot();
   });
 
@@ -19,23 +17,16 @@ describe('ConversationList', () => {
       status: 'ready',
       list: [],
     };
-    const component = shallow(
-      <ConversationList {...props} />,
-    ).dive();
+    const component = shallow(<ConversationList {...props} />).dive();
     expect(component).toMatchSnapshot();
   });
 
   it('should display the conversations', async () => {
     const props: any = {
       status: 'unavailable',
-      list: [
-        { _id: '123' },
-        { _id: '456' },
-      ],
+      list: [{ _id: '123' }, { _id: '456' }],
     };
-    const component = shallow(
-      <ConversationList {...props} />,
-    ).dive();
+    const component = shallow(<ConversationList {...props} />).dive();
     expect(component).toMatchSnapshot();
   });
 });

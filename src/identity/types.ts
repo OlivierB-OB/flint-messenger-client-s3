@@ -1,5 +1,7 @@
 export type IUserStatus = 'available' | 'incall' | 'offline';
 
+// FIXME support profile picture
+
 export interface IProfile {
   _id: string;
   email: string;

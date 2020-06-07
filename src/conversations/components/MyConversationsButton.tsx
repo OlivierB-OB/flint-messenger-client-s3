@@ -11,6 +11,8 @@ interface IShowConversationsButtonProps {
   showConversationList: () => void;
 }
 
+// FIXME should display aggregated unseen message as a badge
+
 export function ShowConversationsButton({ showConversationList }: IShowConversationsButtonProps) {
   return (
     <IconButton aria-label="contacts" onClick={showConversationList}>

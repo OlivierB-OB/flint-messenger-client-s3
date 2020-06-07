@@ -57,7 +57,11 @@ describe('LoginScreenDisplay', () => {
       profileForm: defaultProfileFormState(),
     });
 
-    mount(<Provider store={store}><LoginScreenDisplay {...props} /></Provider>);
+    mount(
+      <Provider store={store}>
+        <LoginScreenDisplay {...props} />
+      </Provider>,
+    );
     expect(props.resetRegistrationForm).toHaveBeenCalled();
   });
 });

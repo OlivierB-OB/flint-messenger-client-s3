@@ -16,6 +16,8 @@ export interface IPasswordField extends IFormField<string> {
 
 export type IProfileFormStatus = 'unavailable' | 'ready' | 'success' | 'error';
 
+// FIXME support profile picture
+
 export interface IProfileFormFields {
   email: IFormField<string>;
   firstName: IFormField<string>;

@@ -12,6 +12,8 @@ export interface ICredentialsSectionProps {
   update<T extends keyof IProfileFormFields>(field: T, value: IProfileFormFields[T]['value']): void;
 }
 
+// FIXME in the case of the regitration the password is required
+
 export function CredentialsSection({ password, confirmation, update }: ICredentialsSectionProps) {
   return (
     <FormControl component="fieldset" fullWidth={true}>

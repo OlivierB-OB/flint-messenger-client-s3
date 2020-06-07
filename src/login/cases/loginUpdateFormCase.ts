@@ -11,10 +11,10 @@ export function loginUpdateFormCase<T extends keyof ILoginForm>(
       ...state.form,
       [field]: {
         ...state.form[field],
-        value
-      }
-    }
-  }
+        value,
+      },
+    },
+  };
   const formField = newState.form[field];
   validateRequiredField(formField);
   return newState;

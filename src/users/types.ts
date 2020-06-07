@@ -2,6 +2,7 @@ import { IProfile } from '../identity/types';
 
 export type IUsersStateStatus = 'unavailable' | 'ready';
 
+// FIXME support profile picture
 export type IUserInfo = Pick<IProfile, '_id' | 'lastName' | 'firstName' | 'status' | 'updatedAt'>;
 
 export interface IUsersState {

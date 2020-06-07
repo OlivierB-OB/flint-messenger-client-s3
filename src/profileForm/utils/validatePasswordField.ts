@@ -1,6 +1,7 @@
 import { IPasswordField } from '../types';
 
 export function validatePasswordField(password: IPasswordField): void {
+  // FIXME in the case of the regitration the password is required
   password.hasLower = /[a-z]+/.test(password.value);
   password.hasUpper = /[A-Z]+/.test(password.value);
   password.hasNumber = /\d+/.test(password.value);

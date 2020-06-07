@@ -15,7 +15,7 @@ describe('LoginScreen', () => {
       login: {
         status: 'login status',
       },
-      profileForm : {
+      profileForm: {
         status: 'login status',
       },
     });

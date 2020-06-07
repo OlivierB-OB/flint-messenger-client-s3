@@ -28,6 +28,8 @@ export interface IProfileFormProps {
   deleteProfile(): void;
 }
 
+// FIXME allow to provide a profile picture from here
+
 export function ProfileForm({
   identityStatus,
   formStatus,

@@ -25,16 +25,14 @@ describe('Chat', () => {
     const store = mockStore({
       conversations: {
         status: 'conversation status',
-        conversations: [
-          { _id: '123', fake: 'the conversation' }
-        ],
+        conversations: [{ _id: '123', fake: 'the conversation' }],
       },
     });
     const match: any = {
       params: {
         conversationId: '123',
-      }
-    }
+      },
+    };
     const component = shallow(<Connected store={store} match={match} />).dive();
     expect(component).toMatchSnapshot();
 
@@ -46,12 +44,10 @@ describe('Chat', () => {
     const store = mockStore({
       conversations: {
         status: 'conversation status',
-        conversations: [
-          { _id: '123', fake: 'the conversation' }
-        ],
+        conversations: [{ _id: '123', fake: 'the conversation' }],
       },
     });
-    const match: any = {}
+    const match: any = {};
     const component = shallow(<Connected store={store} match={match} />).dive();
     expect(component).toMatchSnapshot();
   });
@@ -60,16 +56,14 @@ describe('Chat', () => {
     const store = mockStore({
       conversations: {
         status: 'conversation status',
-        conversations: [
-          { _id: '123', fake: 'the conversation' }
-        ],
+        conversations: [{ _id: '123', fake: 'the conversation' }],
       },
     });
     const match: any = {
       params: {
         conversationId: '222',
-      }
-    }
+      },
+    };
     const component = shallow(<Connected store={store} match={match} />).dive();
     expect(component).toMatchSnapshot();
   });

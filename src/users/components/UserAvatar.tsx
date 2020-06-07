@@ -22,6 +22,8 @@ export interface IUserAvatarProps {
   info?: IUserInfo;
 }
 
+// FIXME support profile picture
+
 export function UserAvatar({ info }: IUserAvatarProps) {
   const { lastName, firstName, status } = info || { firstName: '?', lastName: '?', status: 'offline' };
   const initials = `${firstName[0]}${lastName[0]}`;
