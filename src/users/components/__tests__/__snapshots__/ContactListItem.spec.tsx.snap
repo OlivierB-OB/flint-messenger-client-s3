@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContactListItem should show the contact with avatar name and status 1`] = `
+<Fragment>
+  <WithStyles(ForwardRef(ListItemAvatar))>
+    <UserAvatar
+      info={
+        Object {
+          "firstName": "foo",
+          "lastName": "bar",
+          "status": "available",
+        }
+      }
+    />
+  </WithStyles(ForwardRef(ListItemAvatar))>
+  <WithStyles(ForwardRef(ListItemText))
+    primary={
+      <UserName
+        info={
+          Object {
+            "firstName": "foo",
+            "lastName": "bar",
+            "status": "available",
+          }
+        }
+      />
+    }
+    secondary="available"
+  />
+</Fragment>
+`;

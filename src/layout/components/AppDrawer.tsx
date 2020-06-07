@@ -10,7 +10,7 @@ import { IAppState } from '../../appReducer';
 import { IDrawerContent } from '../types';
 import { hideDrawer } from '../actions/hideDrawer';
 import { MyContacts } from '../../users/components/MyContacts';
-import { MyConversations } from '../../conversations/components/MyConverstions';
+import { MyConversations } from '../../conversations/components/MyConversations';
 
 export interface IDrawerDisplayProps {
   show: boolean;
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function DrawerDisplay({ show, content, hideDrawer }: IDrawerDisplayProps) {
+export function DrawerDisplay({ show, content, hideDrawer }: IDrawerDisplayProps) {
   const { drawerHeader, paper } = useStyles();
   const contentDisplay =
     content === 'contacts' ? <MyContacts /> : content === 'conversations' ? <MyConversations /> : null;

@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MyProfile should provide status, fields and callbacks to ProfileForm 1`] = `
+<ProfileForm
+  deleteProfile={[Function]}
+  fields="profileForm fields"
+  formStatus="profileForm status"
+  identityStatus="identity status"
+  resetProfile={[Function]}
+  saveProfile={[Function]}
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+  update={[Function]}
+/>
+`;

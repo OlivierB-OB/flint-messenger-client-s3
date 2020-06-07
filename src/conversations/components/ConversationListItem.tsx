@@ -4,24 +4,15 @@ import Badge from '@material-ui/core/Badge';
 import React, { Fragment } from 'react';
 import { IConversation } from '../types';
 import { ContactAvatar } from '../../users/components/ContactAvatar';
-import { ContactName } from '../../users/components/ContactName';
+import { PrettyDate } from '../../layout/components/PrettyDate';
 
 export interface IConversationListItemProps {
   conversation: IConversation;
 }
 
-const fdate = new Intl.DateTimeFormat('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-const ftime = new Intl.DateTimeFormat('en-US', {
-  hour: 'numeric',
-  minute: 'numeric',
-  second: 'numeric',
-  hour12: false,
-});
-
 export function ConversationListItem({ conversation }: IConversationListItemProps) {
   const { unseenMessages, messages, target, updatedAt } = conversation;
   const snippet = messages[messages.length - 1]?.content.substr(0, 25);
-  const lastUpdate = new Date(updatedAt);
   return (
     <Fragment>
       <ListItemAvatar>
@@ -33,11 +24,9 @@ export function ConversationListItem({ conversation }: IConversationListItemProp
         primary={snippet}
         secondary={
           <span>
-            <ContactName target={target} />
-            {' - '}
-            {fdate.format(lastUpdate)}
-            {' at '}
-            {ftime.format(lastUpdate)}
+            Last update
+            {': '}
+            <PrettyDate date={updatedAt} />
           </span>
         }
       />

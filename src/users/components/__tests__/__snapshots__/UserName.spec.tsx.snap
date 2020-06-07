@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserName should display the user name 1`] = `
+<Fragment>
+  foo bar
+</Fragment>
+`;
+
+exports[`UserName should support undefined user information 1`] = `
+<Fragment>
+  Unknown user
+</Fragment>
+`;

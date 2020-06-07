@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppContent should take care of the routing 1`] = `
+<Styled(MuiBox)
+  style={
+    Object {
+      "height": "90vh",
+    }
+  }
+>
+  <Switch>
+    <Route
+      component={
+        Object {
+          "$$typeof": Symbol(react.memo),
+          "WrappedComponent": [Function],
+          "compare": null,
+          "displayName": "Connect(LoginScreenDisplay)",
+          "type": [Function],
+        }
+      }
+      path="/login"
+    />
+    <Route
+      component={
+        Object {
+          "$$typeof": Symbol(react.memo),
+          "WrappedComponent": [Function],
+          "compare": null,
+          "displayName": "Connect(ProfileForm)",
+          "type": [Function],
+        }
+      }
+      path="/profile"
+    />
+    <Route
+      component={
+        Object {
+          "$$typeof": Symbol(react.memo),
+          "WrappedComponent": [Function],
+          "compare": null,
+          "displayName": "Connect(ChatDisplay)",
+          "type": [Function],
+        }
+      }
+      path="/conversation/:conversationId"
+    />
+  </Switch>
+</Styled(MuiBox)>
+`;

@@ -15,8 +15,29 @@ describe('loginUpdateForm', () => {
     ).toEqual({
       status: 'ready',
       form: {
-        email: 'test',
-        password: '',
+        email: {
+          value: 'test',
+          isValid: true,
+        },
+        password: {
+          value: '',
+          isValid: true,
+        },
+      },
+    });
+  });
+
+  it('should validate the field email on update', async () => {
+    const defaultState = defaultLoginState();
+    expect(login({ ...defaultState }, loginUpdateForm('email', ''))).toEqual({
+      ...defaultState,
+      form: {
+        ...defaultState.form,
+        email: {
+          value: '',
+          isValid: false,
+          error: 'this field is required',
+        },
       },
     });
   });
@@ -33,8 +54,29 @@ describe('loginUpdateForm', () => {
     ).toEqual({
       status: 'ready',
       form: {
-        email: '',
-        password: 'test',
+        email: {
+          value: '',
+          isValid: true,
+        },
+        password: {
+          value: 'test',
+          isValid: true,
+        },
+      },
+    });
+  });
+
+  it('should validate the field password on update', async () => {
+    const defaultState = defaultLoginState();
+    expect(login({ ...defaultState }, loginUpdateForm('password', ''))).toEqual({
+      ...defaultState,
+      form: {
+        ...defaultState.form,
+        password: {
+          value: '',
+          isValid: false,
+          error: 'this field is required',
+        },
       },
     });
   });

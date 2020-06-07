@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginScreenDisplay should display as loading if login status is unavailable 1`] = `<Loading />`;
+
+exports[`LoginScreenDisplay should display as loading if registration status is unavailable 1`] = `<Loading />`;
+
+exports[`LoginScreenDisplay should display the login form 1`] = `
+<WithStyles(ForwardRef(Container))
+  maxWidth="lg"
+  style={
+    Object {
+      "marginTop": "2rem",
+    }
+  }
+>
+  <WithStyles(ForwardRef(Tabs))
+    indicatorColor="primary"
+    onChange={[Function]}
+    textColor="primary"
+    value={0}
+    variant="fullWidth"
+  >
+    <WithStyles(ForwardRef(Tab))
+      label="Login"
+    />
+    <WithStyles(ForwardRef(Tab))
+      label="Register"
+    />
+  </WithStyles(ForwardRef(Tabs))>
+  <LoginTabPanel
+    index={0}
+    value={0}
+  >
+    <Connect(LoginFormDisplay) />
+  </LoginTabPanel>
+  <LoginTabPanel
+    index={1}
+    value={0}
+  >
+    <Connect(RegistrationFormDisplay) />
+  </LoginTabPanel>
+</WithStyles(ForwardRef(Container))>
+`;
+
+exports[`LoginScreenDisplay should display the login form 2`] = `
+<WithStyles(ForwardRef(Container))
+  maxWidth="lg"
+  style={
+    Object {
+      "marginTop": "2rem",
+    }
+  }
+>
+  <WithStyles(ForwardRef(Tabs))
+    indicatorColor="primary"
+    onChange={[Function]}
+    textColor="primary"
+    value={1}
+    variant="fullWidth"
+  >
+    <WithStyles(ForwardRef(Tab))
+      label="Login"
+    />
+    <WithStyles(ForwardRef(Tab))
+      label="Register"
+    />
+  </WithStyles(ForwardRef(Tabs))>
+  <LoginTabPanel
+    index={0}
+    value={1}
+  >
+    <Connect(LoginFormDisplay) />
+  </LoginTabPanel>
+  <LoginTabPanel
+    index={1}
+    value={1}
+  >
+    <Connect(RegistrationFormDisplay) />
+  </LoginTabPanel>
+</WithStyles(ForwardRef(Container))>
+`;

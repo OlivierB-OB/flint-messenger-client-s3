@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ShowConversationsButton should display a show conversation button... 1`] = `
+<WithStyles(ForwardRef(IconButton))
+  aria-label="contacts"
+  onClick={[MockFunction]}
+>
+  <ForumIcon
+    fontSize="large"
+  />
+</WithStyles(ForwardRef(IconButton))>
+`;

@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DrawerDisplay drawer not shown 1`] = `
+<WithStyles(ForwardRef(Drawer))
+  anchor="left"
+  classes={
+    Object {
+      "paper": "makeStyles-paper-2",
+    }
+  }
+  onClose="hideDrawer"
+  open={false}
+  variant="persistent"
+>
+  <Styled(MuiBox)
+    className="makeStyles-drawerHeader-1"
+  >
+    <WithStyles(ForwardRef(IconButton))
+      aria-label="collapse"
+      onClick="hideDrawer"
+    >
+      <ArrowBackIosIcon />
+    </WithStyles(ForwardRef(IconButton))>
+  </Styled(MuiBox)>
+  <Styled(MuiBox) />
+</WithStyles(ForwardRef(Drawer))>
+`;
+
+exports[`DrawerDisplay drawer shown - contacts 1`] = `
+<WithStyles(ForwardRef(Drawer))
+  anchor="left"
+  classes={
+    Object {
+      "paper": "makeStyles-paper-2",
+    }
+  }
+  onClose="hideDrawer"
+  open={true}
+  variant="persistent"
+>
+  <Styled(MuiBox)
+    className="makeStyles-drawerHeader-1"
+  >
+    <WithStyles(ForwardRef(IconButton))
+      aria-label="collapse"
+      onClick="hideDrawer"
+    >
+      <ArrowBackIosIcon />
+    </WithStyles(ForwardRef(IconButton))>
+  </Styled(MuiBox)>
+  <Styled(MuiBox)>
+    <Connect(ContactList) />
+  </Styled(MuiBox)>
+</WithStyles(ForwardRef(Drawer))>
+`;
+
+exports[`DrawerDisplay drawer shown - conversations 1`] = `
+<WithStyles(ForwardRef(Drawer))
+  anchor="left"
+  classes={
+    Object {
+      "paper": "makeStyles-paper-2",
+    }
+  }
+  onClose="hideDrawer"
+  open={true}
+  variant="persistent"
+>
+  <Styled(MuiBox)
+    className="makeStyles-drawerHeader-1"
+  >
+    <WithStyles(ForwardRef(IconButton))
+      aria-label="collapse"
+      onClick="hideDrawer"
+    >
+      <ArrowBackIosIcon />
+    </WithStyles(ForwardRef(IconButton))>
+  </Styled(MuiBox)>
+  <Styled(MuiBox)>
+    <Connect(ConversationList) />
+  </Styled(MuiBox)>
+</WithStyles(ForwardRef(Drawer))>
+`;
+
+exports[`DrawerDisplay drawer shown - no content 1`] = `
+<WithStyles(ForwardRef(Drawer))
+  anchor="left"
+  classes={
+    Object {
+      "paper": "makeStyles-paper-2",
+    }
+  }
+  onClose="hideDrawer"
+  open={true}
+  variant="persistent"
+>
+  <Styled(MuiBox)
+    className="makeStyles-drawerHeader-1"
+  >
+    <WithStyles(ForwardRef(IconButton))
+      aria-label="collapse"
+      onClick="hideDrawer"
+    >
+      <ArrowBackIosIcon />
+    </WithStyles(ForwardRef(IconButton))>
+  </Styled(MuiBox)>
+  <Styled(MuiBox) />
+</WithStyles(ForwardRef(Drawer))>
+`;

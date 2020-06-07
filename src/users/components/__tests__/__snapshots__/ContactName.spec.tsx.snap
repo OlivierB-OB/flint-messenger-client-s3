@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContactName should show the contact name 1`] = `
+<ContextProvider
+  value={null}
+>
+  <UserName
+    dispatch={[Function]}
+    info={
+      Object {
+        "_id": "123",
+        "firstName": "foo",
+        "lastName": "bar",
+      }
+    }
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+    target="123"
+  />
+</ContextProvider>
+`;
+
+exports[`ContactName should support unknown contacts 1`] = `
+<ContextProvider
+  value={null}
+>
+  <UserName
+    dispatch={[Function]}
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+    target="123"
+  />
+</ContextProvider>
+`;
+
+exports[`ContactName should works the profile as well 1`] = `
+<ContextProvider
+  value={null}
+>
+  <UserName
+    dispatch={[Function]}
+    info={
+      Object {
+        "_id": "123",
+        "firstName": "foo",
+        "lastName": "bar",
+      }
+    }
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+    target="123"
+  />
+</ContextProvider>
+`;

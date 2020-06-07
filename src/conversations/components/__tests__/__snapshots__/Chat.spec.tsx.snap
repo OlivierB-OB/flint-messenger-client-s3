@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chat should not crash if the conversation is not found 1`] = `
+<ChatDisplay
+  conversationId="222"
+  conversationSeen={[Function]}
+  match={
+    Object {
+      "params": Object {
+        "conversationId": "222",
+      },
+    }
+  }
+  status="conversation status"
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+/>
+`;
+
+exports[`Chat should not crash if the match is not clean 1`] = `
+<ChatDisplay
+  conversationSeen={[Function]}
+  match={Object {}}
+  status="conversation status"
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+/>
+`;
+
+exports[`Chat should provide status, conversationId, conversation and callbacks to ChatDisplay 1`] = `
+<ChatDisplay
+  conversation={
+    Object {
+      "_id": "123",
+      "fake": "the conversation",
+    }
+  }
+  conversationId="123"
+  conversationSeen={[Function]}
+  match={
+    Object {
+      "params": Object {
+        "conversationId": "123",
+      },
+    }
+  }
+  status="conversation status"
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+/>
+`;

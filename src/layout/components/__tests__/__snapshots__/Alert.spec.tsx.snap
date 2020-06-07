@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Alert should display a default error message if status is error but no error message have been provided 1`] = `
+<WithStyles(ForwardRef(Alert))
+  severity="error"
+>
+  Something really bad happened...
+</WithStyles(ForwardRef(Alert))>
+`;
+
+exports[`Alert should display a success message if status is success 1`] = `
+<WithStyles(ForwardRef(Alert))
+  severity="success"
+>
+  ok
+</WithStyles(ForwardRef(Alert))>
+`;
+
+exports[`Alert should display an error message if status is error 1`] = `
+<WithStyles(ForwardRef(Alert))
+  severity="error"
+>
+  ko
+</WithStyles(ForwardRef(Alert))>
+`;
+
+exports[`Alert should display nothing if status is neither success, nor error 1`] = `""`;
+
+exports[`Alert should display nothing if status is success but no success message have been provided 1`] = `""`;

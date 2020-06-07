@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MyProfileLink should provide a link toward the profile page 1`] = `
+<Link
+  to="/profile"
+>
+  <WithStyles(ForwardRef(IconButton))
+    aria-label="profile"
+  >
+    <AccountCircleIcon
+      fontSize="large"
+    />
+  </WithStyles(ForwardRef(IconButton))>
+</Link>
+`;

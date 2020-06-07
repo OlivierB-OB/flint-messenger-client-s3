@@ -15,7 +15,7 @@ interface MenuDisplay {
   allowNavigation: boolean;
 }
 
-function Menu({ allowNavigation }: MenuDisplay) {
+export function Menu({ allowNavigation }: MenuDisplay) {
   const navigation = !allowNavigation ? null : (
     <Toolbar>
       <MyConversationsButton />

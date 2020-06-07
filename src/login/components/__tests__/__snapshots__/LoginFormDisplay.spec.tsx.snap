@@ -1,0 +1,147 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginFormDisplay should display the login form 1`] = `
+<WithStyles(ForwardRef(Container))
+  maxWidth="xs"
+>
+  <Styled(MuiBox)
+    style={
+      Object {
+        "margin": "2rem 0",
+      }
+    }
+  >
+    <Alert
+      status="the status"
+    />
+  </Styled(MuiBox)>
+  <form
+    onSubmit="submit"
+  >
+    <Styled(MuiBox)
+      style={
+        Object {
+          "margin": "2rem 0",
+        }
+      }
+    >
+      <WithStyles(ForwardRef(TextField))
+        fullWidth={true}
+        label="Email"
+        onChange={[Function]}
+        required={true}
+        value="email value"
+      />
+      <WithStyles(ForwardRef(TextField))
+        fullWidth={true}
+        label="Password"
+        onChange={[Function]}
+        required={true}
+        type="password"
+        value="password value"
+      />
+    </Styled(MuiBox)>
+    <Styled(MuiBox)
+      style={
+        Object {
+          "margin": "2rem 0",
+        }
+      }
+    >
+      <WithStyles(ForwardRef(Grid))
+        container={true}
+        justify="flex-end"
+      >
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+          xs={4}
+        >
+          <WithStyles(ForwardRef(Button))
+            color="primary"
+            fullWidth={true}
+            type="submit"
+            variant="contained"
+          >
+            Submit
+          </WithStyles(ForwardRef(Button))>
+        </WithStyles(ForwardRef(Grid))>
+      </WithStyles(ForwardRef(Grid))>
+    </Styled(MuiBox)>
+  </form>
+</WithStyles(ForwardRef(Container))>
+`;
+
+exports[`LoginFormDisplay should display the login form errors 1`] = `
+<WithStyles(ForwardRef(Container))
+  maxWidth="xs"
+>
+  <Styled(MuiBox)
+    style={
+      Object {
+        "margin": "2rem 0",
+      }
+    }
+  >
+    <Alert
+      status="the status"
+    />
+  </Styled(MuiBox)>
+  <form
+    onSubmit="submit"
+  >
+    <Styled(MuiBox)
+      style={
+        Object {
+          "margin": "2rem 0",
+        }
+      }
+    >
+      <WithStyles(ForwardRef(TextField))
+        error={true}
+        fullWidth={true}
+        helperText="email error"
+        label="Email"
+        onChange={[Function]}
+        required={true}
+        value="email value"
+      />
+      <WithStyles(ForwardRef(TextField))
+        error={true}
+        fullWidth={true}
+        helperText="password error"
+        label="Password"
+        onChange={[Function]}
+        required={true}
+        type="password"
+        value="password value"
+      />
+    </Styled(MuiBox)>
+    <Styled(MuiBox)
+      style={
+        Object {
+          "margin": "2rem 0",
+        }
+      }
+    >
+      <WithStyles(ForwardRef(Grid))
+        container={true}
+        justify="flex-end"
+      >
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+          xs={4}
+        >
+          <WithStyles(ForwardRef(Button))
+            color="primary"
+            fullWidth={true}
+            type="submit"
+            variant="contained"
+          >
+            Submit
+          </WithStyles(ForwardRef(Button))>
+        </WithStyles(ForwardRef(Grid))>
+      </WithStyles(ForwardRef(Grid))>
+    </Styled(MuiBox)>
+  </form>
+</WithStyles(ForwardRef(Container))>
+`;

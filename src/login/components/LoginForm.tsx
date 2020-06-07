@@ -12,16 +12,17 @@ import { ILoginForm, ILoginStatus } from '../types';
 import { loginUpdateForm } from '../actions/loginUpdateForm';
 import { makeSubmitLogin } from '../actions/makeSubmitLogin';
 import { Alert } from '../../layout/components/Alert';
+import { IFormField } from '../../profileForm/types';
 
 interface ILoginFormDisplayProps {
   status: ILoginStatus;
-  email: string;
-  password: string;
+  email: IFormField<string>;
+  password: IFormField<string>;
   update<T extends keyof ILoginForm>(field: T, value: string): void;
   submit(): void;
 }
 
-function LoginFormDisplay({ status, email, password, update, submit }: ILoginFormDisplayProps) {
+export function LoginFormDisplay({ status, email, password, update, submit }: ILoginFormDisplayProps) {
   return (
     <Container maxWidth="xs">
       <Box style={{ margin: '2rem 0' }}>
@@ -31,17 +32,20 @@ function LoginFormDisplay({ status, email, password, update, submit }: ILoginFor
         <Box style={{ margin: '2rem 0' }}>
           <TextField
             label="Email"
-            value={email}
+            value={email.value}
             required={true}
             fullWidth={true}
             onChange={(event) => update('email', event.target.value)}
+            {...(!email.isValid ? { error: true, helperText: email.error } : {})}
           />
           <TextField
             type="password"
             label="Password"
-            value={password}
+            value={password.value}
+            required={true}
             fullWidth={true}
             onChange={(event) => update('password', event.target.value)}
+            {...(!password.isValid ? { error: true, helperText: password.error } : {})}
           />
         </Box>
         <Box style={{ margin: '2rem 0' }}>

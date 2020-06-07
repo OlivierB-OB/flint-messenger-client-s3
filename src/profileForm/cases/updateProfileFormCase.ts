@@ -11,7 +11,7 @@ export function updateProfileFormCase<T extends keyof IProfileFormFields>(
       ...state.fields,
       [field]: {
         ...state.fields[field],
-        value: value,
+        value,
       },
     },
   };

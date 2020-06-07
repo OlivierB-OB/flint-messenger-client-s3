@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function LayoutDisplay({ showDrawer }: ILayoutDisplayProps) {
+export function LayoutDisplay({ showDrawer }: ILayoutDisplayProps) {
   const classes = useStyles();
   const contentClasses = [classes.content, showDrawer && classes.contentShift].filter(Boolean).join(' ');
   return (

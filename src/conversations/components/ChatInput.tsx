@@ -17,7 +17,7 @@ interface IChatInputDisplayProps {
   sendMessage: (conversationId: string) => void;
 }
 
-function ChatInputDisplay({
+export function ChatInputDisplay({
   messageEdition,
   conversationId,
   updateMessageEdition,
@@ -25,22 +25,23 @@ function ChatInputDisplay({
 }: IChatInputDisplayProps) {
   useEffect(() => updateMessageEdition(''), [updateMessageEdition, conversationId]);
   return (
-    <Grid container justify="center">
-      <Grid item xs={11} justify="center">
-        <TextField
-          fullWidth={true}
-          value={messageEdition}
-          variant="filled"
-          onChange={(event) => updateMessageEdition(event.target.value)}
-          onKeyDown={(event) => event.key === 'Enter' && sendMessage(conversationId)}
-        />
+    <form onSubmit={() => sendMessage(conversationId)}>
+      <Grid container justify="center" alignItems="center">
+        <Grid item xs={11}>
+          <TextField
+            fullWidth={true}
+            value={messageEdition}
+            variant="filled"
+            onChange={(event) => updateMessageEdition(event.target.value)}
+          />
+        </Grid>
+        <Grid item xs={1}>
+          <IconButton aria-label="contacts" type="submit">
+            <Send fontSize="large" color="primary" />
+          </IconButton>
+        </Grid>
       </Grid>
-      <Grid item container xs={1} justify="center" alignItems="center">
-        <IconButton aria-label="contacts" onClick={() => sendMessage(conversationId)}>
-          <Send fontSize="large" color="primary" />
-        </IconButton>
-      </Grid>
-    </Grid>
+    </form>
   );
 }
 

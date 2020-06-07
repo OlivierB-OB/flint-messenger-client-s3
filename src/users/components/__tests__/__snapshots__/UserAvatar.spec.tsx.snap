@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserAvatar should display the user initial 1`] = `
+<WithStyles(WithStyles(ForwardRef(Badge)))
+  anchorOrigin={
+    Object {
+      "horizontal": "right",
+      "vertical": "bottom",
+    }
+  }
+  overlap="circle"
+  variant="dot"
+>
+  <WithStyles(ForwardRef(Avatar))
+    className="makeStyles-secondary-1"
+  >
+    fb
+  </WithStyles(ForwardRef(Avatar))>
+</WithStyles(WithStyles(ForwardRef(Badge)))>
+`;
+
+exports[`UserAvatar should support undefined user information 1`] = `
+<WithStyles(WithStyles(ForwardRef(Badge)))
+  anchorOrigin={
+    Object {
+      "horizontal": "right",
+      "vertical": "bottom",
+    }
+  }
+  overlap="circle"
+  variant="dot"
+>
+  <WithStyles(ForwardRef(Avatar))
+    className="makeStyles-secondary-1"
+  >
+    ??
+  </WithStyles(ForwardRef(Avatar))>
+</WithStyles(WithStyles(ForwardRef(Badge)))>
+`;

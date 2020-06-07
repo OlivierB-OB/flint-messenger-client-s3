@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LayoutDisplay display with drawer 1`] = `
+<div>
+  <div
+    className="makeStyles-content-1 makeStyles-contentShift-2"
+  >
+    <Connect(Menu) />
+    <AppContent />
+  </div>
+  <Connect(DrawerDisplay) />
+</div>
+`;
+
+exports[`LayoutDisplay display without drawer 1`] = `
+<div>
+  <div
+    className="makeStyles-content-1"
+  >
+    <Connect(Menu) />
+    <AppContent />
+  </div>
+  <Connect(DrawerDisplay) />
+</div>
+`;

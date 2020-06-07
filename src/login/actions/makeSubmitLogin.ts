@@ -20,8 +20,8 @@ export const makeSubmitLogin = action(() => {
       const response = await axios.post(
         `${process.env.REACT_APP_BACKEND}/login`,
         {
-          username: email,
-          password,
+          username: email.value,
+          password: password.value,
         },
         { withCredentials: true },
       );

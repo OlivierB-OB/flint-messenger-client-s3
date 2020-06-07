@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IdentitySection should display the email firstName and lastName value (email FYI only) 1`] = `
+<WithStyles(ForwardRef(FormControl))
+  component="fieldset"
+  fullWidth={true}
+>
+  <WithStyles(ForwardRef(FormLabel))
+    component="legend"
+    style={
+      Object {
+        "margin": "1rem 0",
+      }
+    }
+  >
+    Your identity:
+  </WithStyles(ForwardRef(FormLabel))>
+  <WithStyles(ForwardRef(FormGroup))>
+    <WithStyles(ForwardRef(TextField))
+      disabled={true}
+      fullWidth={true}
+      label="Email"
+      onChange={[Function]}
+      required={true}
+      value="email value"
+    />
+    <WithStyles(ForwardRef(TextField))
+      fullWidth={true}
+      label="First name"
+      onChange={[Function]}
+      required={true}
+      value="firstName value"
+    />
+    <WithStyles(ForwardRef(TextField))
+      fullWidth={true}
+      label="Last name"
+      onChange={[Function]}
+      required={true}
+      value="lastName value"
+    />
+  </WithStyles(ForwardRef(FormGroup))>
+</WithStyles(ForwardRef(FormControl))>
+`;
+
+exports[`IdentitySection should display the email firstName and lastName value (email editable) 1`] = `
+<WithStyles(ForwardRef(FormControl))
+  component="fieldset"
+  fullWidth={true}
+>
+  <WithStyles(ForwardRef(FormLabel))
+    component="legend"
+    style={
+      Object {
+        "margin": "1rem 0",
+      }
+    }
+  >
+    Your identity:
+  </WithStyles(ForwardRef(FormLabel))>
+  <WithStyles(ForwardRef(FormGroup))>
+    <WithStyles(ForwardRef(TextField))
+      disabled={false}
+      fullWidth={true}
+      label="Email"
+      onChange={[Function]}
+      required={true}
+      value="email value"
+    />
+    <WithStyles(ForwardRef(TextField))
+      fullWidth={true}
+      label="First name"
+      onChange={[Function]}
+      required={true}
+      value="firstName value"
+    />
+    <WithStyles(ForwardRef(TextField))
+      fullWidth={true}
+      label="Last name"
+      onChange={[Function]}
+      required={true}
+      value="lastName value"
+    />
+  </WithStyles(ForwardRef(FormGroup))>
+</WithStyles(ForwardRef(FormControl))>
+`;
+
+exports[`IdentitySection should show error if any 1`] = `
+<WithStyles(ForwardRef(FormControl))
+  component="fieldset"
+  fullWidth={true}
+>
+  <WithStyles(ForwardRef(FormLabel))
+    component="legend"
+    style={
+      Object {
+        "margin": "1rem 0",
+      }
+    }
+  >
+    Your identity:
+  </WithStyles(ForwardRef(FormLabel))>
+  <WithStyles(ForwardRef(FormGroup))>
+    <WithStyles(ForwardRef(TextField))
+      disabled={false}
+      error={true}
+      fullWidth={true}
+      helperText="email error"
+      label="Email"
+      onChange={[Function]}
+      required={true}
+      value="email value"
+    />
+    <WithStyles(ForwardRef(TextField))
+      error={true}
+      fullWidth={true}
+      helperText="firstName error"
+      label="First name"
+      onChange={[Function]}
+      required={true}
+      value="firstName value"
+    />
+    <WithStyles(ForwardRef(TextField))
+      error={true}
+      fullWidth={true}
+      helperText="lastName error"
+      label="Last name"
+      onChange={[Function]}
+      required={true}
+      value="lastName value"
+    />
+  </WithStyles(ForwardRef(FormGroup))>
+</WithStyles(ForwardRef(FormControl))>
+`;

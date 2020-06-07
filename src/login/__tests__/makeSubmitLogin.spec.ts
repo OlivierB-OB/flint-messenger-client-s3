@@ -31,8 +31,12 @@ describe('makeSubmitLogin', () => {
     const store = mockStore({
       login: {
         form: {
-          email: 'foo@test.com',
-          password: 'baz',
+          email: {
+            value: 'foo@test.com'
+          },
+          password: {
+            value: 'baz'
+          },
         },
       },
     });
@@ -74,8 +78,12 @@ describe('makeSubmitLogin', () => {
     const store = mockStore({
       login: {
         form: {
-          email: 'foo@test.com',
-          password: 'baz',
+          email: {
+            value: 'foo@test.com',
+          },
+          password: {
+            value: 'baz',
+          },
         },
       },
     });

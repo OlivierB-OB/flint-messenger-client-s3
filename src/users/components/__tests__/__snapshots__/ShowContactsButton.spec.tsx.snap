@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ShowContactsButton should display a show contact button... 1`] = `
+<WithStyles(ForwardRef(IconButton))
+  aria-label="contacts"
+  onClick={[MockFunction]}
+>
+  <ContactsIcon
+    fontSize="large"
+  />
+</WithStyles(ForwardRef(IconButton))>
+`;

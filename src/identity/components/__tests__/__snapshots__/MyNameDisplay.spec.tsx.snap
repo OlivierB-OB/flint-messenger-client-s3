@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MyNameDisplay should display the username given the provided info 1`] = `
+<WithStyles(ForwardRef(Typography))
+  variant="h6"
+>
+  <UserName
+    info="the user information"
+  />
+</WithStyles(ForwardRef(Typography))>
+`;
+
+exports[`MyNameDisplay should return null if info is undefined 1`] = `""`;

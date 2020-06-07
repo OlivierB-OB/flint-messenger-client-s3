@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChatMessages should display a feedback if there is no messages in the conversation 1`] = `
+<span>
+  There is currently no message in the conversation...
+</span>
+`;
+
+exports[`ChatMessages should display the conversation messages 1`] = `
+<Fragment>
+  <WithStyles(ForwardRef(List))>
+    <WithStyles(ForwardRef(ListItem))
+      key="123"
+    >
+      <ChatMessage
+        message={
+          Object {
+            "_id": "123",
+            "content": "message 1",
+          }
+        }
+      />
+    </WithStyles(ForwardRef(ListItem))>
+    <WithStyles(ForwardRef(ListItem))
+      key="456"
+    >
+      <ChatMessage
+        message={
+          Object {
+            "_id": "456",
+            "content": "message 2",
+          }
+        }
+      />
+    </WithStyles(ForwardRef(ListItem))>
+  </WithStyles(ForwardRef(List))>
+  <span />
+</Fragment>
+`;

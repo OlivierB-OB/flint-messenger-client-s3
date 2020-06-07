@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RegistrationForm should provide status, fields and callbacks to RegistrationFormDisplay 1`] = `
+<RegistrationFormDisplay
+  fields="profileForm fields"
+  saveProfile={[Function]}
+  status="profileForm status"
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+  update={[Function]}
+/>
+`;

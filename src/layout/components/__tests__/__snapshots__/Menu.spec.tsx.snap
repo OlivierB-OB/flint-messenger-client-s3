@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Menu should allow disabling the navigation 1`] = `
+<Fragment>
+  <WithStyles(ForwardRef(AppBar))
+    position="static"
+    style={
+      Object {
+        "height": "10vh",
+      }
+    }
+  >
+    <WithStyles(ForwardRef(Grid))
+      alignItems="center"
+      container={true}
+      justify="space-between"
+      style={
+        Object {
+          "height": "100%",
+        }
+      }
+    >
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+      >
+        <WithStyles(ForwardRef(Toolbar))>
+          <ForumIcon
+            fontSize="large"
+          />
+          <WithStyles(ForwardRef(Typography))
+            variant="h3"
+          >
+            flint.
+          </WithStyles(ForwardRef(Typography))>
+        </WithStyles(ForwardRef(Toolbar))>
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+      >
+        <WithStyles(ForwardRef(Toolbar))>
+          <Connect(MyNameDisplay) />
+        </WithStyles(ForwardRef(Toolbar))>
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+      />
+    </WithStyles(ForwardRef(Grid))>
+  </WithStyles(ForwardRef(AppBar))>
+</Fragment>
+`;
+
+exports[`Menu should display the application menu 1`] = `
+<Fragment>
+  <WithStyles(ForwardRef(AppBar))
+    position="static"
+    style={
+      Object {
+        "height": "10vh",
+      }
+    }
+  >
+    <WithStyles(ForwardRef(Grid))
+      alignItems="center"
+      container={true}
+      justify="space-between"
+      style={
+        Object {
+          "height": "100%",
+        }
+      }
+    >
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+      >
+        <WithStyles(ForwardRef(Toolbar))>
+          <ForumIcon
+            fontSize="large"
+          />
+          <WithStyles(ForwardRef(Typography))
+            variant="h3"
+          >
+            flint.
+          </WithStyles(ForwardRef(Typography))>
+        </WithStyles(ForwardRef(Toolbar))>
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+      >
+        <WithStyles(ForwardRef(Toolbar))>
+          <Connect(MyNameDisplay) />
+        </WithStyles(ForwardRef(Toolbar))>
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+      >
+        <WithStyles(ForwardRef(Toolbar))>
+          <Connect(ShowConversationsButton) />
+          <Connect(ShowContactsButton) />
+          <MyProfileLink />
+        </WithStyles(ForwardRef(Toolbar))>
+      </WithStyles(ForwardRef(Grid))>
+    </WithStyles(ForwardRef(Grid))>
+  </WithStyles(ForwardRef(AppBar))>
+</Fragment>
+`;

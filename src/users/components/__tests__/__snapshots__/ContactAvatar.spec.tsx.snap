@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContactAvatar should show the contact avatar 1`] = `
+<ContextProvider
+  value={null}
+>
+  <UserAvatar
+    dispatch={[Function]}
+    info={
+      Object {
+        "_id": "123",
+        "firstName": "foo",
+        "lastName": "bar",
+      }
+    }
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+    target="123"
+  />
+</ContextProvider>
+`;
+
+exports[`ContactAvatar should support unknown contacts 1`] = `
+<ContextProvider
+  value={null}
+>
+  <UserAvatar
+    dispatch={[Function]}
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+    target="123"
+  />
+</ContextProvider>
+`;
+
+exports[`ContactAvatar should works the profile as well 1`] = `
+<ContextProvider
+  value={null}
+>
+  <UserAvatar
+    dispatch={[Function]}
+    info={
+      Object {
+        "_id": "123",
+        "firstName": "foo",
+        "lastName": "bar",
+      }
+    }
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+    target="123"
+  />
+</ContextProvider>
+`;

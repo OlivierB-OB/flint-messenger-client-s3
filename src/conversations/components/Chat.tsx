@@ -17,7 +17,6 @@ export interface IChatDisplayProps {
   status: IConversationsStatus;
   conversationId?: string;
   conversation?: IConversation;
-  updateMessageEdition: (text: string) => void;
   conversationSeen: (id: string) => void;
 }
 

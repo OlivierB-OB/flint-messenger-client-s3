@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`statusBadgeFactory available 1`] = `
+<WithStyles(ForwardRef(Badge))
+  classes={
+    Object {
+      "badge": "WithStyles(ForwardRef(Badge))-badge-1",
+    }
+  }
+/>
+`;
+
+exports[`statusBadgeFactory incall 1`] = `
+<WithStyles(ForwardRef(Badge))
+  classes={
+    Object {
+      "badge": "WithStyles(ForwardRef(Badge))-badge-2",
+    }
+  }
+/>
+`;
+
+exports[`statusBadgeFactory offline 1`] = `
+<WithStyles(ForwardRef(Badge))
+  classes={
+    Object {
+      "badge": "WithStyles(ForwardRef(Badge))-badge-3",
+    }
+  }
+/>
+`;

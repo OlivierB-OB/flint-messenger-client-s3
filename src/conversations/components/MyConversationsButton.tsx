@@ -11,7 +11,7 @@ interface IShowConversationsButtonProps {
   showConversationList: () => void;
 }
 
-function ShowConversationsButton({ showConversationList }: IShowConversationsButtonProps) {
+export function ShowConversationsButton({ showConversationList }: IShowConversationsButtonProps) {
   return (
     <IconButton aria-label="contacts" onClick={showConversationList}>
       <Forum fontSize="large" />

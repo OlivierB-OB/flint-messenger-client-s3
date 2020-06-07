@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChatMessage should display a message of a conversation 1`] = `
+<Fragment>
+  <WithStyles(ForwardRef(ListItemAvatar))>
+    <Connect(UserAvatar)
+      target="message emitter"
+    />
+  </WithStyles(ForwardRef(ListItemAvatar))>
+  <WithStyles(ForwardRef(ListItemText))
+    primary="message text"
+    secondary={
+      <span>
+        <UNDEFINED
+          target="message emitter"
+        />
+         - 
+        <PrettyDate
+          date="message date"
+        />
+      </span>
+    }
+  />
+</Fragment>
+`;

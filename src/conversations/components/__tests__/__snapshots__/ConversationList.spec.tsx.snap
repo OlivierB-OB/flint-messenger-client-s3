@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConversationList should appear as loading if conversation service is unavailable 1`] = `
+<div
+  className="MuiBox-root MuiBox-root-1"
+  style={
+    Object {
+      "minWidth": "300px",
+    }
+  }
+>
+  <Loading />
+  <WithStyles(ForwardRef(List)) />
+</div>
+`;
+
+exports[`ConversationList should display a message if no conversation 1`] = `
+<div
+  className="MuiBox-root MuiBox-root-2"
+  style={
+    Object {
+      "minWidth": "300px",
+    }
+  }
+>
+  <WithStyles(ForwardRef(List))>
+    <WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(ListItemText))
+        primary="no conversation available..."
+      />
+    </WithStyles(ForwardRef(ListItem))>
+  </WithStyles(ForwardRef(List))>
+</div>
+`;
+
+exports[`ConversationList should display the conversations 1`] = `
+<div
+  className="MuiBox-root MuiBox-root-3"
+  style={
+    Object {
+      "minWidth": "300px",
+    }
+  }
+>
+  <Loading />
+  <WithStyles(ForwardRef(List))>
+    <WithStyles(ForwardRef(ListItem))
+      button={true}
+      component={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "displayName": "Link",
+          "propTypes": Object {
+            "innerRef": [Function],
+            "onClick": [Function],
+            "replace": [Function],
+            "target": [Function],
+            "to": [Function],
+          },
+          "render": [Function],
+        }
+      }
+      key="123"
+      to="/conversation/123"
+    >
+      <ConversationListItem
+        conversation={
+          Object {
+            "_id": "123",
+          }
+        }
+      />
+    </WithStyles(ForwardRef(ListItem))>
+    <WithStyles(ForwardRef(ListItem))
+      button={true}
+      component={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "displayName": "Link",
+          "propTypes": Object {
+            "innerRef": [Function],
+            "onClick": [Function],
+            "replace": [Function],
+            "target": [Function],
+            "to": [Function],
+          },
+          "render": [Function],
+        }
+      }
+      key="456"
+      to="/conversation/456"
+    >
+      <ConversationListItem
+        conversation={
+          Object {
+            "_id": "456",
+          }
+        }
+      />
+    </WithStyles(ForwardRef(ListItem))>
+  </WithStyles(ForwardRef(List))>
+</div>
+`;

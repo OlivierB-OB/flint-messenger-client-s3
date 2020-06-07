@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChatInputDisplay should display the chat input form 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <WithStyles(ForwardRef(Grid))
+    alignItems="center"
+    container={true}
+    justify="center"
+  >
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      xs={11}
+    >
+      <WithStyles(ForwardRef(TextField))
+        fullWidth={true}
+        onChange={[Function]}
+        value="message edition"
+        variant="filled"
+      />
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      xs={1}
+    >
+      <WithStyles(ForwardRef(IconButton))
+        aria-label="contacts"
+        type="submit"
+      >
+        <SendIcon
+          color="primary"
+          fontSize="large"
+        />
+      </WithStyles(ForwardRef(IconButton))>
+    </WithStyles(ForwardRef(Grid))>
+  </WithStyles(ForwardRef(Grid))>
+</form>
+`;

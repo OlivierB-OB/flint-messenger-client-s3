@@ -6,7 +6,7 @@ import { UserName, IUserNameProps } from '../../users/components/UserName';
 
 type IMyNameDisplayProps = Partial<IUserNameProps>;
 
-function MyNameDisplay({ info }: IMyNameDisplayProps) {
+export function MyNameDisplay({ info }: IMyNameDisplayProps) {
   if (!info) return null;
   return (
     <Typography variant="h6">

@@ -23,7 +23,7 @@ export function ConversationList({ status, list }: IConversationListProps) {
       <List>
         {loading || list.length ? null : (
           <ListItem>
-            <ListItemText primary="no contact available..." />
+            <ListItemText primary="no conversation available..." />
           </ListItem>
         )}
         {list.map((conversation) => (

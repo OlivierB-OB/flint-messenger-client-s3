@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PrettyDate should display the date 1`] = `
+<Fragment>
+  Sunday, June 7, 2020
+   at 
+  13:53
+</Fragment>
+`;

@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConversationListItem should display a conversation as a list item 1`] = `
+<Fragment>
+  <WithStyles(ForwardRef(ListItemAvatar))>
+    <WithStyles(ForwardRef(Badge))
+      badgeContent="number of unseen messages"
+      color="primary"
+    >
+      <Connect(UserAvatar)
+        target="conversation target"
+      />
+    </WithStyles(ForwardRef(Badge))>
+  </WithStyles(ForwardRef(ListItemAvatar))>
+  <WithStyles(ForwardRef(ListItemText))
+    primary="last message content"
+    secondary={
+      <span>
+        Last update
+        : 
+        <PrettyDate
+          date="conversation update date"
+        />
+      </span>
+    }
+  />
+</Fragment>
+`;
+
+exports[`ConversationListItem should support the case of empty message list 1`] = `
+<Fragment>
+  <WithStyles(ForwardRef(ListItemAvatar))>
+    <WithStyles(ForwardRef(Badge))
+      badgeContent="number of unseen messages"
+      color="primary"
+    >
+      <Connect(UserAvatar)
+        target="conversation target"
+      />
+    </WithStyles(ForwardRef(Badge))>
+  </WithStyles(ForwardRef(ListItemAvatar))>
+  <WithStyles(ForwardRef(ListItemText))
+    secondary={
+      <span>
+        Last update
+        : 
+        <PrettyDate
+          date="conversation update date"
+        />
+      </span>
+    }
+  />
+</Fragment>
+`;

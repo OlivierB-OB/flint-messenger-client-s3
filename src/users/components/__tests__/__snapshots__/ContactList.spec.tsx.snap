@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContactList should appear as loading if users service is unavailable 1`] = `
+<div
+  className="MuiBox-root MuiBox-root-1"
+  style={
+    Object {
+      "minWidth": "300px",
+    }
+  }
+>
+  <Loading />
+  <WithStyles(ForwardRef(List)) />
+</div>
+`;
+
+exports[`ContactList should display a message if no contact 1`] = `
+<div
+  className="MuiBox-root MuiBox-root-2"
+  style={
+    Object {
+      "minWidth": "300px",
+    }
+  }
+>
+  <WithStyles(ForwardRef(List))>
+    <WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(ListItemText))
+        primary="no contact available..."
+      />
+    </WithStyles(ForwardRef(ListItem))>
+  </WithStyles(ForwardRef(List))>
+</div>
+`;
+
+exports[`ContactList should display the contact 1`] = `
+<div
+  className="MuiBox-root MuiBox-root-3"
+  style={
+    Object {
+      "minWidth": "300px",
+    }
+  }
+>
+  <WithStyles(ForwardRef(List))>
+    <WithStyles(ForwardRef(ListItem))
+      button={true}
+      key="123"
+      onClick={[Function]}
+    >
+      <ContactListItem
+        info={
+          Object {
+            "_id": "123",
+          }
+        }
+      />
+    </WithStyles(ForwardRef(ListItem))>
+    <WithStyles(ForwardRef(ListItem))
+      button={true}
+      key="124"
+      onClick={[Function]}
+    >
+      <ContactListItem
+        info={
+          Object {
+            "_id": "124",
+          }
+        }
+      />
+    </WithStyles(ForwardRef(ListItem))>
+  </WithStyles(ForwardRef(List))>
+</div>
+`;

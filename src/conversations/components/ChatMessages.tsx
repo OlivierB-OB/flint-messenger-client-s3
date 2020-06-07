@@ -21,7 +21,7 @@ export function ChatMessages({ messages, conversationId, conversationSeen }: ICh
     <Fragment>
       <List>
         {messages.map((message) => (
-          <ListItem key={message.createdAt}>
+          <ListItem key={message._id}>
             <ChatMessage message={message} />
           </ListItem>
         ))}

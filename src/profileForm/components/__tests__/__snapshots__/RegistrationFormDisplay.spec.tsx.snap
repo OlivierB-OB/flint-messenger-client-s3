@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RegistrationFormDisplay should display the profile form 1`] = `
+<WithStyles(ForwardRef(Container))>
+  <Styled(MuiBox)
+    style={
+      Object {
+        "margin": "2rem 0",
+      }
+    }
+  >
+    <Alert
+      status="the status"
+    />
+  </Styled(MuiBox)>
+  <form
+    onSubmit="saveProfile"
+  >
+    <Styled(MuiBox)
+      style={
+        Object {
+          "margin": "2rem 0",
+        }
+      }
+    >
+      <WithStyles(ForwardRef(Grid))
+        alignItems="flex-start"
+        container={true}
+        justify="space-evenly"
+      >
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+          xs={4}
+        >
+          <IdentitySection
+            allowEmailEdition={true}
+            email="email field"
+            firstName="firstName field"
+            lastName="lastName field"
+            update="update"
+          />
+        </WithStyles(ForwardRef(Grid))>
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+          xs={4}
+        >
+          <CredentialsSection
+            confirmation="confirmation field"
+            password="password field"
+            update="update"
+          />
+        </WithStyles(ForwardRef(Grid))>
+      </WithStyles(ForwardRef(Grid))>
+    </Styled(MuiBox)>
+    <Styled(MuiBox)
+      style={
+        Object {
+          "margin": "2rem 0",
+        }
+      }
+    >
+      <WithStyles(ForwardRef(Grid))
+        container={true}
+        justify="flex-end"
+      >
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+          xs={2}
+        >
+          <WithStyles(ForwardRef(Button))
+            color="primary"
+            fullWidth={true}
+            type="submit"
+            variant="contained"
+          >
+            Register
+          </WithStyles(ForwardRef(Button))>
+        </WithStyles(ForwardRef(Grid))>
+      </WithStyles(ForwardRef(Grid))>
+    </Styled(MuiBox)>
+  </form>
+</WithStyles(ForwardRef(Container))>
+`;
