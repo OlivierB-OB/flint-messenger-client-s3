@@ -29,7 +29,7 @@ describe('RegistrationFormDisplay', () => {
     };
     const component = shallow(<RegistrationFormDisplay {...props} />);
     expect(component.find(Button).at(0).prop('type')).toEqual('submit');
-    component.find('form').simulate('submit');
+    component.find('form').simulate('submit', { preventDefault: () => null });
     expect(props.saveProfile).toHaveBeenCalled();
   });
 });

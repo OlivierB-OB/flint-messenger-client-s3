@@ -28,7 +28,7 @@ export function RegistrationFormDisplay({ status, fields, update, saveProfile }:
       <Box style={{ margin: '2rem 0' }}>
         <Alert status={status} />
       </Box>
-      <form onSubmit={saveProfile}>
+      <form onSubmit={(e) => { e.preventDefault(); saveProfile()}}>
         <Box style={{ margin: '2rem 0' }}>
           <Grid container justify="space-evenly" alignItems="flex-start">
             <Grid item xs={4}>

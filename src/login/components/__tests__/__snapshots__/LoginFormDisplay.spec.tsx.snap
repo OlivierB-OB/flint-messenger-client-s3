@@ -16,7 +16,7 @@ exports[`LoginFormDisplay should display the login form 1`] = `
     />
   </Styled(MuiBox)>
   <form
-    onSubmit="submit"
+    onSubmit={[Function]}
   >
     <Styled(MuiBox)
       style={
@@ -87,7 +87,7 @@ exports[`LoginFormDisplay should display the login form errors 1`] = `
     />
   </Styled(MuiBox)>
   <form
-    onSubmit="submit"
+    onSubmit={[Function]}
   >
     <Styled(MuiBox)
       style={

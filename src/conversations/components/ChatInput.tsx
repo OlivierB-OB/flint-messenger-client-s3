@@ -25,7 +25,7 @@ export function ChatInputDisplay({
 }: IChatInputDisplayProps) {
   useEffect(() => updateMessageEdition(''), [updateMessageEdition, conversationId]);
   return (
-    <form onSubmit={() => sendMessage(conversationId)}>
+    <form onSubmit={(e) => {e.preventDefault(); sendMessage(conversationId)}}>
       <Grid container justify="center" alignItems="center">
         <Grid item xs={11}>
           <TextField

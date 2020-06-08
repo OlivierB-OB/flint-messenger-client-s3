@@ -5,8 +5,19 @@ exports[`ShowConversationsButton should display a show conversation button... 1`
   aria-label="contacts"
   onClick={[MockFunction]}
 >
-  <ForumIcon
-    fontSize="large"
-  />
+  <WithStyles(ForwardRef(Badge))
+    anchorOrigin={
+      Object {
+        "horizontal": "left",
+        "vertical": "top",
+      }
+    }
+    badgeContent="nb unseen messages"
+    color="error"
+  >
+    <ForumIcon
+      fontSize="large"
+    />
+  </WithStyles(ForwardRef(Badge))>
 </WithStyles(ForwardRef(IconButton))>
 `;

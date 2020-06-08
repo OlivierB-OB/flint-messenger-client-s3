@@ -37,7 +37,7 @@ describe('ChatInputDisplay', () => {
     };
     const component = shallow(<ChatInputDisplay {...props} />);
     expect(component.find(IconButton).at(0).prop('type')).toEqual('submit');
-    component.find('form').simulate('submit');
+    component.find('form').simulate('submit', { preventDefault: () => null });
     expect(props.sendMessage).toHaveBeenCalledWith('123');
   });
 

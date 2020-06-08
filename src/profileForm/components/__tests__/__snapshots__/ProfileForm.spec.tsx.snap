@@ -45,7 +45,7 @@ exports[`ProfileForm should display the profile form 1`] = `
     </WithStyles(ForwardRef(Grid))>
   </Styled(MuiBox)>
   <form
-    onSubmit="saveProfile"
+    onSubmit={[Function]}
   >
     <Styled(MuiBox)
       style={

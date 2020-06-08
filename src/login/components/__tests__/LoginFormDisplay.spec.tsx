@@ -100,7 +100,7 @@ describe('LoginFormDisplay', () => {
     };
     const component = shallow(<LoginFormDisplay {...props} />);
     expect(component.find(Button).at(0).prop('type')).toEqual('submit');
-    component.find('form').simulate('submit');
+    component.find('form').simulate('submit', { preventDefault: () => null });
     expect(props.submit).toHaveBeenCalled();
   });
 });

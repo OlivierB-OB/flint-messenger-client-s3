@@ -22,8 +22,13 @@ describe('MyConversationsButton', () => {
   });
 
   it('should provide showConversationList function to ShowContactsButton', async () => {
-    const store = mockStore({});
-    const component = shallow(<Connected store={store} />);
+    const store = mockStore({
+      conversations: {
+        unseenMessages: 'nb unseen messages',
+      },
+    });
+    const component = shallow(<Connected store={store} />).dive();
+    expect(component).toMatchSnapshot();
     (component.prop('showConversationList') as any)();
     expect(spyShowConversations).toHaveBeenCalledWith();
   });

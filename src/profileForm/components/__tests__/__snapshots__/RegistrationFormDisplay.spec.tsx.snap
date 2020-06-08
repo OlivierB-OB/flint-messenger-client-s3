@@ -14,7 +14,7 @@ exports[`RegistrationFormDisplay should display the profile form 1`] = `
     />
   </Styled(MuiBox)>
   <form
-    onSubmit="saveProfile"
+    onSubmit={[Function]}
   >
     <Styled(MuiBox)
       style={

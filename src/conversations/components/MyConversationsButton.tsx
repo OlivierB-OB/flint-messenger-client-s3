@@ -1,3 +1,4 @@
+import Badge from '@material-ui/core/Badge';
 import IconButton from '@material-ui/core/IconButton';
 import Forum from '@material-ui/icons/Forum';
 import React from 'react';
@@ -8,20 +9,26 @@ import { IAppState } from '../../appReducer';
 import { makeShowConversationList } from '../actions/makeShowConversationList';
 
 interface IShowConversationsButtonProps {
+  unseenMessages: number;
   showConversationList: () => void;
 }
 
-// FIXME should display aggregated unseen message as a badge
-
-export function ShowConversationsButton({ showConversationList }: IShowConversationsButtonProps) {
+export function ShowConversationsButton({ unseenMessages, showConversationList }: IShowConversationsButtonProps) {
   return (
     <IconButton aria-label="contacts" onClick={showConversationList}>
-      <Forum fontSize="large" />
+      <Badge badgeContent={unseenMessages} color="error" anchorOrigin={{ vertical: 'top', horizontal: 'left' }}>
+        <Forum fontSize="large" />
+      </Badge>
     </IconButton>
   );
 }
+
+const mapStateToProps = ({ conversations }: IAppState) => ({
+  unseenMessages: conversations.unseenMessages,
+});
+
 const mapDispatchToProps = (dispatch: ThunkDispatch<IAppState, void, Action>) => ({
   showConversationList: () => dispatch(makeShowConversationList()),
 });
 
-export const MyConversationsButton = connect(undefined, mapDispatchToProps)(ShowConversationsButton);
+export const MyConversationsButton = connect(mapStateToProps, mapDispatchToProps)(ShowConversationsButton);
