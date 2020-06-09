@@ -17,7 +17,7 @@ export const makeStartRealtime = action(() => {
     dispatch(updateRealtimeStatus('unavailable'));
 
     try {
-      const socket = io.connect(`${process.env.REACT_APP_SOCKET}`);
+      const socket = io.connect(`${process.env.REACT_APP_BACKEND}`);
       socket.on('connect', function () {
         dispatch(updateRealtimeStatus('ready'));
         console.log('============================== CONNECTED');
