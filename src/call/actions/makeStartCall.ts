@@ -37,6 +37,38 @@ export const makeStartCall = action((conversationId: string) => {
 
     // Create peer connection
     const peerConnection = new RTCPeerConnection();
+
+
+    peerConnection.onconnectionstatechange = ev => {
+      switch (peerConnection.connectionState) {
+        case "new":
+          console.log("peerConnection: Connecting...");
+          break;
+        case "connected":
+          console.log("peerConnection: Online");
+          break;
+        case "disconnected":
+          console.log("peerConnection: Disconnecting...");
+          break;
+        case "closed":
+          console.log("peerConnection: Offline");
+          break;
+        case "failed":
+          console.log("peerConnection: Error");
+          break;
+        default:
+          console.log("peerConnection: Unknown");
+          break;
+      }
+    }
+
+
+
+
+
+
+
+
     peerConnection.ontrack = function ({ streams }) {
       console.log('================peerConnection.ontrack')
       console.log(`Strem length ${streams.length}`)
@@ -53,6 +85,9 @@ export const makeStartCall = action((conversationId: string) => {
     const offer = await peerConnection.createOffer();
     await peerConnection.setLocalDescription(new RTCSessionDescription(offer));
     // FIXME emit call-request
-    dispatch(makeEmit('call-request', { conversationId, target, offer }));
+    dispatch(makeEmit('call-request', { conversationId, target, offer: peerConnection.localDescription }));
+
+    console.log(`conversation id: ${conversationId}`);
+    console.log(`offer: ${offer.sdp}`);
   };
 });

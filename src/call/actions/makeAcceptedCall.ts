@@ -12,10 +12,14 @@ export const makeAcceptedCall = action((
 
     // FIXME check conversation id
     // FIXME retieve peerconnexion
+    console.log(`conversation id: ${conversationId}`);
+    console.log(`offer: ${answer.sdp}`);
 
     // Accept remote answer
     const { peerConnection } = getState().call;
     if (!peerConnection) throw Error('No peer connexion available');
+
+    console.log('================KOALA')
 
     console.log('================peerConnection.setRemoteDescription')
     // peerConnection.ontrack = function ({ streams }) {
@@ -24,5 +28,7 @@ export const makeAcceptedCall = action((
     //   dispatch(updateCallRemoteStream(streams[0]));
     // };
     await peerConnection.setRemoteDescription(new RTCSessionDescription(answer));
+
+    console.log(peerConnection.connectionState);
   };
 });

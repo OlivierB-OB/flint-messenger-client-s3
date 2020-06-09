@@ -18,7 +18,7 @@ export async function getLocalInputs(): Promise<ILocalInputs> {
 
 function toggleTrack(track: MediaStreamTrack): ILocalInput {
   console.log(track);
-  // track.enabled = !track.enabled;
+  track.enabled = !track.enabled;
   return {
     isAvailable: true,
     isActive: track.enabled,

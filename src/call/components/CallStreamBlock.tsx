@@ -13,13 +13,14 @@ export function CallStreamBlock(props: ICallStreamBlockProps) {
       ref.current.srcObject = props.stream;
     }
   }, [ref, props.stream, props.muted])
-  const muted = props.muted ? { muted: true } : {};
+  console.log(props.stream);
+  if (!props.stream) return null;
   return (
     <video
       ref={ref}
       style={{ maxWidth: '100%', maxHeight: '100%' }}
       autoPlay
-      {...muted}
+      muted={props.muted}
     />
   );
 }

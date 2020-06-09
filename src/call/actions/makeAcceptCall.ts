@@ -24,6 +24,9 @@ export const makeAcceptCall = action((
 
     // FIXME check if conversation exists
 
+    console.log(`conversation id: ${conversationId}`);
+    console.log(`offer: ${offer.sdp}`);
+
     dispatch(setIncomingCall());
 
     dispatch(setCallConversationId(conversationId));
@@ -39,6 +42,33 @@ export const makeAcceptCall = action((
 
     // Create peer connection
     const peerConnection = new RTCPeerConnection();
+
+
+
+    peerConnection.onconnectionstatechange = ev => {
+      switch (peerConnection.connectionState) {
+        case "new":
+          console.log("peerConnection: Connecting...");
+          break;
+        case "connected":
+          console.log("peerConnection: Online");
+          break;
+        case "disconnected":
+          console.log("peerConnection: Disconnecting...");
+          break;
+        case "closed":
+          console.log("peerConnection: Offline");
+          break;
+        case "failed":
+          console.log("peerConnection: Error");
+          break;
+        default:
+          console.log("peerConnection: Unknown");
+          break;
+      }
+    }
+
+
     peerConnection.ontrack = function ({ streams: [stream] }) {
       console.log('================peerConnection.ontrack')
       dispatch(updateCallRemoteStream(stream));
@@ -58,7 +88,11 @@ export const makeAcceptCall = action((
     // Answer to received offer
     const answer = await peerConnection.createAnswer();
     await peerConnection.setLocalDescription(new RTCSessionDescription(answer));
+
+    console.log(`offer: ${answer.sdp}`);
     // FIXME emit call-accepted
-    dispatch(makeEmit('call-accepted', { conversationId, target, answer }));
+    dispatch(makeEmit('call-accepted', { conversationId, target, answer: peerConnection.localDescription }));
+
+    console.log(peerConnection.connectionState);
   };
 });
