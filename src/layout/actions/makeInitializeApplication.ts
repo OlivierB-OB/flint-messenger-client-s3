@@ -7,12 +7,14 @@ import { makeFetchUsers } from '../../users/actions/makeFetchUsers';
 import { makeFetchConversations } from '../../conversations/actions/makeFetchConversations';
 import { action } from '../../utils/action';
 import { showNavigation } from './showNavigation';
+import { makeStartRealtime } from '../../realtime/actions/makeStartRealtime';
 
 export const makeInitializeApplication = action((profile: IProfile) => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>) => {
     dispatch(updateIdentity(profile));
     dispatch(makeFetchUsers());
     dispatch(makeFetchConversations());
+    dispatch(makeStartRealtime());
     dispatch(showNavigation());
   };
 });

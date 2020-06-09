@@ -1,4 +1,4 @@
-export type IDrawerContent = 'contacts' | 'conversations';
+export type IDrawerContent = 'contacts' | 'conversations' | 'call';
 
 export interface ILayoutState {
   showDrawer: boolean;

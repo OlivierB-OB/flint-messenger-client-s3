@@ -5,6 +5,7 @@ import { AppDrawer, drawerWidth } from './AppDrawer';
 import { AppMenu } from './AppMenu';
 import { AppContent } from './AppContent';
 import { IAppState } from '../../appReducer';
+import { IncomingCallNotification } from '../../call/components/IncomingCallNotification';
 
 interface ILayoutDisplayProps {
   showDrawer: boolean;
@@ -43,6 +44,7 @@ export function LayoutDisplay({ showDrawer }: ILayoutDisplayProps) {
         <AppContent />
       </div>
       <AppDrawer />
+      <IncomingCallNotification />
     </div>
   );
 }

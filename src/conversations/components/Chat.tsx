@@ -14,32 +14,33 @@ import { Alert } from '../../layout/components/Alert';
 import { makeConversationSeen } from '../actions/makeConversationSeen';
 
 export interface IChatDisplayProps {
+  isCallChat: boolean;
   status: IConversationsStatus;
   conversationId?: string;
   conversation?: IConversation;
   conversationSeen: (id: string) => void;
 }
 
-export function ChatDisplay({ status, conversationId, conversation, conversationSeen }: IChatDisplayProps) {
+export function ChatDisplay({ isCallChat, status, conversationId, conversation, conversationSeen }: IChatDisplayProps) {
   if (!conversationId || !conversation) return null;
   const progress = status === 'sending' ? <LinearProgress /> : null;
   return (
-    <Container style={{ height: '100%', padding: '1rem', boxSizing: 'border-box' }}>
-      <Box style={{ height: '5%' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: 'calc(100% - 2rem)', padding: '1rem', boxSizing: 'border-box' }}>
+      <div style={{ flexGrow: 0, height: '40px' }}>
         <Alert status={status} />
         {progress}
-      </Box>
-      <Box style={{ height: '70%', overflow: 'auto' }}>
+      </div>
+      <div style={{ flexGrow: 1, overflow: 'auto' }}>
         <ChatMessages
           conversationId={conversationId}
           messages={conversation.messages}
           conversationSeen={conversationSeen}
         />
-      </Box>
-      <Box style={{ height: '20%' }}>
-        <ChatInput conversationId={conversationId} />
-      </Box>
-    </Container>
+      </div>
+      <div style={{ flexGrow: 0, height: '60px' }}>
+        <ChatInput isCallChat={isCallChat} conversationId={conversationId} />
+      </div>
+    </div>
   );
 }
 
@@ -48,6 +49,7 @@ export interface IChatProps {
 }
 
 const mapStateToProps = ({ conversations }: IAppState, { match }: IChatProps) => ({
+  isCallChat: false,
   status: conversations.status,
   conversationId: match.params?.conversationId,
   conversation: conversations.conversations.find(({ _id }) => {

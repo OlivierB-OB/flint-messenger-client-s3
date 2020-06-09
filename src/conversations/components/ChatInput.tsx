@@ -9,8 +9,11 @@ import { ThunkDispatch } from 'redux-thunk';
 import { IAppState } from '../../appReducer';
 import { makeSendMessage } from '../actions/makeSendMessage';
 import { updateMessageEdition } from '../actions/updateMessageEdition';
+import { StartCallButton } from '../../call/components/StartCallButton';
+import { Fab } from '@material-ui/core';
 
 interface IChatInputDisplayProps {
+  isCallChat: boolean;
   conversationId: string;
   messageEdition: string;
   updateMessageEdition: (text: string) => void;
@@ -18,38 +21,44 @@ interface IChatInputDisplayProps {
 }
 
 export function ChatInputDisplay({
+  isCallChat,
   messageEdition,
   conversationId,
   updateMessageEdition,
   sendMessage,
 }: IChatInputDisplayProps) {
+  const startCallBtn = isCallChat ? null : <StartCallButton conversationId={conversationId} />;
   useEffect(() => updateMessageEdition(''), [updateMessageEdition, conversationId]);
   return (
     <form onSubmit={(e) => {e.preventDefault(); sendMessage(conversationId)}}>
-      <Grid container justify="center" alignItems="center">
-        <Grid item xs={11}>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <div style={{ flexGrow: 1 }}>
           <TextField
             fullWidth={true}
             value={messageEdition}
             variant="filled"
             onChange={(event) => updateMessageEdition(event.target.value)}
           />
-        </Grid>
-        <Grid item xs={1}>
-          <IconButton aria-label="contacts" type="submit">
-            <Send fontSize="large" color="primary" />
-          </IconButton>
-        </Grid>
-      </Grid>
+        </div>
+        <div style={{
+          flexGrow: 0, display: 'flex', width: '150px', justifyContent: 'space-around' }}>
+          <Fab type='submit' color='primary' aria-label="send">
+            <Send fontSize="large" />
+          </Fab>
+          {startCallBtn}
+        </div>
+      </div>
     </form>
   );
 }
 
 export interface IChatInputProps {
+  isCallChat: boolean,
   conversationId: string;
 }
 
-const mapStateToProps = ({ conversations }: IAppState, { conversationId }: IChatInputProps) => ({
+const mapStateToProps = ({ conversations }: IAppState, { isCallChat, conversationId }: IChatInputProps) => ({
+  isCallChat,
   conversationId,
   messageEdition: conversations.messageEdition,
 });
