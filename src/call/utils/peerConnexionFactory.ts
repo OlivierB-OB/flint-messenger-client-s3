@@ -6,11 +6,20 @@ export function peerConnexionFactory(
   onTrack: (stream: MediaStream) => void,
 ): RTCPeerConnection {
   const uid = `RTC-${new Date().getTime()}`;
+
+  if (!process.env.REACT_APP_STUN_SERVER || !process.env.REACT_APP_TURN_SERVER) {
+    throw Error('Missing STUN/TURN informations');
+  }
+
   const peerConnection = new RTCPeerConnection({
     iceServers: [
-      {
-        urls: "stun:stun.l.google.com:19302"
-      }
+      { urls: [
+        process.env.REACT_APP_STUN_SERVER,
+        process.env.REACT_APP_TURN_SERVER,
+      ],
+        username: process.env.REACT_APP_STUN_TURN_USER,
+        credential: process.env.REACT_APP_STUN_TURN_PASS,
+    },
     ]
   });
   (peerConnection as any).uid = uid;
