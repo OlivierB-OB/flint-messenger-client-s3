@@ -18,7 +18,6 @@ import { setIncomingCall } from './setIncomingCall';
 export const makeAcceptCall = action((
   conversationId: string,
   target: string,
-  offer: RTCSessionDescriptionInit,
 ) => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
 
@@ -75,20 +74,14 @@ export const makeAcceptCall = action((
       peerConnection.addTrack(track, stream)
     });
 
-    // Accept remote offer
-    console.log('================peerConnection.setRemoteDescription')
-    
-    await peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
-    // await peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
+    // Create offer
+    const offer = await peerConnection.createOffer();
+    // await peerConnection.setLocalDescription(new RTCSessionDescription(offer));
+    await peerConnection.setLocalDescription(offer);
 
-    // Answer to received offer
-    const answer = await peerConnection.createAnswer();
-    await peerConnection.setLocalDescription(answer);
-    // await peerConnection.setLocalDescription(new RTCSessionDescription(answer));
-    
     // FIXME emit call-accepted
     console.log('======================================== emiit call-accepted')
-    dispatch(makeEmit('call-accepted', { conversationId, target, answer: peerConnection.localDescription }));
+    dispatch(makeEmit('call-accepted', { conversationId, target, offer: peerConnection.localDescription }));
 
     console.log(peerConnection.connectionState);
 

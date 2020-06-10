@@ -8,7 +8,7 @@ import { makeEmit } from '../../realtime/actions/makeEmit';
 export const makeAcceptedCall = action((
   conversationId: string,
   target: string,
-  answer: RTCSessionDescriptionInit,
+  offer: RTCSessionDescriptionInit,
 ) => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
 
@@ -22,15 +22,6 @@ export const makeAcceptedCall = action((
     const { peerConnection } = getState().call;
     if (!peerConnection) throw Error('No peer connexion available');
 
-
-
-    peerConnection.onicecandidate = function (event) {
-      if (event.candidate) {
-        console.log('======================================== emiit call-ice-candidate')
-        dispatch(makeEmit('call-ice-candidate', { conversationId, target, candidate: event.candidate }));
-      }
-    }; 
-
     console.log('================KOALA')
 
     console.log('================peerConnection.setRemoteDescription')
@@ -39,8 +30,17 @@ export const makeAcceptedCall = action((
     //   console.log(`Strem length ${streams.length}`)
     //   dispatch(updateCallRemoteStream(streams[0]));
     // };
-    await peerConnection.setRemoteDescription(new RTCSessionDescription(answer));
+    await peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
     // await peerConnection.setRemoteDescription(new RTCSessionDescription(answer));
+
+    // Answer to received offer
+    const answer = await peerConnection.createAnswer();
+    await peerConnection.setLocalDescription(answer);
+    // await peerConnection.setLocalDescription(new RTCSessionDescription(answer));
+
+    // FIXME emit call-accepted
+    console.log('======================================== emiit call-established')
+    dispatch(makeEmit('call-established', { conversationId, target, answer: peerConnection.localDescription }));
 
     console.log(peerConnection.connectionState);
 

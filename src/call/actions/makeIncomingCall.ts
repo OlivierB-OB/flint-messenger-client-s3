@@ -10,13 +10,12 @@ import { setIncomingCall } from './setIncomingCall';
 export const makeIncomingCall = action((
   conversationId: string,
   target: string,
-  offer: RTCSessionDescriptionInit,
 ) => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
 
     dispatch(setIncomingCall({
       target,
-      accept: () => dispatch(makeAcceptCall(conversationId, target, offer)),
+      accept: () => dispatch(makeAcceptCall(conversationId, target)),
       reject: () => {
         dispatch(callReset());
         // FIXME emit call-left

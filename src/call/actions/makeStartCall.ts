@@ -56,26 +56,28 @@ export const makeStartCall = action((conversationId: string) => {
       console.log('PEER CONNECTION state change event: ', evt);
     }
 
-
+    peerConnection.onicecandidate = function (event) {
+      if (event.candidate) {
+        console.log('======================================== emiit call-ice-candidate')
+        dispatch(makeEmit('call-ice-candidate', { conversationId, target, candidate: event.candidate }));
+      }
+    }; 
 
     peerConnection.ontrack = function ({ streams }) {
       console.log('================peerConnection.ontrack')
       console.log(`Strem length ${streams.length}`)
       dispatch(updateCallRemoteStream(streams[0]));
     };
+  
     const { stream } = localInputs;
     stream.getTracks().forEach(track => {
       console.log('================peerConnection.addTrack')
       peerConnection.addTrack(track, stream)
     });
 
-    // Create offer
-    const offer = await peerConnection.createOffer();
-    // await peerConnection.setLocalDescription(new RTCSessionDescription(offer));
-    await peerConnection.setLocalDescription(offer);
     // FIXME emit call-request
     console.log('======================================== emiit call-request')
-    dispatch(makeEmit('call-request', { conversationId, target, offer: peerConnection.localDescription }));
+    dispatch(makeEmit('call-request', { conversationId, target }));
 
     console.log(`conversation id: ${conversationId}`);
 

@@ -12,6 +12,7 @@ import { makeAcceptedCall } from '../../call/actions/makeAcceptedCall';
 import { makeLeftCall } from '../../call/actions/makeLeftCall';
 import { makeIncomingCall } from '../../call/actions/makeIncomingCall';
 import { makeIceCandidate } from '../../call/actions/makeIceCandidate';
+import { makeCallEstablished } from '../../call/actions/makeCallEstablished';
 
 export const makeStartRealtime = action(() => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
@@ -43,12 +44,17 @@ export const makeStartRealtime = action(() => {
 
       socket.on('call-request', function (data: any) {
         console.log('============================== call-request');
-        dispatch(makeIncomingCall(data.conversationId, data.emitter, data.offer));
+        dispatch(makeIncomingCall(data.conversationId, data.emitter));
       });
 
       socket.on('call-accepted', function (data: any) {
         console.log('============================== call-accepted');
-        dispatch(makeAcceptedCall(data.conversationId, data.emitter, data.answer));
+        dispatch(makeAcceptedCall(data.conversationId, data.emitter, data.offer));
+      });
+
+      socket.on('call-established', function (data: any) {
+        console.log('============================== call-established');
+        dispatch(makeCallEstablished(data.conversationId, data.emitter, data.answer));
       });
       
       socket.on('call-left', function (data: any) {
