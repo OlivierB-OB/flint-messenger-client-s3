@@ -21,7 +21,14 @@ export const makeIceCandidate = action((
     const { peerConnection } = getState().call;
     if (!peerConnection) throw Error('No peer connexion available');
 
-    peerConnection.addIceCandidate(new RTCIceCandidate(candidate)); 
+    
+    try {
+      await peerConnection.addIceCandidate(new RTCIceCandidate(candidate));
+      console.log(`ICE candidate SUCCESS:\n${candidate ? candidate.candidate : '(null)'}`);
+    } catch (e) {
+      console.log(`ICE candidate ERROR:\n${candidate ? candidate.candidate : '(null)'}`);
+      console.log(e);
+    }
 
     console.log(peerConnection.connectionState);
 
