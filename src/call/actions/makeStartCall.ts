@@ -41,34 +41,20 @@ export const makeStartCall = action((conversationId: string) => {
     const peerConnection = new RTCPeerConnection();
     dispatch(updateCallPeerConnection(peerConnection));
 
+    peerConnection.oniceconnectionstatechange = (evt) => {
+      console.log(`ICE CONNECTION state: ${peerConnection.iceConnectionState}`);
+      console.log('ICE CONNECTION state change event: ', evt);
+    };
 
-    peerConnection.onconnectionstatechange = ev => {
-      switch (peerConnection.connectionState) {
-        case "new":
-          console.log("peerConnection: Connecting...");
-          break;
-        case "connected":
-          console.log("peerConnection: Online");
-          break;
-        case "disconnected":
-          console.log("peerConnection: Disconnecting...");
-          break;
-        case "closed":
-          console.log("peerConnection: Offline");
-          break;
-        case "failed":
-          console.log("peerConnection: Error");
-          break;
-        default:
-          console.log("peerConnection: Unknown");
-          break;
-      }
+    peerConnection.onicegatheringstatechange = (evt) => {
+      console.log(`ICE GATHERING state: ${peerConnection.iceGatheringState}`);
+      console.log('ICE GATHERING state change event: ', evt);
+    };
+
+    peerConnection.onconnectionstatechange = (evt) => {
+      console.log(`PEER CONNECTION state: ${peerConnection.connectionState}`);
+      console.log('PEER CONNECTION state change event: ', evt);
     }
-
-
-
-
-
 
 
 
