@@ -12,7 +12,6 @@ import { hideDrawer } from '../actions/hideDrawer';
 import { MyContacts } from '../../users/components/MyContacts';
 import { MyConversations } from '../../conversations/components/MyConversations';
 import { CallChat } from '../../call/components/CallChat';
-import { relative } from 'path';
 
 export interface IDrawerDisplayProps {
   show: boolean;

@@ -5,6 +5,7 @@ import { action } from '../../utils/action';
 import { IAppState } from '../../appReducer';
 import { IConversationMessage } from '../types';
 import { updateConversation } from './updateConversation';
+import { ensureConversation } from './ensureConversation';
 
 export const makeUpdateConversation = action((messages: IConversationMessage[]) => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
@@ -25,6 +26,7 @@ export const makeUpdateConversation = action((messages: IConversationMessage[]) 
         const [{ emitter, target }] = messages;
         const conversationTarget = [emitter, target].find((id) => id !== info._id) as string;
         const lastSeen = info.conversationsSeen?.[conversationId];
+        dispatch(ensureConversation(conversationId, conversationTarget, new Date().toISOString()));
         dispatch(updateConversation(conversationId, conversationTarget, lastSeen, messages));
       }
     });

@@ -21,49 +21,48 @@ export const makeStartRealtime = action(() => {
     try {
       const socket = io.connect(`${process.env.REACT_APP_BACKEND}`);
       socket.on('connect', function () {
-        dispatch(updateRealtimeStatus('ready'));
-        console.log('============================== CONNECTED');
+        console.log(`receiving [connect] <-------`);
         dispatch(updateRealtimeSocket(socket));
         dispatch(updateRealtimeStatus('ready'));
       });
 
       socket.on('disconnect', function () {
-        console.log('============================== DISCONNECTED');
+        console.log(`receiving [disconnect] <-------`);
         dispatch(realtimeReset());
       });
 
       socket.on('user-update', function (data: any) {
-        console.log('============================== user-update');
+        console.log(`receiving [user-update] <-------`);
         dispatch(updateUserInfo([data]));
       });
       
       socket.on('chat-message', function (data: any) {
-        console.log('============================== chat-message');
+        console.log(`receiving [chat-message] <-------`);
         dispatch(makeUpdateConversation([data]));
       });
 
       socket.on('call-request', function (data: any) {
-        console.log('============================== call-request');
+        console.log(`receiving [call-request] <-------`);
         dispatch(makeIncomingCall(data.conversationId, data.emitter));
       });
 
       socket.on('call-accepted', function (data: any) {
-        console.log('============================== call-accepted');
+        console.log(`receiving [call-accepted] <-------`);
         dispatch(makeAcceptedCall(data.conversationId, data.emitter, data.offer));
       });
 
       socket.on('call-established', function (data: any) {
-        console.log('============================== call-established');
+        console.log(`receiving [call-established] <-------`);
         dispatch(makeCallEstablished(data.conversationId, data.emitter, data.answer));
       });
       
       socket.on('call-left', function (data: any) {
-        console.log('============================== call-left');
+        console.log(`receiving [call-left] <-------`);
         dispatch(makeLeftCall(data.conversationId));
       });
 
       socket.on('call-ice-candidate', function (data: any) {
-        console.log('============================== call-ice-candidate');
+        console.log(`receiving [call-ice-candidate] <-------`);
         dispatch(makeIceCandidate(data.conversationId, data.emitter, data.candidate));
       });
 

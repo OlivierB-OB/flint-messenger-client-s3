@@ -2,36 +2,19 @@ import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { action } from '../../utils/action';
 import { IAppState } from '../../appReducer';
-import { updateCallRemoteStream } from './updateCallRemoteStream';
+import { addIceCandidateToPeerConnexion, assertValidConversationId, assertExistingPeerConnexion } from '../utils';
 
 export const makeIceCandidate = action((
   conversationId: string,
   target: string,
   candidate: RTCIceCandidateInit,
 ) => {
-  return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
-
-    console.log('======================================== START ICE CANDIDATE')
-
-    // FIXME check conversation id
-    // FIXME retieve peerconnexion
-    console.log(`conversation id: ${conversationId}`);
-
-    // Accept remote answer
-    const { peerConnection } = getState().call;
-    if (!peerConnection) throw Error('No peer connexion available');
-
+  return async (_: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
+    const appState = getState();
+    assertValidConversationId(appState, conversationId);
+    const peerConnection = assertExistingPeerConnexion(appState, target);
     
-    try {
-      await peerConnection.addIceCandidate(new RTCIceCandidate(candidate));
-      console.log(`ICE candidate SUCCESS:\n${candidate ? candidate.candidate : '(null)'}`);
-    } catch (e) {
-      console.log(`ICE candidate ERROR:\n${candidate ? candidate.candidate : '(null)'}`);
-      console.log(e);
-    }
-
-    console.log(peerConnection.connectionState);
-
-    console.log('======================================== END ICE CANDIDATE')
+    // Add the received RTC ice candaidate
+    await addIceCandidateToPeerConnexion(peerConnection, candidate);
   };
 });

@@ -7,6 +7,7 @@ import {
   UPDATE_CONVERSATION_STATUS,
   CONVERSATION_SEEN,
   CONVERSATIONS_RESET,
+  ENSURE_CONVERSATION,
 } from './types';
 import { updateConversationCase } from './cases/updateConversationCase';
 import { updateConversationStatusCase } from './cases/updateConversationStatusCase';
@@ -14,6 +15,7 @@ import { createConversationCase } from './cases/createConversationCase';
 import { updateMessageEditionCase } from './cases/updateMessageEditionCase';
 import { conversationSeenCase } from './cases/conversationSeenCase';
 import { defaultConversationsState } from './utils';
+import { ensureConversationCase } from './cases/ensureConversationCase';
 
 export function conversations(
   state: IConversationsState = defaultConversationsState(),
@@ -24,6 +26,8 @@ export function conversations(
       return defaultConversationsState();
     case CREATE_CONVERSATION:
       return createConversationCase(state, action);
+    case ENSURE_CONVERSATION:
+      return ensureConversationCase(state, action);
     case UPDATE_CONVERSATION:
       return updateConversationCase(state, action);
     case CONVERSATION_SEEN:

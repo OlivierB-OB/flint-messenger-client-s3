@@ -1,4 +1,5 @@
 import { ILocalInputs, ILocalInput } from '../types';
+import { easyId } from './easyId';
 
 export async function getLocalInputs(): Promise<ILocalInputs> {
   const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: true });
@@ -17,8 +18,8 @@ export async function getLocalInputs(): Promise<ILocalInputs> {
 }
 
 function toggleTrack(track: MediaStreamTrack): ILocalInput {
-  console.log(track);
   track.enabled = !track.enabled;
+  console.log(`[${track.enabled ? 'ON' : 'OFF'}] local track: ${easyId(track.id)} [${track.kind}]`);
   return {
     isAvailable: true,
     isActive: track.enabled,

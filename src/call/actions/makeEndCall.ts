@@ -11,9 +11,7 @@ import { makeEmit } from '../../realtime/actions/makeEmit';
 
 export const makeEndCall = action(() => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
-    const { localInputs, peerConnection, conversationId } = getState().call;
-
-    const { target } = getState().call;
+    const { localInputs, target, peerConnection, conversationId } = getState().call;
 
     if (localInputs) {
       const { stream } = localInputs;
@@ -24,6 +22,8 @@ export const makeEndCall = action(() => {
     }
     // FIXME move to close...
     // peerConnection.close();
+
+    if (!conversationId) return;
 
     dispatch(updateDrawerContent('conversations'));
     dispatch(showNavigation());

@@ -1,5 +1,3 @@
-import Grid from '@material-ui/core/Grid';
-import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
 import Send from '@material-ui/icons/Send';
 import React, { useEffect } from 'react';

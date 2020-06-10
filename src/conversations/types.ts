@@ -27,6 +27,7 @@ export interface IConversationsState {
 
 export const CONVERSATIONS_RESET = 'CONVERSATIONS_RESET';
 export const CREATE_CONVERSATION = 'CREATE_CONVERSATION';
+export const ENSURE_CONVERSATION = 'ENSURE_CONVERSATION';
 export const UPDATE_CONVERSATION = 'UPDATE_CONVERSATION';
 export const CONVERSATION_SEEN = 'CONVERSATION_SEEN';
 export const UPDATE_CONVERSATION_STATUS = 'UPDATE_CONVERSATION_STATUS';
@@ -40,6 +41,13 @@ export interface ICreateConversationAction {
   type: typeof CREATE_CONVERSATION;
   conversationId: string;
   targetId: string;
+}
+
+export interface IEnsureConversationAction {
+  type: typeof ENSURE_CONVERSATION;
+  conversationId: string;
+  conversationTarget: string;
+  createdAt: string;
 }
 
 export interface IUpdateConversationAction {
@@ -69,6 +77,7 @@ export interface IUpdateMessageEditionAction {
 export type IConversationsAction =
   | IConversationsResetAction
   | ICreateConversationAction
+  | IEnsureConversationAction
   | IUpdateConversationAction
   | IConversationSeenAction
   | IUpdateConversationStatusAction
