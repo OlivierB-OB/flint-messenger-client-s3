@@ -24,8 +24,7 @@ export const makeAcceptCall = action((
 
     // FIXME check if conversation exists
 
-    console.log(`conversation id: ${conversationId}`);
-    console.log(`offer: ${offer.sdp}`);
+    console.log('======================================== START ACCEPT')
 
     dispatch(setIncomingCall());
 
@@ -42,6 +41,14 @@ export const makeAcceptCall = action((
 
     // Create peer connection
     const peerConnection = new RTCPeerConnection();
+    dispatch(updateCallPeerConnection(peerConnection));
+
+    peerConnection.onicecandidate = function (event) {
+      if (event.candidate) {
+        console.log('======================================== emiit call-ice-candidate')
+        dispatch(makeEmit('call-ice-candidate', { conversationId, target, candidate: event.candidate }));
+      }
+    }; 
 
 
 
@@ -78,21 +85,24 @@ export const makeAcceptCall = action((
       console.log('================peerConnection.addTrack')
       peerConnection.addTrack(track, stream)
     });
-    dispatch(updateCallPeerConnection(peerConnection));
 
     // Accept remote offer
     console.log('================peerConnection.setRemoteDescription')
     
     await peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
+    // await peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
 
     // Answer to received offer
     const answer = await peerConnection.createAnswer();
-    await peerConnection.setLocalDescription(new RTCSessionDescription(answer));
-
-    console.log(`offer: ${answer.sdp}`);
+    await peerConnection.setLocalDescription(answer);
+    // await peerConnection.setLocalDescription(new RTCSessionDescription(answer));
+    
     // FIXME emit call-accepted
+    console.log('======================================== emiit call-accepted')
     dispatch(makeEmit('call-accepted', { conversationId, target, answer: peerConnection.localDescription }));
 
     console.log(peerConnection.connectionState);
+
+    console.log('======================================== END ACCEPT')
   };
 });

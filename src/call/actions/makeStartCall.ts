@@ -18,6 +18,8 @@ import { updateCallRemoteStream } from './updateCallRemoteStream';
 export const makeStartCall = action((conversationId: string) => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
 
+    console.log('======================================== START STARTING')
+
     const conversation = getState().conversations.conversations.find(({ _id }) => _id === conversationId);
     if (!conversation) throw Error('Conversation not found');
 
@@ -37,6 +39,7 @@ export const makeStartCall = action((conversationId: string) => {
 
     // Create peer connection
     const peerConnection = new RTCPeerConnection();
+    dispatch(updateCallPeerConnection(peerConnection));
 
 
     peerConnection.onconnectionstatechange = ev => {
@@ -79,15 +82,17 @@ export const makeStartCall = action((conversationId: string) => {
       console.log('================peerConnection.addTrack')
       peerConnection.addTrack(track, stream)
     });
-    dispatch(updateCallPeerConnection(peerConnection));
 
     // Create offer
     const offer = await peerConnection.createOffer();
-    await peerConnection.setLocalDescription(new RTCSessionDescription(offer));
+    // await peerConnection.setLocalDescription(new RTCSessionDescription(offer));
+    await peerConnection.setLocalDescription(offer);
     // FIXME emit call-request
+    console.log('======================================== emiit call-request')
     dispatch(makeEmit('call-request', { conversationId, target, offer: peerConnection.localDescription }));
 
     console.log(`conversation id: ${conversationId}`);
-    console.log(`offer: ${offer.sdp}`);
+
+    console.log('======================================== END STARTING')
   };
 });

@@ -11,6 +11,7 @@ import { realtimeReset } from './realtimeReset';
 import { makeAcceptedCall } from '../../call/actions/makeAcceptedCall';
 import { makeLeftCall } from '../../call/actions/makeLeftCall';
 import { makeIncomingCall } from '../../call/actions/makeIncomingCall';
+import { makeIceCandidate } from '../../call/actions/makeIceCandidate';
 
 export const makeStartRealtime = action(() => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
@@ -41,18 +42,23 @@ export const makeStartRealtime = action(() => {
       });
 
       socket.on('call-request', function (data: any) {
-        console.log('============================== call-accepted');
+        console.log('============================== call-request');
         dispatch(makeIncomingCall(data.conversationId, data.emitter, data.offer));
       });
 
       socket.on('call-accepted', function (data: any) {
         console.log('============================== call-accepted');
-        dispatch(makeAcceptedCall(data.conversationId, data.answer));
+        dispatch(makeAcceptedCall(data.conversationId, data.emitter, data.answer));
       });
       
       socket.on('call-left', function (data: any) {
         console.log('============================== call-left');
         dispatch(makeLeftCall(data.conversationId));
+      });
+
+      socket.on('call-ice-candidate', function (data: any) {
+        console.log('============================== call-ice-candidate');
+        dispatch(makeIceCandidate(data.conversationId, data.emitter, data.candidate));
       });
 
       // FIXME FOR DEBUG
