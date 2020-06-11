@@ -68,9 +68,6 @@ export const makeStartRealtime = action(() => {
         console.log(`receiving [call-ice-candidate] <-------`);
         dispatch(makeIceCandidate(data.conversationId, data.emitter, data.candidate));
       });
-
-      // FIXME FOR DEBUG
-      (window as any).socket = socket;
     } catch (error) {
       dispatch(updateRealtimeStatus('unavailable'));
     }

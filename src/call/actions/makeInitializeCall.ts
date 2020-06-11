@@ -6,16 +6,6 @@ import { updateCallStatus } from './updateCallStatus';
 
 export const makeInitializeCall = action(() => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
-    dispatch(updateCallStatus('unavailable'));
-
-    try {
-      
-      // FIXME
-
-
-      dispatch(updateCallStatus('ready'));
-    } catch (error) {
-      dispatch(updateCallStatus('unavailable'));
-    }
+    dispatch(updateCallStatus('ready'));
   };
 });
