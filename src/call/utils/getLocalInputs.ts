@@ -11,14 +11,14 @@ export async function getLocalInputs(): Promise<ILocalInputs> {
   stream.getTracks().forEach(track => {
     const { enabled, kind } = track;
     if (enabled && (kind === 'audio' || kind === 'video')) {
-      inputs[kind] = toggleTrack(track);
+      inputs[kind] = toggleTrack(track, true);
     }
   });
   return inputs;
 }
 
-function toggleTrack(track: MediaStreamTrack): ILocalInput {
-  track.enabled = !track.enabled;
+function toggleTrack(track: MediaStreamTrack, preventToggle?: boolean): ILocalInput {
+  if (!preventToggle) track.enabled = !track.enabled;
   console.log(`[${track.enabled ? 'ON' : 'OFF'}] local track: ${easyId(track.id)} [${track.kind}]`);
   return {
     isAvailable: true,
