@@ -1,6 +1,6 @@
 import Box from '@material-ui/core/Box';
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { LoginScreen } from '../../login/components/LoginScreen';
 import { Chat } from '../../conversations/components/Chat';
 import { MyProfile } from '../../profileForm/components/MyProfile';
@@ -14,6 +14,7 @@ export function AppContent() {
         <Route path="/profile" component={MyProfile} />
         <Route path="/conversation/:conversationId" component={Chat} />
         <Route path="/call" component={Call} />
+        <Redirect to="/profile" />
       </Switch>
     </Box>
   );

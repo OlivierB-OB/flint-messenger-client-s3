@@ -4,15 +4,18 @@ import { IAppState } from '../../appReducer';
 import { ILocalInputs } from '../types';
 import { CallActions } from './CallActions';
 import { CallStreamBlock } from './CallStreamBlock';
+import { Redirect } from 'react-router-dom';
 
 interface ICallDisplayProps {
+  conversationId?: string;
   localInputs?: ILocalInputs;
   remoteStream?: MediaStream;
   screenShareStream?: MediaStream;
 }
 
 export function CallDisplay(props: ICallDisplayProps) {
-  const { localInputs, remoteStream, screenShareStream } = props;
+  const { conversationId, localInputs, remoteStream, screenShareStream } = props;
+  if (!conversationId) return <Redirect to="/profile" />;
   const secondaryScreen = (!screenShareStream) ? null : (
     <CallStreamBlock stream={remoteStream} />
   );
@@ -40,6 +43,7 @@ export function CallDisplay(props: ICallDisplayProps) {
 }
 
 const mapStateToProps = ({ call }: IAppState) => ({
+  conversationId: call.conversationId,
   localInputs: call.localInputs,
   remoteStream: call.remoteStream,
   screenShareStream: call.screenShareStream,

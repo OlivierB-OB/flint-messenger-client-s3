@@ -1,7 +1,7 @@
 import LinearProgress from '@material-ui/core/LinearProgress';
 import React from 'react';
 import { connect } from 'react-redux';
-import { match as Match } from 'react-router-dom';
+import { match as Match, Redirect } from 'react-router-dom';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { ChatMessages } from './ChatMessages';
@@ -20,7 +20,7 @@ export interface IChatDisplayProps {
 }
 
 export function ChatDisplay({ isCallChat, status, conversationId, conversation, conversationSeen }: IChatDisplayProps) {
-  if (!conversationId || !conversation) return null;
+  if (!conversationId || !conversation) return <Redirect to="/profile" />;
   const progress = status === 'sending' ? <LinearProgress /> : null;
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: 'calc(100% - 2rem)', padding: '1rem', boxSizing: 'border-box' }}>
