@@ -11,6 +11,7 @@ export function resetProfileFormCase(
     newState.fields.email.value = email;
     newState.fields.firstName.value = firstName;
     newState.fields.lastName.value = lastName;
+    newState.optionalPassword = true;
   }
   newState.status = 'ready';
   return newState;

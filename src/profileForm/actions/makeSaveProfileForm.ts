@@ -7,6 +7,7 @@ import { IAppState } from '../../appReducer';
 import { updateProfileFormStatus } from './updateProfileFormStatus';
 import { updateIdentity } from '../../identity/actions/updateIdentity';
 import { config } from '../../config';
+import { validateProfileFormContent } from './validateProfileForm';
 
 const { api_backend_url } = config;
 
@@ -14,12 +15,16 @@ export const makeSaveProfileForm = action(() => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
     dispatch(updateProfileFormStatus('unavailable'));
 
-    const { profileForm } = getState();
-    const { lastName, firstName, password } = profileForm.fields;
-
-    // FIXME validate form before sending
-
     try {
+      dispatch(validateProfileFormContent());
+
+      const { profileForm } = getState();
+      const { lastName, firstName, password, confirmation } = profileForm.fields;
+
+      if ([lastName, firstName, password, confirmation].some(({ isValid }) => !isValid)) {
+        throw Error('Invalid form content');
+      }
+
       const data = {
         lastName: lastName.value,
         firstName: firstName.value,

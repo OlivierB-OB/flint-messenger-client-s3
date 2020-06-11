@@ -9,12 +9,13 @@ import { IFormField, IPasswordField, IProfileFormFields } from '../types';
 export interface ICredentialsSectionProps {
   password: IPasswordField;
   confirmation: IFormField<string>;
+  optionalPassword?: boolean;
   update<T extends keyof IProfileFormFields>(field: T, value: IProfileFormFields[T]['value']): void;
 }
 
 // FIXME in the case of the regitration the password is required
 
-export function CredentialsSection({ password, confirmation, update }: ICredentialsSectionProps) {
+export function CredentialsSection({ password, confirmation, optionalPassword, update }: ICredentialsSectionProps) {
   return (
     <FormControl component="fieldset" fullWidth={true}>
       <FormLabel component="legend" style={{ margin: '1rem 0' }}>
@@ -25,6 +26,7 @@ export function CredentialsSection({ password, confirmation, update }: ICredenti
           type="password"
           label="Password"
           value={password.value}
+          required={!optionalPassword}
           fullWidth={true}
           onChange={(event) => update('password', event.target.value)}
           {...(!password.isValid ? { error: true, helperText: password.error } : {})}

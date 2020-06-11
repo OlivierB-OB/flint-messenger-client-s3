@@ -23,6 +23,7 @@ export interface IProfileFormProps {
   identityStatus: IIdentityStatus;
   info?: IProfile,
   formStatus: IProfileFormStatus;
+  optionalPassword?: boolean;
   fields: IProfileFormFields;
   update<T extends keyof IProfileFormFields>(field: T, value: IProfileFormFields[T]['value']): void;
   saveProfile(): void;
@@ -37,6 +38,7 @@ export function ProfileForm({
   identityStatus,
   info,
   formStatus,
+  optionalPassword,
   fields,
   update,
   resetProfile,
@@ -79,7 +81,12 @@ export function ProfileForm({
               />
             </Grid>
             <Grid item xs={4}>
-              <CredentialsSection password={password} confirmation={confirmation} update={update} />
+              <CredentialsSection
+                password={password}
+                confirmation={confirmation}
+                optionalPassword={optionalPassword}
+                update={update}
+              />
             </Grid>
           </Grid>
         </Box>
@@ -106,6 +113,7 @@ const mapStateToProps = ({ identity, profileForm }: IAppState) => ({
   identityStatus: identity.status,
   info: identity.info,
   formStatus: profileForm.status,
+  optionalPassword: profileForm.optionalPassword,
   fields: profileForm.fields,
 });
 

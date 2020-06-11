@@ -23,7 +23,7 @@ export function updateProfileFormCase<T extends keyof IProfileFormFields>(
     validateNameField(formField);
   } else if (field === 'password') {
     const { password } = newState.fields;
-    validatePasswordField(password);
+    validatePasswordField(password, newState.optionalPassword);
   }
   if (['password', 'confirmation'].includes(field)) {
     const { password, confirmation } = newState.fields;

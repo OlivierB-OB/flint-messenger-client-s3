@@ -8,6 +8,7 @@ import { updateProfileFormStatus } from './updateProfileFormStatus';
 import { makeInitializeApplication } from '../../layout/actions/makeInitializeApplication';
 import { config } from '../../config';
 import { makeExitApplication } from '../../layout/actions/makeExitApplication';
+import { validateProfileFormContent } from './validateProfileForm';
 
 const { api_backend_url } = config;
 
@@ -15,12 +16,16 @@ export const makeSubmitRegistrationForm = action(() => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
     dispatch(updateProfileFormStatus('unavailable'));
 
-    const { profileForm } = getState();
-    const { email, lastName, firstName, password } = profileForm.fields;
-
-    // FIXME validate form before sending
-
     try {
+      dispatch(validateProfileFormContent());
+
+      const { profileForm } = getState();
+      const { email, lastName, firstName, password, confirmation } = profileForm.fields;
+
+      if ([lastName, firstName, password, confirmation].some(({ isValid }) => !isValid)) {
+        throw Error('Invalid form content');
+      }
+
       const response = await axios.post(
         `${api_backend_url}/register`,
         {

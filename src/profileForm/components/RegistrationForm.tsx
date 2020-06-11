@@ -16,12 +16,13 @@ import { makeSubmitRegistrationForm } from '../actions/makeSubmitRegistrationFor
 
 export interface IRegistrationDisplayFormProps {
   status: IProfileFormStatus;
+  optionalPassword?: boolean;
   fields: IProfileFormFields;
   update<T extends keyof IProfileFormFields>(field: T, value: IProfileFormFields[T]['value']): void;
   saveProfile(): void;
 }
 
-export function RegistrationFormDisplay({ status, fields, update, saveProfile }: IRegistrationDisplayFormProps) {
+export function RegistrationFormDisplay({ status, optionalPassword, fields, update, saveProfile }: IRegistrationDisplayFormProps) {
   const { email, firstName, lastName, password, confirmation } = fields;
   return (
     <Container>
@@ -41,7 +42,12 @@ export function RegistrationFormDisplay({ status, fields, update, saveProfile }:
               />
             </Grid>
             <Grid item xs={4}>
-              <CredentialsSection password={password} confirmation={confirmation} update={update} />
+              <CredentialsSection
+              password={password}
+              confirmation={confirmation}
+              optionalPassword={optionalPassword}
+              update={update}
+              />
             </Grid>
           </Grid>
         </Box>
@@ -61,6 +67,7 @@ export function RegistrationFormDisplay({ status, fields, update, saveProfile }:
 
 const mapStateToProps = ({ profileForm }: IAppState) => ({
   status: profileForm.status,
+  optionalPassword: profileForm.optionalPassword,
   fields: profileForm.fields,
 });
 
