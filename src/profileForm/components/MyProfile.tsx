@@ -17,6 +17,7 @@ import { IIdentityStatus, IProfile } from '../../identity/types';
 import { Loading } from '../../layout/components/Loading';
 import { Alert } from '../../layout/components/Alert';
 import { makeDeleteProfile } from '../actions/makeDeleteProfile';
+import { makeLogout } from '../actions/makeLogout';
 
 export interface IProfileFormProps {
   identityStatus: IIdentityStatus;
@@ -26,6 +27,7 @@ export interface IProfileFormProps {
   update<T extends keyof IProfileFormFields>(field: T, value: IProfileFormFields[T]['value']): void;
   saveProfile(): void;
   resetProfile(): void;
+  logout(): void;
   deleteProfile(): void;
 }
 
@@ -39,6 +41,7 @@ export function ProfileForm({
   update,
   resetProfile,
   saveProfile,
+  logout,
   deleteProfile,
 }: IProfileFormProps) {
   const { email, firstName, lastName, password, confirmation } = fields;
@@ -51,6 +54,11 @@ export function ProfileForm({
       </Box>
       <Box style={{ margin: '2rem 0' }}>
         <Grid container justify="flex-end">
+          <Grid item xs={2}>
+            <Button variant="contained" color="secondary" fullWidth={true} onClick={logout}>
+              Logout
+            </Button>
+          </Grid>
           <Grid item xs={2}>
             <Button variant="contained" color="secondary" fullWidth={true} onClick={deleteProfile}>
               Delete account
@@ -106,6 +114,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<IAppState, void, Action>) =>
     dispatch(updateProfileForm(field, value)),
   resetProfile: () => dispatch(makeResetProfileForm()),
   saveProfile: () => dispatch(makeSaveProfileForm()),
+  logout: () => dispatch(makeLogout()),
   deleteProfile: () => dispatch(makeDeleteProfile()),
 });
 

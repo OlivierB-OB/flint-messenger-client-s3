@@ -7,7 +7,6 @@ import { history } from '../../history';
 import { updateLoginStatus } from './updateLoginStatus';
 import { makeInitializeApplication } from '../../layout/actions/makeInitializeApplication';
 import { config } from '../../config';
-import { makeExitApplication } from '../../layout/actions/makeExitApplication';
 
 const { api_backend_url } = config;
 
@@ -21,6 +20,8 @@ export const makeSubmitLogin = action(() => {
     // FIXME validate form before sending
 
     try {
+      console.log('=======================================APP EXIT');
+      console.log('=======================================SEND CREDENTIALS');
       const response = await axios.post(
         `${api_backend_url}/login`,
         {
@@ -29,8 +30,9 @@ export const makeSubmitLogin = action(() => {
         },
         { withCredentials: true },
       );
-      await dispatch(makeExitApplication());
+      console.log('=======================================IN');
       dispatch(makeInitializeApplication(response.data));
+      console.log('=======================================STARTED');
       history.push(`/profile`);
     } catch (error) {
       dispatch(updateLoginStatus('error'));

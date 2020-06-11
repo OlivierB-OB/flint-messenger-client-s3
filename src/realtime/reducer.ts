@@ -6,7 +6,8 @@ import { updateRealtimeSocketCase } from './cases/updateRealtimeSocketCase';
 export function realtime(state: IRealtimeState = defaultRealtimeState(), action: IRealtimeAction): IRealtimeState {
   switch (action.type) {
     case REALTIME_RESET:
-      state.socket?.close();
+      const { socket } = state;
+      setImmediate(() => socket?.close());
       return defaultRealtimeState();
     case UPDATE_REALTIME_STATUS:
       return updateRealtimeStatusCase(state, action);

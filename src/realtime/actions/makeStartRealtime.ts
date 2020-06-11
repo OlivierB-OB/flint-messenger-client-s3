@@ -4,7 +4,6 @@ import io from 'socket.io-client';
 import { action } from '../../utils/action';
 import { IAppState } from '../../appReducer';
 import { updateRealtimeStatus } from './updateRealtimeStatus';
-import { updateUserInfo } from '../../users/actions/updateUserInfo';
 import { makeUpdateConversation } from '../../conversations/actions/makeUpdateConversation';
 import { updateRealtimeSocket } from './updateRealtimeSocket';
 import { realtimeReset } from './realtimeReset';
@@ -14,6 +13,7 @@ import { makeIncomingCall } from '../../call/actions/makeIncomingCall';
 import { makeIceCandidate } from '../../call/actions/makeIceCandidate';
 import { makeCallEstablished } from '../../call/actions/makeCallEstablished';
 import { config } from '../../config';
+import { makeUpdateUserInfo } from '../../users/actions/makeUpdateUserInfo';
 
 export const makeStartRealtime = action(() => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
@@ -36,7 +36,7 @@ export const makeStartRealtime = action(() => {
 
       socket.on('user-update', function (data: any) {
         console.log(`receiving [user-update] <-------`);
-        dispatch(updateUserInfo([data]));
+        dispatch(makeUpdateUserInfo([data]));
       });
       
       socket.on('chat-message', function (data: any) {
