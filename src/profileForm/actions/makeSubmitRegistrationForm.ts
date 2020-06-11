@@ -7,6 +7,7 @@ import { history } from '../../history';
 import { updateProfileFormStatus } from './updateProfileFormStatus';
 import { makeInitializeApplication } from '../../layout/actions/makeInitializeApplication';
 import { config } from '../../config';
+import { makeExitApplication } from '../../layout/actions/makeExitApplication';
 
 const { api_backend_url } = config;
 
@@ -30,6 +31,7 @@ export const makeSubmitRegistrationForm = action(() => {
         },
         { withCredentials: true },
       );
+      await dispatch(makeExitApplication());
       dispatch(makeInitializeApplication(response.data));
       history.push(`/profile`);
     } catch (error) {

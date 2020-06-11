@@ -13,13 +13,14 @@ import { updateProfileForm } from '../actions/updateProfileForm';
 import { IProfileFormFields, IProfileFormStatus } from '../types';
 import { IdentitySection } from './IdentitySection';
 import { CredentialsSection } from './CredentialsSection';
-import { IIdentityStatus } from '../../identity/types';
+import { IIdentityStatus, IProfile } from '../../identity/types';
 import { Loading } from '../../layout/components/Loading';
 import { Alert } from '../../layout/components/Alert';
 import { makeDeleteProfile } from '../actions/makeDeleteProfile';
 
 export interface IProfileFormProps {
   identityStatus: IIdentityStatus;
+  info?: IProfile,
   formStatus: IProfileFormStatus;
   fields: IProfileFormFields;
   update<T extends keyof IProfileFormFields>(field: T, value: IProfileFormFields[T]['value']): void;
@@ -32,6 +33,7 @@ export interface IProfileFormProps {
 
 export function ProfileForm({
   identityStatus,
+  info,
   formStatus,
   fields,
   update,
@@ -40,7 +42,7 @@ export function ProfileForm({
   deleteProfile,
 }: IProfileFormProps) {
   const { email, firstName, lastName, password, confirmation } = fields;
-  useEffect(() => void resetProfile(), [identityStatus, resetProfile]);
+  useEffect(() => void resetProfile(), [identityStatus, info, resetProfile]);
   if ([identityStatus, formStatus].includes('unavailable')) return <Loading />;
   return (
     <Container>
@@ -94,6 +96,7 @@ export function ProfileForm({
 
 const mapStateToProps = ({ identity, profileForm }: IAppState) => ({
   identityStatus: identity.status,
+  info: identity.info,
   formStatus: profileForm.status,
   fields: profileForm.fields,
 });
