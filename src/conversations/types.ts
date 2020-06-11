@@ -21,7 +21,6 @@ export interface IConversationsState {
   status: IConversationsStatus;
   messageEdition: string;
   unseenMessages: number;
-  currentConversation?: string;
   conversations: IConversation[];
 }
 
