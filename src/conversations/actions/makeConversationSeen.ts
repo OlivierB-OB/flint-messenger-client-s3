@@ -6,6 +6,9 @@ import { action } from '../../utils/action';
 import { IAppState } from '../../appReducer';
 import { updateIdentity } from '../../identity/actions/updateIdentity';
 import { conversationSeen } from './conversationSeen';
+import { config } from '../../config';
+
+const { api_backend_url } = config;
 
 export const makeConversationSeen = action((id: string) => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
@@ -13,7 +16,7 @@ export const makeConversationSeen = action((id: string) => {
 
     try {
       const response = await axios.patch(
-        `${process.env.REACT_APP_BACKEND}/profile/conversation-seen`,
+        `${api_backend_url}/profile/conversation-seen`,
         {
           conversationId: id,
           seenDate,

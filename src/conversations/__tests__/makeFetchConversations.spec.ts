@@ -3,9 +3,12 @@ import thunk from 'redux-thunk';
 import { makeFetchConversations } from '../actions/makeFetchConversations';
 import { IAxiosMock, mockAxios, getDeffered, sleep } from '../../utils/__mocks__';
 import { makeUpdateConversation } from '../actions/makeUpdateConversation';
+import { config } from '../../config';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
+
+const { api_backend_url } = config;
 
 describe('makeFetchConversations', () => {
   let axiosMock: IAxiosMock;
@@ -30,7 +33,7 @@ describe('makeFetchConversations', () => {
     axiosMock.get.mockReturnValueOnce(getConversations);
     store.dispatch(makeFetchConversations() as any);
 
-    expect(axiosMock.get).toHaveBeenCalledWith(`${process.env.REACT_APP_BACKEND}/messages`, { withCredentials: true });
+    expect(axiosMock.get).toHaveBeenCalledWith(`${api_backend_url}/messages`, { withCredentials: true });
 
     expect(store.getActions()).toEqual([
       {
@@ -62,7 +65,7 @@ describe('makeFetchConversations', () => {
     axiosMock.get.mockReturnValueOnce(getConversations);
     store.dispatch(makeFetchConversations() as any);
 
-    expect(axiosMock.get).toHaveBeenCalledWith(`${process.env.REACT_APP_BACKEND}/messages`, { withCredentials: true });
+    expect(axiosMock.get).toHaveBeenCalledWith(`${api_backend_url}/messages`, { withCredentials: true });
 
     expect(store.getActions()).toEqual([
       {

@@ -13,13 +13,16 @@ import { makeLeftCall } from '../../call/actions/makeLeftCall';
 import { makeIncomingCall } from '../../call/actions/makeIncomingCall';
 import { makeIceCandidate } from '../../call/actions/makeIceCandidate';
 import { makeCallEstablished } from '../../call/actions/makeCallEstablished';
+import { config } from '../../config';
 
 export const makeStartRealtime = action(() => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
     dispatch(updateRealtimeStatus('unavailable'));
 
+    const { socket_backend_url } = config;
+
     try {
-      const socket = io.connect(`${process.env.REACT_APP_BACKEND}`);
+      const socket = io.connect(socket_backend_url);
       socket.on('connect', function () {
         console.log(`receiving [connect] <-------`);
         dispatch(updateRealtimeSocket(socket));

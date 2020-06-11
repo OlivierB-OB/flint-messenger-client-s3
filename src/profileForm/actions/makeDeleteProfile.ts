@@ -5,6 +5,9 @@ import { action } from '../../utils/action';
 import { IAppState } from '../../appReducer';
 import { updateProfileFormStatus } from './updateProfileFormStatus';
 import { makeExitApplication } from '../../layout/actions/makeExitApplication';
+import { config } from '../../config';
+
+const { api_backend_url } = config;
 
 export const makeDeleteProfile = action(() => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
@@ -13,7 +16,7 @@ export const makeDeleteProfile = action(() => {
     dispatch(updateProfileFormStatus('unavailable'));
 
     try {
-      await axios.delete(`${process.env.REACT_APP_BACKEND}/profile`, { withCredentials: true });
+      await axios.delete(`${api_backend_url}/profile`, { withCredentials: true });
       dispatch(makeExitApplication());
     } catch (error) {
       dispatch(updateProfileFormStatus('error'));

@@ -6,6 +6,9 @@ import { IAppState } from '../../appReducer';
 import { history } from '../../history';
 import { updateProfileFormStatus } from './updateProfileFormStatus';
 import { makeInitializeApplication } from '../../layout/actions/makeInitializeApplication';
+import { config } from '../../config';
+
+const { api_backend_url } = config;
 
 export const makeSubmitRegistrationForm = action(() => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
@@ -18,7 +21,7 @@ export const makeSubmitRegistrationForm = action(() => {
 
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND}/register`,
+        `${api_backend_url}/register`,
         {
           email: email.value,
           lastName: lastName.value,

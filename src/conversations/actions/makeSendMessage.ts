@@ -7,6 +7,9 @@ import { IAppState } from '../../appReducer';
 import { updateMessageEdition } from './updateMessageEdition';
 import { updateConversationStatus } from './updateConversationStatus';
 import { makeUpdateConversation } from './makeUpdateConversation';
+import { config } from '../../config';
+
+const { api_backend_url } = config;
 
 export const makeSendMessage = action((conversationId: string) => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
@@ -25,7 +28,7 @@ export const makeSendMessage = action((conversationId: string) => {
       if (!conversation) throw Error('Unable to send');
 
       const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND}/messages`,
+        `${api_backend_url}/messages`,
         {
           conversationId,
           target: conversation.target,

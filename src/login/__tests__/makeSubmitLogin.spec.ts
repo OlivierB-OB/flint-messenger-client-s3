@@ -3,6 +3,9 @@ import thunk from 'redux-thunk';
 import { makeInitializeApplication } from '../../layout/actions/makeInitializeApplication';
 import { IAxiosMock, mockAxios, getDeffered, sleep, IHistoryMock, mockHistory } from '../../utils/__mocks__';
 import { makeSubmitLogin } from '../actions/makeSubmitLogin';
+import { config } from '../../config';
+
+const { api_backend_url } = config;
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -45,7 +48,7 @@ describe('makeSubmitLogin', () => {
     store.dispatch(makeSubmitLogin() as any);
 
     expect(axiosMock.post).toHaveBeenCalledWith(
-      `${process.env.REACT_APP_BACKEND}/login`,
+      `${api_backend_url}/login`,
       {
         username: 'foo@test.com',
         password: 'baz',
@@ -92,7 +95,7 @@ describe('makeSubmitLogin', () => {
     store.dispatch(makeSubmitLogin() as any);
 
     expect(axiosMock.post).toHaveBeenCalledWith(
-      `${process.env.REACT_APP_BACKEND}/login`,
+      `${api_backend_url}/login`,
       {
         username: 'foo@test.com',
         password: 'baz',

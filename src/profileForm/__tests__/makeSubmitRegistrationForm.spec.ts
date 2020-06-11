@@ -3,6 +3,9 @@ import thunk from 'redux-thunk';
 import { makeInitializeApplication } from '../../layout/actions/makeInitializeApplication';
 import { IAxiosMock, mockAxios, getDeffered, sleep, IHistoryMock, mockHistory } from '../../utils/__mocks__';
 import { makeSubmitRegistrationForm } from '../actions/makeSubmitRegistrationForm';
+import { config } from '../../config';
+
+const { api_backend_url } = config;
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -51,7 +54,7 @@ describe('makeSubmitRegistrationForm', () => {
     store.dispatch(makeSubmitRegistrationForm() as any);
 
     expect(axiosMock.post).toHaveBeenCalledWith(
-      `${process.env.REACT_APP_BACKEND}/register`,
+      `${api_backend_url}/register`,
       {
         email: 'foo@test.com',
         firstName: 'foo',
@@ -106,7 +109,7 @@ describe('makeSubmitRegistrationForm', () => {
     store.dispatch(makeSubmitRegistrationForm() as any);
 
     expect(axiosMock.post).toHaveBeenCalledWith(
-      `${process.env.REACT_APP_BACKEND}/register`,
+      `${api_backend_url}/register`,
       {
         email: 'foo@test.com',
         firstName: 'foo',

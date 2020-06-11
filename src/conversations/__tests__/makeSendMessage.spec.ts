@@ -3,6 +3,9 @@ import thunk from 'redux-thunk';
 import { IAxiosMock, mockAxios, getDeffered, sleep } from '../../utils/__mocks__';
 import { makeSendMessage } from '../actions/makeSendMessage';
 import { makeUpdateConversation } from '../actions/makeUpdateConversation';
+import { config } from '../../config';
+
+const { api_backend_url } = config;
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -41,7 +44,7 @@ describe('makeSendMessage', () => {
     store.dispatch(makeSendMessage('123') as any);
 
     expect(axiosMock.post).toHaveBeenCalledWith(
-      `${process.env.REACT_APP_BACKEND}/messages`,
+      `${api_backend_url}/messages`,
       {
         conversationId: '123',
         target: 'target id',
@@ -110,7 +113,7 @@ describe('makeSendMessage', () => {
     store.dispatch(makeSendMessage('123') as any);
 
     expect(axiosMock.post).toHaveBeenCalledWith(
-      `${process.env.REACT_APP_BACKEND}/messages`,
+      `${api_backend_url}/messages`,
       {
         conversationId: '123',
         target: 'target id',

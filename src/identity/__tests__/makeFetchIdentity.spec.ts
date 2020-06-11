@@ -4,6 +4,9 @@ import { makeFetchIdentity } from '../actions/makeFetchIdentity';
 import { makeInitializeApplication } from '../../layout/actions/makeInitializeApplication';
 import { makeExitApplication } from '../../layout/actions/makeExitApplication';
 import { IAxiosMock, mockAxios, getDeffered, sleep } from '../../utils/__mocks__';
+import { config } from '../../config';
+
+const { api_backend_url } = config;
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -35,7 +38,7 @@ describe('makeFetchIdentity', () => {
     axiosMock.get.mockReturnValueOnce(getIdentity);
     store.dispatch(makeFetchIdentity() as any);
 
-    expect(axiosMock.get).toHaveBeenCalledWith(`${process.env.REACT_APP_BACKEND}/profile`, { withCredentials: true });
+    expect(axiosMock.get).toHaveBeenCalledWith(`${api_backend_url}/profile`, { withCredentials: true });
 
     expect(store.getActions()).toEqual([
       {
@@ -68,7 +71,7 @@ describe('makeFetchIdentity', () => {
     axiosMock.get.mockReturnValueOnce(getIdentity);
     store.dispatch(makeFetchIdentity() as any);
 
-    expect(axiosMock.get).toHaveBeenCalledWith(`${process.env.REACT_APP_BACKEND}/profile`, { withCredentials: true });
+    expect(axiosMock.get).toHaveBeenCalledWith(`${api_backend_url}/profile`, { withCredentials: true });
 
     expect(store.getActions()).toEqual([
       {

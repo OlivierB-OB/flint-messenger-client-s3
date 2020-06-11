@@ -2,6 +2,9 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { makeConversationSeen } from '../actions/makeConversationSeen';
 import { IAxiosMock, mockAxios, getDeffered, sleep, expectAnyDate } from '../../utils/__mocks__';
+import { config } from '../../config';
+
+const { api_backend_url } = config;
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -26,7 +29,7 @@ describe('makeConversationSeen', () => {
     store.dispatch(makeConversationSeen('123') as any);
 
     expect(axiosMock.patch).toHaveBeenCalledWith(
-      `${process.env.REACT_APP_BACKEND}/profile/conversation-seen`,
+      `${api_backend_url}/profile/conversation-seen`,
       {
         conversationId: '123',
         seenDate: expectAnyDate(),
@@ -61,7 +64,7 @@ describe('makeConversationSeen', () => {
     store.dispatch(makeConversationSeen('123') as any);
 
     expect(axiosMock.patch).toHaveBeenCalledWith(
-      `${process.env.REACT_APP_BACKEND}/profile/conversation-seen`,
+      `${api_backend_url}/profile/conversation-seen`,
       {
         conversationId: '123',
         seenDate: expectAnyDate(),

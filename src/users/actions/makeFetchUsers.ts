@@ -6,13 +6,16 @@ import { action } from '../../utils/action';
 import { IAppState } from '../../appReducer';
 import { updateUsersStatus } from './updateUsersStatus';
 import { updateUserInfo } from './updateUserInfo';
+import { config } from '../../config';
+
+const { api_backend_url } = config;
 
 export const makeFetchUsers = action(() => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
     dispatch(updateUsersStatus('unavailable'));
 
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BACKEND}/users`, { withCredentials: true });
+      const response = await axios.get(`${api_backend_url}/users`, { withCredentials: true });
       batch(() => {
         dispatch(updateUsersStatus('ready'));
         dispatch(updateUserInfo(response.data));

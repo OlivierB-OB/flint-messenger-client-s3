@@ -3,6 +3,9 @@ import thunk from 'redux-thunk';
 import { makeDeleteProfile } from '../actions/makeDeleteProfile';
 import { makeExitApplication } from '../../layout/actions/makeExitApplication';
 import { IAxiosMock, mockAxios, getDeffered, sleep } from '../../utils/__mocks__';
+import { config } from '../../config';
+
+const { api_backend_url } = config;
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -30,7 +33,7 @@ describe('makeDeleteProfile', () => {
     axiosMock.get.mockReturnValueOnce(deleteProfile);
     store.dispatch(makeDeleteProfile() as any);
 
-    expect(axiosMock.delete).toHaveBeenCalledWith(`${process.env.REACT_APP_BACKEND}/profile`, {
+    expect(axiosMock.delete).toHaveBeenCalledWith(`${api_backend_url}/profile`, {
       withCredentials: true,
     });
 
@@ -58,7 +61,7 @@ describe('makeDeleteProfile', () => {
     axiosMock.delete.mockReturnValueOnce(deleteProfile);
     store.dispatch(makeDeleteProfile() as any);
 
-    expect(axiosMock.delete).toHaveBeenCalledWith(`${process.env.REACT_APP_BACKEND}/profile`, {
+    expect(axiosMock.delete).toHaveBeenCalledWith(`${api_backend_url}/profile`, {
       withCredentials: true,
     });
 

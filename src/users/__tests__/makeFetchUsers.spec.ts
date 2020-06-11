@@ -2,6 +2,9 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { makeFetchUsers } from '../actions/makeFetchUsers';
 import { IAxiosMock, mockAxios, getDeffered, sleep } from '../../utils/__mocks__';
+import { config } from '../../config';
+
+const { api_backend_url } = config;
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -27,7 +30,7 @@ describe('makeFetchUsers', () => {
     axiosMock.get.mockReturnValueOnce(getUsers);
     store.dispatch(makeFetchUsers() as any);
 
-    expect(axiosMock.get).toHaveBeenCalledWith(`${process.env.REACT_APP_BACKEND}/users`, { withCredentials: true });
+    expect(axiosMock.get).toHaveBeenCalledWith(`${api_backend_url}/users`, { withCredentials: true });
 
     expect(store.getActions()).toEqual([
       {
@@ -71,7 +74,7 @@ describe('makeFetchUsers', () => {
     axiosMock.get.mockReturnValueOnce(getUsers);
     store.dispatch(makeFetchUsers() as any);
 
-    expect(axiosMock.get).toHaveBeenCalledWith(`${process.env.REACT_APP_BACKEND}/users`, { withCredentials: true });
+    expect(axiosMock.get).toHaveBeenCalledWith(`${api_backend_url}/users`, { withCredentials: true });
 
     expect(store.getActions()).toEqual([
       {

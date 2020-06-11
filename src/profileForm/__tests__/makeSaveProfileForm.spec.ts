@@ -2,6 +2,9 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { IAxiosMock, mockAxios, getDeffered, sleep } from '../../utils/__mocks__';
 import { makeSaveProfileForm } from '../actions/makeSaveProfileForm';
+import { config } from '../../config';
+
+const { api_backend_url } = config;
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -40,7 +43,7 @@ describe('makeSaveProfileForm', () => {
     store.dispatch(makeSaveProfileForm() as any);
 
     expect(axiosMock.patch).toHaveBeenCalledWith(
-      `${process.env.REACT_APP_BACKEND}/profile`,
+      `${api_backend_url}/profile`,
       {
         firstName: 'foo',
         lastName: 'bar',
@@ -97,7 +100,7 @@ describe('makeSaveProfileForm', () => {
     store.dispatch(makeSaveProfileForm() as any);
 
     expect(axiosMock.patch).toHaveBeenCalledWith(
-      `${process.env.REACT_APP_BACKEND}/profile`,
+      `${api_backend_url}/profile`,
       {
         firstName: 'foo',
         lastName: 'bar',
@@ -153,7 +156,7 @@ describe('makeSaveProfileForm', () => {
     store.dispatch(makeSaveProfileForm() as any);
 
     expect(axiosMock.patch).toHaveBeenCalledWith(
-      `${process.env.REACT_APP_BACKEND}/profile`,
+      `${api_backend_url}/profile`,
       {
         firstName: 'foo',
         lastName: 'bar',

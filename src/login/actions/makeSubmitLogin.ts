@@ -6,6 +6,9 @@ import { IAppState } from '../../appReducer';
 import { history } from '../../history';
 import { updateLoginStatus } from './updateLoginStatus';
 import { makeInitializeApplication } from '../../layout/actions/makeInitializeApplication';
+import { config } from '../../config';
+
+const { api_backend_url } = config;
 
 export const makeSubmitLogin = action(() => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
@@ -18,7 +21,7 @@ export const makeSubmitLogin = action(() => {
 
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND}/login`,
+        `${api_backend_url}/login`,
         {
           username: email.value,
           password: password.value,

@@ -6,6 +6,9 @@ import { action } from '../../utils/action';
 import { IAppState } from '../../appReducer';
 import { updateProfileFormStatus } from './updateProfileFormStatus';
 import { updateIdentity } from '../../identity/actions/updateIdentity';
+import { config } from '../../config';
+
+const { api_backend_url } = config;
 
 export const makeSaveProfileForm = action(() => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
@@ -23,7 +26,7 @@ export const makeSaveProfileForm = action(() => {
         password: password.value,
       };
       if (!password.value) delete data.password;
-      const response = await axios.patch(`${process.env.REACT_APP_BACKEND}/profile`, data, { withCredentials: true });
+      const response = await axios.patch(`${api_backend_url}/profile`, data, { withCredentials: true });
       batch(() => {
         dispatch(updateIdentity(response.data));
         dispatch(updateProfileFormStatus('success'));
