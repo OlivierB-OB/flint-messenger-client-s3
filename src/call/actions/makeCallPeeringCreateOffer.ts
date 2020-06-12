@@ -14,7 +14,7 @@ export const makeCallPeeringCreateOffer = action((
   target: string,
 ) => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
-    console.log('======================================== START ACCEPT');
+    console.log(`========== START makeCallPeeringCreateOffer: ${target}`)
     assertValidConversationId(getState(), conversationId);
     const localInputs = assertExistingLocalInputs(getState());
 
@@ -24,7 +24,6 @@ export const makeCallPeeringCreateOffer = action((
       (candidate) => dispatch(makeEmit('call-peering-ice-candidate', { conversationId, target, candidate })),
       (stream) => dispatch(updateCallRemoteStream(target, stream)),
     );
-    console.log('===================================== HERE')
     bindStreamToPeerConnexion(remote.peerConnection, localInputs.stream);
     dispatch(updateCallRemote(remote));
 
@@ -32,6 +31,6 @@ export const makeCallPeeringCreateOffer = action((
     const offer = await remote.peerConnection.createOffer();
     await remote.peerConnection.setLocalDescription(offer);
     dispatch(makeEmit('call-peering-offer', { conversationId, target, offer: remote.peerConnection.localDescription }));
-    console.log('======================================== END ACCEPT')
+    console.log(`========== END makeCallPeeringCreateOffer: ${target}`)
   };
 });

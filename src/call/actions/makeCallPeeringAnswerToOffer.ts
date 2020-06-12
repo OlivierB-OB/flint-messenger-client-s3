@@ -13,7 +13,7 @@ export const makeCallPeeringAnswerToOffer = action((
   offer: RTCSessionDescriptionInit,
 ) => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
-    console.log('======================================== START ACCEPTED')
+    console.log(`========== START makeCallPeeringAnswerToOffer: ${target}`)
     assertValidConversationId(getState(), conversationId);
     const peerConnection = assertExistingPeerConnexion(getState(), target);
 
@@ -35,6 +35,6 @@ export const makeCallPeeringAnswerToOffer = action((
     }
     console.log(remote);
     dispatch(makeEmit('call-peering-answer', { conversationId, target, answer: peerConnection.localDescription, requiredPeering }));
-    console.log('======================================== END ACCEPTED')
+    console.log(`========== END makeCallPeeringAnswerToOffer: ${target}`)
   };
 });

@@ -12,13 +12,13 @@ export const makeCallPeeringFinalized = action((
   requiredPeering: string[],
 ) => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
-    console.log('======================================== START ESTABLISHED')
+    console.log(`========== START makeCallPeeringFinalized: ${target}`)
     assertValidConversationId(getState(), conversationId);
     const peerConnection = assertExistingPeerConnexion(getState(), target);
 
     // Accept the received RTC peer connexion answer
     await peerConnection.setRemoteDescription(new RTCSessionDescription(answer));
-    console.log('======================================== END ESTABLISHED')
+    console.log(`========== END makeCallPeeringFinalized: ${target}`)
 
     requiredPeering.forEach((required) => dispatch(makeCallPeeringInitiate(conversationId, required, false)));
   };

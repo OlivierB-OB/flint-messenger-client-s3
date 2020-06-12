@@ -26,7 +26,6 @@ import { toggleCallVideoInput } from '../actions/toggleCallVideoInput';
 interface ICallActionsDisplayProps {
   isChatShown: boolean,
   localInputs?: ILocalInputs,
-  remoteStream?: MediaStream,
   screenShareStream?: MediaStream,
   toggleAudio: () => void;
   toggleVideo: () => void;
@@ -50,7 +49,6 @@ export function CallActionsDisplay(props: ICallActionsDisplayProps) {
   const {
     isChatShown,
     localInputs,
-    remoteStream,
     screenShareStream,
     toggleAudio,
     toggleVideo,
@@ -115,7 +113,6 @@ export function CallActionsDisplay(props: ICallActionsDisplayProps) {
 const mapStateToProps = ({ layout, call }: IAppState) => ({
   isChatShown: layout.showDrawer,
   localInputs: call.inputs,
-  remoteStream: call.remotes[0]?.stream,
   screenShareStream: [
     call.screenShare?.stream,
     ...call.remotes.map(({ screenShare }) => screenShare)

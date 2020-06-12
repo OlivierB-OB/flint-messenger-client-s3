@@ -11,8 +11,7 @@ import { assertExistingLocalInputs } from '../utils/assertExistingLocalInputs';
 
 export const makeCallPeeringInitiate = action((conversationId: string, target: string, fromStartCall?: boolean) => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
-    console.log('======================================== START INITIATE PEERING');
-    
+    console.log(`========== START makeCallPeeringInitiate: ${target}`)
     assertValidConversationId(getState(), conversationId);
     const localInputs = assertExistingLocalInputs(getState());
 
@@ -27,6 +26,6 @@ export const makeCallPeeringInitiate = action((conversationId: string, target: s
 
     // Emit call request
     dispatch(makeEmit('call-peering-request', { conversationId, target }));
-    console.log('======================================== END INITIATE PEERING')
+    console.log(`========== END makeCallPeeringInitiate: ${target}`)
   };
 });
