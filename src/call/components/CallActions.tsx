@@ -19,7 +19,7 @@ import { makeStopLocalScreenShare } from '../actions/makeStopLocalScreenShare';
 import { makeEndCall } from '../actions/makeEndCall';
 import { showDrawer } from '../../layout/actions/showDrawer';
 import { hideDrawer } from '../../layout/actions/hideDrawer';
-import { ILocalInputs } from '../types';
+import { ILocalInputs, ILocalScreenShare } from '../types';
 import { toggleCallAudioInput } from '../actions/toggleCallAudioInput';
 import { toggleCallVideoInput } from '../actions/toggleCallVideoInput';
 
@@ -27,6 +27,7 @@ interface ICallActionsDisplayProps {
   conversationId?: string,
   isChatShown: boolean,
   localInputs?: ILocalInputs,
+  localScreenShare?: ILocalScreenShare,
   screenShareStream?: MediaStream,
   toggleAudio: () => void;
   toggleVideo: () => void;
@@ -51,6 +52,7 @@ export function CallActionsDisplay(props: ICallActionsDisplayProps) {
     conversationId,
     isChatShown,
     localInputs,
+    localScreenShare,
     screenShareStream,
     toggleAudio,
     toggleVideo,
@@ -97,10 +99,11 @@ export function CallActionsDisplay(props: ICallActionsDisplayProps) {
       </Fab>
       <Fab
         onClick={screenShareStream ? stopLocalScreenShare : () => {if (conversationId) startLocalScreenShare(conversationId)}}
-        color={screenShareStream ? 'primary' : 'secondary'}
+        color={!!localScreenShare ? 'primary' : 'secondary'}
+        disabled={!localScreenShare && (!!screenShareStream) as boolean}
       >
         {
-          screenShareStream ?
+          !!localScreenShare ?
           <ScreenShare  fontSize='large' /> :
           <StopScreenShare  fontSize='large' />
         }
@@ -116,6 +119,7 @@ const mapStateToProps = ({ layout, call }: IAppState) => ({
   conversationId: call.conversationId,
   isChatShown: layout.showDrawer,
   localInputs: call.inputs,
+  localScreenShare: call.screenShare,
   screenShareStream: [
     call.screenShare?.stream,
     ...call.remotes.map(({ screenShare }) => screenShare)
