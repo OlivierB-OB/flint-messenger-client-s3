@@ -17,7 +17,6 @@ export function CallDisplay(props: ICallDisplayProps) {
   const { conversationId, localInputs, remotes, screenShareStream } = props;
   if (!conversationId) return <Redirect to="/profile" />;
   const screenShareDisplay = screenShareStream ? <CallStreamBlock stream={screenShareStream} /> : null;
-  console.log(remotes);
   const remotesDisplay = remotes.map((remote) => <CallStreamBlock key={remote.target} stream={remote.stream} />)
   const secondaryScreen = (!screenShareStream) ? null : remotesDisplay;
   const mainScreen = screenShareDisplay || remotesDisplay;

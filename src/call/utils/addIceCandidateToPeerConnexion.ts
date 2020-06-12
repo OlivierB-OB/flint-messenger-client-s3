@@ -13,7 +13,7 @@ export async function addIceCandidateToPeerConnexion(
     await peerConnection.addIceCandidate(iceCandidate);
     console.log(`[${uid}]: IceCandidate added: ${info}`);
   } catch (e) {
-    console.error(`[${uid}]: Fail to add IceCandidate: ${info}`);
-    console.log(e);
+    console.warn(`[${uid}]: Fail to add IceCandidate: ${info}`);
+    console.warn(e);
   }
 }

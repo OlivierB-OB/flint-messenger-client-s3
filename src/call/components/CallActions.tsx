@@ -24,12 +24,13 @@ import { toggleCallAudioInput } from '../actions/toggleCallAudioInput';
 import { toggleCallVideoInput } from '../actions/toggleCallVideoInput';
 
 interface ICallActionsDisplayProps {
+  conversationId?: string,
   isChatShown: boolean,
   localInputs?: ILocalInputs,
   screenShareStream?: MediaStream,
   toggleAudio: () => void;
   toggleVideo: () => void;
-  startLocalScreenShare: () => void;
+  startLocalScreenShare: (conversationId: string) => void;
   stopLocalScreenShare: () => void;
   showChat: () => void,
   hideChat: () => void,
@@ -47,6 +48,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export function CallActionsDisplay(props: ICallActionsDisplayProps) {
   const {
+    conversationId,
     isChatShown,
     localInputs,
     screenShareStream,
@@ -94,7 +96,7 @@ export function CallActionsDisplay(props: ICallActionsDisplayProps) {
         }
       </Fab>
       <Fab
-        onClick={screenShareStream ? stopLocalScreenShare : startLocalScreenShare}
+        onClick={screenShareStream ? stopLocalScreenShare : () => {if (conversationId) startLocalScreenShare(conversationId)}}
         color={screenShareStream ? 'primary' : 'secondary'}
       >
         {
@@ -111,6 +113,7 @@ export function CallActionsDisplay(props: ICallActionsDisplayProps) {
 }
 
 const mapStateToProps = ({ layout, call }: IAppState) => ({
+  conversationId: call.conversationId,
   isChatShown: layout.showDrawer,
   localInputs: call.inputs,
   screenShareStream: [
@@ -122,7 +125,7 @@ const mapStateToProps = ({ layout, call }: IAppState) => ({
 const mapDispatchToProps = (dispatch: ThunkDispatch<IAppState, void, Action>) => ({
   toggleAudio: () => dispatch(toggleCallAudioInput()),
   toggleVideo: () => dispatch(toggleCallVideoInput()),
-  startLocalScreenShare: () => dispatch(makeStartLocalScreenShare()),
+  startLocalScreenShare: (conversationId: string) => dispatch(makeStartLocalScreenShare(conversationId)),
   stopLocalScreenShare: () => dispatch(makeStopLocalScreenShare()),
   showChat: () => dispatch(showDrawer()),
   hideChat: () => dispatch(hideDrawer()),

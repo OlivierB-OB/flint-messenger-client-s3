@@ -14,6 +14,8 @@ import { makeCallPeeringAddIceCandidate } from '../../call/actions/makeCallPeeri
 import { makeCallPeeringFinalized } from '../../call/actions/makeCallPeeringFinalized';
 import { config } from '../../config';
 import { makeUpdateUserInfo } from '../../users/actions/makeUpdateUserInfo';
+import { makeCallPeeringCreateOffer } from '../../call/actions/makeCallPeeringCreateOffer';
+import { makeCallPeeringAdditional } from '../../call/actions/makeCallPeeringAdditional';
 
 export const makeStartRealtime = action(() => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
@@ -46,27 +48,37 @@ export const makeStartRealtime = action(() => {
 
       socket.on('call-peering-request', (data: any) => {
         console.log(`receiving [call-peering-request] <-------`);
-        dispatch(makeIncomingCall(data.conversationId, data.emitter));
+        dispatch(makeIncomingCall(data.conversationId, data.emitter, data.purpose));
+      });
+
+      socket.on('call-peering-accepted', (data: any) => {
+        console.log(`receiving [call-peering-accept] <-------`);
+        dispatch(makeCallPeeringCreateOffer(data.conversationId, data.emitter, data.purpose));
       });
 
       socket.on('call-peering-offer', (data: any) => {
         console.log(`receiving [call-peering-offer] <-------`);
-        dispatch(makeCallPeeringAnswerToOffer(data.conversationId, data.emitter, data.offer));
+        dispatch(makeCallPeeringAnswerToOffer(data.conversationId, data.emitter, data.purpose, data.offer));
       });
 
       socket.on('call-peering-answer', (data: any) => {
         console.log(`receiving [call-peering-answer] <-------`);
-        dispatch(makeCallPeeringFinalized(data.conversationId, data.emitter, data.answer, data.requiredPeering));
+        dispatch(makeCallPeeringFinalized(data.conversationId, data.emitter, data.purpose, data.answer));
+      });
+
+      socket.on('call-additional-peering-required', (data: any) => {
+        console.log(`receiving [call-additional-peering-required] <-------`);
+        dispatch(makeCallPeeringAdditional(data.conversationId, data.emitter, data.purpose, data.requiredPeering));
       });
 
       socket.on('call-peering-ice-candidate', (data: any) => {
         console.log(`receiving [call-peering-ice-candidate] <-------`);
-        dispatch(makeCallPeeringAddIceCandidate(data.conversationId, data.emitter, data.candidate));
+        dispatch(makeCallPeeringAddIceCandidate(data.conversationId, data.emitter, data.purpose, data.candidate));
       });
       
       socket.on('call-left', (data: any) => {
         console.log(`receiving [call-left] <-------`);
-        dispatch(makeCallPeeringClosed(data.conversationId, data.emitter));
+        dispatch(makeCallPeeringClosed(data.conversationId, data.emitter, 'call'));
       });
     } catch (error) {
       dispatch(updateRealtimeStatus('unavailable'));

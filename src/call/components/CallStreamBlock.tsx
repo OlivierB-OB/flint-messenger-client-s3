@@ -8,10 +8,7 @@ interface ICallStreamBlockProps {
 export function CallStreamBlock(props: ICallStreamBlockProps) {
   const ref = useRef<any>();
   useEffect(() => {
-    if (ref.current) {
-      console.log(`${props.muted ? 'local' : 'remote'} stream set ${props.stream?.id}`)
-      ref.current.srcObject = props.stream;
-    }
+    if (ref.current) ref.current.srcObject = props.stream;
   }, [ref, props.stream, props.muted])
   if (!props.stream) return null;
   return (

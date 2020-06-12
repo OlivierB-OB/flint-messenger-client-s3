@@ -2,19 +2,23 @@ import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { action } from '../../utils/action';
 import { IAppState } from '../../appReducer';
+import { updateCallRemoteStream } from './updateCallRemoteStream';
 import { updateCallRemote } from './updateCallRemote';
 import { makeEmit } from '../../realtime/actions/makeEmit';
-import { updateCallRemoteStream } from './updateCallRemoteStream';
-import { peerConnexionFactory, bindStreamToPeerConnexion, assertValidConversationId, remotePeerFactory, assertExistingLocalInputs, assertExistingLocalScreenShare, assertExistingRemote } from '../utils';
+import { peerConnexionFactory, bindStreamToPeerConnexion, assertValidConversationId, remotePeerFactory, assertExistingLocalInputs, assertExistingRemote } from '../utils';
 import { makeCallPeeringClosed } from './makeCallPeeringClosed';
 import { IPeeringPurpose } from '../types';
 
-export const makeCallPeeringInitiate = action((conversationId: string, target: string, purpose: IPeeringPurpose, fromStartCall?: boolean) => {
+export const makeCallPeeringAccept = action((
+  conversationId: string,
+  target: string,
+  purpose: IPeeringPurpose,
+) => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
-    console.log(`========== START makeCallPeeringInitiate: ${target} - ${purpose}`)
+    console.log(`========== START makeCallPeeringAccept: ${target} - ${purpose}`)
     
     assertValidConversationId(getState(), conversationId);
-    
+
     // Create (retrieve) remote remote peer
     const remote = purpose === 'call' ?
       remotePeerFactory(target) :
@@ -34,17 +38,15 @@ export const makeCallPeeringInitiate = action((conversationId: string, target: s
       remote.peerConnection = peerConnection;
     }
     else {
-      // bind local screen share stream
-      const localScreenShare = assertExistingLocalScreenShare(getState());
-      bindStreamToPeerConnexion(peerConnection, localScreenShare.stream);
+      // screen sharing is one way noting to bind on this side
       remote.screenSharePeer = peerConnection;
     }
 
-    dispatch(updateCallRemote({ ...remote, pendingJoin: fromStartCall }));
+    dispatch(updateCallRemote(remote));
 
-    // Emit peering request
-    dispatch(makeEmit('call-peering-request', { conversationId, target, purpose }));
+    // Emit peering accepted
+    dispatch(makeEmit('call-peering-accepted', { conversationId, target, purpose }));
 
-    console.log(`========== END makeCallPeeringInitiate: ${target} - ${purpose}`)
+    console.log(`========== END makeCallPeeringAccept: ${target} - ${purpose}`)
   };
 });

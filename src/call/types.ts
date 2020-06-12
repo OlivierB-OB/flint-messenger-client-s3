@@ -1,5 +1,7 @@
 export type ICallStateStatus = 'unavailable' | 'ready' | 'incall';
 
+export type IPeeringPurpose = 'call' | 'screenShare';
+
 export interface ILocalInput {
   isAvailable: boolean;
   isActive?: boolean;
@@ -86,6 +88,7 @@ export interface IUpdateCallRemoteAction {
 export interface IUpdateCallRemoteStreamAction {
   type: typeof UPDATE_CALL_REMOTE_STREAM;
   target: string;
+  purpose: IPeeringPurpose;
   stream?: MediaStream;
 }
 

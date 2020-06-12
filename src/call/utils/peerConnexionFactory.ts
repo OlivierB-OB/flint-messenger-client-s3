@@ -4,6 +4,7 @@ import { config } from '../../config';
 
 export function peerConnexionFactory(
   onicecandidate: (candidate: RTCIceCandidate) => void,
+  onClosed: () => void,
   onTrack: (stream: MediaStream) => void,
 ): RTCPeerConnection {
   const uid = `RTC-${new Date().getTime()}`;
@@ -42,16 +43,20 @@ export function peerConnexionFactory(
 
   peerConnection.onconnectionstatechange = (evt) => {
     console.log(`[${uid}]: PeerConnection state: ${peerConnection.connectionState}`);
+    const shouldClose = ['disconnected', 'failed', 'closed'];
+    if (shouldClose.includes(peerConnection.connectionState)) onClosed();
   }
   
-  peerConnection.onicecandidate = function (event) {
+  peerConnection.onicecandidate = (event) => {
+    console.log('===================================> ICE CANDIDATE')
+    console.log(event)
     if (!event.candidate) return;
     const info = displayCandidate(event.candidate)
     console.log(`[${uid}]: New IceCandidate: ${info}`);
     onicecandidate(event.candidate);
   };
   
-  peerConnection.ontrack = function ({ streams: [stream] }) {
+  peerConnection.ontrack = ({ streams: [stream] }) => {
     console.log(`[${uid}]: New Stream: ${easyId(stream.id)}`);
     onTrack(stream);
   };

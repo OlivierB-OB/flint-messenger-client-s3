@@ -9,8 +9,6 @@ import { makeCallPeeringInitiate } from './makeCallPeeringInitiate';
 
 export const makeStartCall = action((conversationId: string) => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
-    console.log('======================================== START STARTING');
-    
     const conversation = getState().conversations.conversations.find(({ _id }) => _id === conversationId);
     if (!conversation) throw Error('Conversation not found');
 
@@ -25,8 +23,7 @@ export const makeStartCall = action((conversationId: string) => {
     
     // Initial call peerings
     for (const target of targets) {
-      dispatch(makeCallPeeringInitiate(conversationId, target, true));
+      dispatch(makeCallPeeringInitiate(conversationId, target, 'call', true));
     }
-    console.log('======================================== END STARTING')
   };
 });

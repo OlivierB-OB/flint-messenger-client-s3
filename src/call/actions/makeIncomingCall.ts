@@ -7,11 +7,13 @@ import { makeAcceptCall } from './makeAcceptCall';
 import { callReset } from './callReset';
 import { setIncomingCall } from './setIncomingCall';
 import { setCallConversationId } from './setCallConversationId';
-import { makeCallPeeringCreateOffer } from './makeCallPeeringCreateOffer';
+import { IPeeringPurpose } from '../types';
+import { makeCallPeeringAccept } from './makeCallPeeringAccept';
 
 export const makeIncomingCall = action((
   conversationId: string,
   target: string,
+  purpose: IPeeringPurpose,
 ) => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
 
@@ -25,7 +27,7 @@ export const makeIncomingCall = action((
       }
       else {
         // same call => accept silently by creating a peering offer
-        dispatch(makeCallPeeringCreateOffer(conversationId, target))
+        dispatch(makeCallPeeringAccept(conversationId, target, purpose))
         return;
       }
     }

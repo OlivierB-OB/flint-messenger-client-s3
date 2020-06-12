@@ -1,12 +1,7 @@
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { history } from '../../history';
 import { action } from '../../utils/action';
 import { IAppState } from '../../appReducer';
-import { makeStopLocalScreenShare } from './makeStopLocalScreenShare';
-import { updateDrawerContent } from '../../layout/actions/updateDrawerContent';
-import { callReset } from './callReset';
-import { showNavigation } from '../../layout/actions/showNavigation';
 import { makeEmit } from '../../realtime/actions/makeEmit';
 import { updateCallRemote } from './updateCallRemote';
 import { closeRemotePeer } from '../utils';
