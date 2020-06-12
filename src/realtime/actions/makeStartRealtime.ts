@@ -23,50 +23,50 @@ export const makeStartRealtime = action(() => {
 
     try {
       const socket = io.connect(socket_backend_url);
-      socket.on('connect', function () {
+      socket.on('connect', () => {
         console.log(`receiving [connect] <-------`);
         dispatch(updateRealtimeSocket(socket));
         dispatch(updateRealtimeStatus('ready'));
       });
 
-      socket.on('disconnect', function () {
+      socket.on('disconnect', () => {
         console.log(`receiving [disconnect] <-------`);
         dispatch(realtimeReset());
       });
 
-      socket.on('user-update', function (data: any) {
+      socket.on('user-update', (data: any) => {
         console.log(`receiving [user-update] <-------`);
         dispatch(makeUpdateUserInfo([data]));
       });
       
-      socket.on('chat-message', function (data: any) {
+      socket.on('chat-message', (data: any) => {
         console.log(`receiving [chat-message] <-------`);
         dispatch(makeUpdateConversation([data]));
       });
 
-      socket.on('call-peering-request', function (data: any) {
+      socket.on('call-peering-request', (data: any) => {
         console.log(`receiving [call-peering-request] <-------`);
         dispatch(makeIncomingCall(data.conversationId, data.emitter));
       });
 
-      socket.on('call-peering-offer', function (data: any) {
+      socket.on('call-peering-offer', (data: any) => {
         console.log(`receiving [call-peering-offer] <-------`);
         dispatch(makeCallPeeringAnswerToOffer(data.conversationId, data.emitter, data.offer));
       });
 
-      socket.on('call-peering-answer', function (data: any) {
+      socket.on('call-peering-answer', (data: any) => {
         console.log(`receiving [call-peering-answer] <-------`);
         dispatch(makeCallPeeringFinalized(data.conversationId, data.emitter, data.answer, data.requiredPeering));
       });
 
-      socket.on('call-peering-ice-candidate', function (data: any) {
+      socket.on('call-peering-ice-candidate', (data: any) => {
         console.log(`receiving [call-peering-ice-candidate] <-------`);
         dispatch(makeCallPeeringAddIceCandidate(data.conversationId, data.emitter, data.candidate));
       });
       
-      socket.on('call-left', function (data: any) {
+      socket.on('call-left', (data: any) => {
         console.log(`receiving [call-left] <-------`);
-        dispatch(makeCallPeeringClosed(data.conversationId));
+        dispatch(makeCallPeeringClosed(data.conversationId, data.emitter));
       });
     } catch (error) {
       dispatch(updateRealtimeStatus('unavailable'));
