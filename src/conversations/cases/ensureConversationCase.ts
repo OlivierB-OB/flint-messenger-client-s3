@@ -6,10 +6,10 @@ import {
 
 export function ensureConversationCase(
   state: IConversationsState,
-  { conversationId, conversationTarget, createdAt }: IEnsureConversationAction,
+  { conversationId, targets, createdAt }: IEnsureConversationAction,
 ): IConversationsState {
   if (state.conversations.some((c) => c._id === conversationId)) return state;
-  const conversation = conversationFactory(conversationId, conversationTarget, createdAt);
+  const conversation = conversationFactory(conversationId, targets, createdAt);
   const newState = {
     ...state,
     conversations: [...state.conversations.filter((c) => c._id !== conversationId), conversation],

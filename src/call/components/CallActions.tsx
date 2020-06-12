@@ -79,7 +79,7 @@ export function CallActionsDisplay(props: ICallActionsDisplayProps) {
         disabled={!localInputs?.audio.isAvailable}
       >
         {
-          remoteStream ?
+          localInputs?.audio.isActive ?
           <Mic  fontSize='large' /> :
           <MicOff  fontSize='large' />
         }
@@ -114,9 +114,12 @@ export function CallActionsDisplay(props: ICallActionsDisplayProps) {
 
 const mapStateToProps = ({ layout, call }: IAppState) => ({
   isChatShown: layout.showDrawer,
-  localInputs: call.localInputs,
-  remoteStream: call.remoteStream,
-  screenShareStream: call.screenShareStream,
+  localInputs: call.inputs,
+  remoteStream: call.remotes[0]?.stream,
+  screenShareStream: [
+    call.screenShare?.stream,
+    ...call.remotes.map(({ screenShare }) => screenShare)
+  ].find(Boolean),
 });
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<IAppState, void, Action>) => ({

@@ -1,12 +1,10 @@
-import { ILocalInputs } from '../types';
 import { easyId } from './easyId';
 
-export function bindLocalInputToPeerConnexion(
+export function bindStreamToPeerConnexion(
   peerConnection: RTCPeerConnection,
-  localInputs: ILocalInputs,
+  stream: MediaStream,
 ): void {
   const { uid } = (peerConnection as any);
-  const { stream } = localInputs;
 
   console.log(`[${uid}]: local stream bound: ${easyId(stream.id)}`);
   stream.getTracks().forEach(track => {

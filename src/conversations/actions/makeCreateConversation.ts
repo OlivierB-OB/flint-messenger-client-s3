@@ -14,7 +14,7 @@ export const makeCreateConversation = action((target: string) => {
 
     const conversationId = forgeNewConversationId(info._id, target);
     dispatch(updateDrawerContent('conversations'));
-    dispatch(createConversation(conversationId, target));
+    dispatch(createConversation(conversationId, [target]));
     history.push(`/conversation/${conversationId}`);
   };
 });

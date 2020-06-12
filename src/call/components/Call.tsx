@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { IAppState } from '../../appReducer';
-import { ILocalInputs } from '../types';
+import { ILocalInputs, IRemotePeer } from '../types';
 import { CallActions } from './CallActions';
 import { CallStreamBlock } from './CallStreamBlock';
 import { Redirect } from 'react-router-dom';
@@ -9,22 +9,23 @@ import { Redirect } from 'react-router-dom';
 interface ICallDisplayProps {
   conversationId?: string;
   localInputs?: ILocalInputs;
-  remoteStream?: MediaStream;
+  remotes: IRemotePeer[];
   screenShareStream?: MediaStream;
 }
 
 export function CallDisplay(props: ICallDisplayProps) {
-  const { conversationId, localInputs, remoteStream, screenShareStream } = props;
+  const { conversationId, localInputs, remotes, screenShareStream } = props;
   if (!conversationId) return <Redirect to="/profile" />;
-  const secondaryScreen = (!screenShareStream) ? null : (
-    <CallStreamBlock stream={remoteStream} />
-  );
-  const mainStream = screenShareStream || remoteStream;
+  const screenShareDisplay = screenShareStream ? <CallStreamBlock stream={screenShareStream} /> : null;
+  console.log(remotes);
+  const remotesDisplay = remotes.map((remote) => <CallStreamBlock key={remote.target} stream={remote.stream} />)
+  const secondaryScreen = (!screenShareStream) ? null : remotesDisplay;
+  const mainScreen = screenShareDisplay || remotesDisplay;
   return (
     <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%', alignItems: 'stretch', justifyContent: 'space-between', padding: '1rem' }}>
       <div style={{ display: 'flex', maxHeight: 'calc(100% - 56px - 2rem)', alignItems: 'stretch', justifyContent: 'stretch', flexGrow: 1 }}>
         <div style={{ display: 'flex', justifyContent: 'center', marginRight: '1rem', flexGrow: 1 }}>
-          <CallStreamBlock stream={mainStream} />
+          {mainScreen}
         </div>
         <div style={{ display: 'flex', maxWidth: '20%', flexDirection: 'column', alignItems: 'stretch', justifyContent: 'space-around', flexGrow: 0 }}>
           <div style={{ maxWidth: '100%' }}>
@@ -44,9 +45,12 @@ export function CallDisplay(props: ICallDisplayProps) {
 
 const mapStateToProps = ({ call }: IAppState) => ({
   conversationId: call.conversationId,
-  localInputs: call.localInputs,
-  remoteStream: call.remoteStream,
-  screenShareStream: call.screenShareStream,
+  localInputs: call.inputs,
+  remotes: call.remotes,
+  screenShareStream: [
+    call.screenShare?.stream,
+    ...call.remotes.map(({ screenShare }) => screenShare)
+  ].find(Boolean),
 });
 
 export const Call = connect(mapStateToProps)(CallDisplay);

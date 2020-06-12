@@ -3,11 +3,11 @@ import { conversationFactory, conversationComparator } from '../utils';
 
 export function createConversationCase(
   state: IConversationsState,
-  action: ICreateConversationAction,
+  { conversationId, targets }: ICreateConversationAction,
 ): IConversationsState {
   const newState = {
     ...state,
-    conversations: [...state.conversations, conversationFactory(action.conversationId, action.targetId)],
+    conversations: [...state.conversations, conversationFactory(conversationId, targets)],
   };
   newState.conversations.sort(conversationComparator);
   return newState;

@@ -31,7 +31,7 @@ export const makeSendMessage = action((conversationId: string) => {
         `${api_backend_url}/messages`,
         {
           conversationId,
-          target: conversation.target,
+          targets: conversation.targets,
           content: messageEdition,
         },
         { withCredentials: true },

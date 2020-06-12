@@ -2,14 +2,14 @@ import { IUpdateConversationAction, UPDATE_CONVERSATION, IConversationMessage } 
 
 export function updateConversation(
   conversationId: string,
-  conversationTarget: string,
+  targets: string[],
   lastSeen: string | undefined,
   messages: IConversationMessage[],
 ): IUpdateConversationAction {
   return {
     type: UPDATE_CONVERSATION,
     conversationId,
-    conversationTarget,
+    targets,
     lastSeen,
     messages,
   };

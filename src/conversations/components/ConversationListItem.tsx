@@ -1,5 +1,6 @@
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
+import AvatarGroup from '@material-ui/lab/AvatarGroup';
 import Badge from '@material-ui/core/Badge';
 import React, { Fragment } from 'react';
 import { IConversation } from '../types';
@@ -11,13 +12,15 @@ export interface IConversationListItemProps {
 }
 
 export function ConversationListItem({ conversation }: IConversationListItemProps) {
-  const { unseenMessages, messages, target, updatedAt } = conversation;
+  const { unseenMessages, messages, targets, updatedAt } = conversation;
   const snippet = messages[messages.length - 1]?.content.substr(0, 25);
   return (
     <Fragment>
       <ListItemAvatar>
         <Badge badgeContent={unseenMessages} color="primary">
-          <ContactAvatar target={target} />
+          <AvatarGroup max={3}>
+            {targets.map((target) => <ContactAvatar key={target} target={target} />)}
+          </AvatarGroup>
         </Badge>
       </ListItemAvatar>
       <ListItemText

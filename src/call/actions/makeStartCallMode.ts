@@ -11,18 +11,16 @@ import { hideNavigation } from '../../layout/actions/hideNavigation';
 import { updateDrawerContent } from '../../layout/actions/updateDrawerContent';
 import { toggleCallAudioInput } from './toggleCallAudioInput';
 import { updateCallStatus } from './updateCallStatus';
-import { setCallTarget } from './setCallTarget';
 
 export const makeStartCallMode = action((
   conversationId: string,
-  target: string,
+  targets: string[],
 ) => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
     batch(() => {
-      dispatch(ensureConversation(conversationId, target, new Date().toISOString()));
+      dispatch(ensureConversation(conversationId, targets, new Date().toISOString()));
       dispatch(setIncomingCall());
       dispatch(setCallConversationId(conversationId));
-      dispatch(setCallTarget(target));
       dispatch(hideNavigation());
       dispatch(updateDrawerContent('call'));
       dispatch(toggleCallAudioInput());

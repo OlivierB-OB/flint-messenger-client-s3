@@ -7,6 +7,7 @@ import { makeAcceptCall } from './makeAcceptCall';
 import { callReset } from './callReset';
 import { setIncomingCall } from './setIncomingCall';
 import { setCallConversationId } from './setCallConversationId';
+import { makeCallPeeringCreateOffer } from './makeCallPeeringCreateOffer';
 
 export const makeIncomingCall = action((
   conversationId: string,
@@ -16,9 +17,17 @@ export const makeIncomingCall = action((
 
     const callConversationId = getState().call.conversationId;
     if (callConversationId) {
-      // already in call => reject
-      dispatch(makeEmit('call-left', { target, conversationId }));
-      return;
+      // already in call
+      if (callConversationId !== conversationId) {
+        // different call => reject
+        dispatch(makeEmit('call-left', { target, conversationId }));
+        return;
+      }
+      else {
+        // same call => accept silently by creating a peering offer
+        dispatch(makeCallPeeringCreateOffer(conversationId, target))
+        return;
+      }
     }
 
     dispatch(setCallConversationId(conversationId));

@@ -1,8 +1,8 @@
-import { IUpdateCallScreenShareStreamAction, UPDATE_CALL_SCREEN_SHARE_STREAM } from '../types';
+import { IUpdateCallScreenShareStreamAction, UPDATE_CALL_SCREEN_SHARE_STREAM, ILocalScreenShare } from '../types';
 
-export function updateCallScreenShareStream(stream?: MediaStream): IUpdateCallScreenShareStreamAction {
+export function updateCallScreenShareStream(screenShare?: ILocalScreenShare): IUpdateCallScreenShareStreamAction {
   return {
     type: UPDATE_CALL_SCREEN_SHARE_STREAM,
-    stream,
+    screenShare,
   };
 }

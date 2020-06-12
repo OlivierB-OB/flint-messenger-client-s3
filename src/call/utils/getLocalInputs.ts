@@ -7,6 +7,9 @@ export async function getLocalInputs(): Promise<ILocalInputs> {
     stream,
     audio: { isAvailable: false },
     video: { isAvailable: false },
+    close(): void {
+      this.stream.getTracks().forEach((track) => track.stop());
+    }
   };
   stream.getTracks().forEach(track => {
     const { enabled, kind } = track;

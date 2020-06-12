@@ -4,15 +4,14 @@ import { action } from '../../utils/action';
 import { IAppState } from '../../appReducer';
 import { addIceCandidateToPeerConnexion, assertValidConversationId, assertExistingPeerConnexion } from '../utils';
 
-export const makeIceCandidate = action((
+export const makeCallPeeringAddIceCandidate = action((
   conversationId: string,
   target: string,
   candidate: RTCIceCandidateInit,
 ) => {
   return async (_: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
-    const appState = getState();
-    assertValidConversationId(appState, conversationId);
-    const peerConnection = assertExistingPeerConnexion(appState, target);
+    assertValidConversationId(getState(), conversationId);
+    const peerConnection = assertExistingPeerConnexion(getState(), target);
     
     // Add the received RTC ice candaidate
     await addIceCandidateToPeerConnexion(peerConnection, candidate);

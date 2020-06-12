@@ -3,16 +3,14 @@ import { ThunkDispatch } from 'redux-thunk';
 import { action } from '../../utils/action';
 import { IAppState } from '../../appReducer';
 import { updateCallScreenShareStream } from './updateCallScreenShareStream';
+import { getLocalScreenShare } from '../utils/getLocalScreenShare';
 
 export const makeStartLocalScreenShare = action(() => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
+
+    // FIXME check if not already started
     
-    const localScreenShareStream = await (navigator.mediaDevices as any).getDisplayMedia({
-      video: {
-        cursor: "always"
-      },
-      audio: false
-    });
-    dispatch(updateCallScreenShareStream(localScreenShareStream));
+    const localScreenShare = await getLocalScreenShare();
+    dispatch(updateCallScreenShareStream(localScreenShare));
   };
 });

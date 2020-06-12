@@ -3,13 +3,13 @@ export interface IConversationMessage {
   conversationId: string;
   createdAt: string;
   emitter: string;
-  target: string;
+  targets: string[];
   content: string;
 }
 
 export interface IConversation {
   _id: string;
-  target: string;
+  targets: string[];
   updatedAt: string;
   unseenMessages: number;
   messages: IConversationMessage[];
@@ -29,6 +29,7 @@ export const CREATE_CONVERSATION = 'CREATE_CONVERSATION';
 export const ENSURE_CONVERSATION = 'ENSURE_CONVERSATION';
 export const UPDATE_CONVERSATION = 'UPDATE_CONVERSATION';
 export const CONVERSATION_SEEN = 'CONVERSATION_SEEN';
+export const ADD_CONVERSATION_TARGET = 'ADD_CONVERSATION_TARGET';
 export const UPDATE_CONVERSATION_STATUS = 'UPDATE_CONVERSATION_STATUS';
 export const UPDATE_MESSAGE_EDITION = 'UPDATE_MESSAGE_EDITION';
 
@@ -39,20 +40,20 @@ export interface IConversationsResetAction {
 export interface ICreateConversationAction {
   type: typeof CREATE_CONVERSATION;
   conversationId: string;
-  targetId: string;
+  targets: string[];
 }
 
 export interface IEnsureConversationAction {
   type: typeof ENSURE_CONVERSATION;
   conversationId: string;
-  conversationTarget: string;
+  targets: string[];
   createdAt: string;
 }
 
 export interface IUpdateConversationAction {
   type: typeof UPDATE_CONVERSATION;
   conversationId: string;
-  conversationTarget: string;
+  targets: string[];
   lastSeen: string | undefined;
   messages: IConversationMessage[];
 }
@@ -61,6 +62,12 @@ export interface IConversationSeenAction {
   type: typeof CONVERSATION_SEEN;
   id: string;
   seenDate: string;
+}
+
+export interface IAddConversationTargetAction {
+  type: typeof ADD_CONVERSATION_TARGET;
+  conversationId: string;
+  target: string;
 }
 
 export interface IUpdateConversationStatusAction {
@@ -78,6 +85,7 @@ export type IConversationsAction =
   | ICreateConversationAction
   | IEnsureConversationAction
   | IUpdateConversationAction
+  | IAddConversationTargetAction
   | IConversationSeenAction
   | IUpdateConversationStatusAction
   | IUpdateMessageEditionAction;

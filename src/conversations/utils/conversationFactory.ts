@@ -2,12 +2,12 @@ import { IConversation } from '../types';
 
 export function conversationFactory(
   _id: string,
-  target: string,
+  targets: string[],
   updatedAt: string = new Date().toISOString(),
 ): IConversation {
   return {
     _id,
-    target,
+    targets,
     updatedAt,
     unseenMessages: 0,
     messages: [],

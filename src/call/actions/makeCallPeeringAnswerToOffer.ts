@@ -4,17 +4,18 @@ import { action } from '../../utils/action';
 import { IAppState } from '../../appReducer';
 import { makeEmit } from '../../realtime/actions/makeEmit';
 import { assertValidConversationId, assertExistingPeerConnexion } from '../utils';
+import { updateCallRemote } from './updateCallRemote';
+import { assertExistingRemote } from '../utils/assertExistingRemote';
 
-export const makeAcceptedCall = action((
+export const makeCallPeeringAnswerToOffer = action((
   conversationId: string,
   target: string,
   offer: RTCSessionDescriptionInit,
 ) => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
     console.log('======================================== START ACCEPTED')
-    const appState = getState();
-    assertValidConversationId(appState, conversationId);
-    const peerConnection = assertExistingPeerConnexion(appState, target);
+    assertValidConversationId(getState(), conversationId);
+    const peerConnection = assertExistingPeerConnexion(getState(), target);
 
     // Accept the received RTC peer connexion offer
     await peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
@@ -22,7 +23,18 @@ export const makeAcceptedCall = action((
     // Create an RTC peer connexion answer
     const answer = await peerConnection.createAnswer();
     await peerConnection.setLocalDescription(answer);
-    dispatch(makeEmit('call-established', { conversationId, target, answer: peerConnection.localDescription }));
+
+    let requiredPeering: string[] = [];
+    const remote = assertExistingRemote(getState(), target);
+    console.log(remote);
+    if (remote.pendingJoin) {
+      requiredPeering = getState().call.remotes
+        .filter(({ pendingJoin }) => !pendingJoin)
+        .map(({ target }) => target);
+      dispatch(updateCallRemote({ ...remote, pendingJoin: false }));
+    }
+    console.log(remote);
+    dispatch(makeEmit('call-peering-answer', { conversationId, target, answer: peerConnection.localDescription, requiredPeering }));
     console.log('======================================== END ACCEPTED')
   };
 });

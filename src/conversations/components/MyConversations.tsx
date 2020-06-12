@@ -41,7 +41,7 @@ export function ConversationList({ status, list }: IConversationListProps) {
         )}
         {list.map((conversation) => (
           <ListItem
-            className={conversationId === conversation._id ? (() => { console.log(conversationId); return selected;})() : undefined}
+            className={conversationId === conversation._id ? selected : undefined}
             button
             component={Link}
             to={`/conversation/${conversation._id}`}

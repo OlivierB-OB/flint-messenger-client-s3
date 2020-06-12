@@ -23,11 +23,11 @@ export const makeUpdateConversation = action((messages: IConversationMessage[]) 
     batch(() => {
       for (const conversationId in batches) {
         const messages = batches[conversationId];
-        const [{ emitter, target }] = messages;
-        const conversationTarget = [emitter, target].find((id) => id !== info._id) as string;
+        const { emitter, targets: msgTargets } = messages[messages.length - 1];
+        const targets = [emitter, ...msgTargets].filter((id) => id !== info._id);
         const lastSeen = info.conversationsSeen?.[conversationId];
-        dispatch(ensureConversation(conversationId, conversationTarget, new Date().toISOString()));
-        dispatch(updateConversation(conversationId, conversationTarget, lastSeen, messages));
+        dispatch(ensureConversation(conversationId, targets, new Date().toISOString()));
+        dispatch(updateConversation(conversationId, targets, lastSeen, messages));
       }
     });
   };

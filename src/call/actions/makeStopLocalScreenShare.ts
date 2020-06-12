@@ -6,8 +6,8 @@ import { updateCallScreenShareStream } from './updateCallScreenShareStream';
 
 export const makeStopLocalScreenShare = action(() => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
-    const { screenShareStream } = getState().call;
-    screenShareStream?.getTracks().forEach((track) => track.stop());
+    const { screenShare } = getState().call;
+    if (screenShare) screenShare.close()
     dispatch(updateCallScreenShareStream());
   };
 });
