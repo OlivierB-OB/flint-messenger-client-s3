@@ -24,17 +24,17 @@ import { toggleCallAudioInput } from '../actions/toggleCallAudioInput';
 import { toggleCallVideoInput } from '../actions/toggleCallVideoInput';
 
 interface ICallActionsDisplayProps {
-  conversationId?: string,
-  isChatShown: boolean,
-  localInputs?: ILocalInputs,
-  localScreenShare?: ILocalScreenShare,
-  screenShareStream?: MediaStream,
+  conversationId?: string;
+  isChatShown: boolean;
+  localInputs?: ILocalInputs;
+  localScreenShare?: ILocalScreenShare;
+  screenShareStream?: MediaStream;
   toggleAudio: () => void;
   toggleVideo: () => void;
   startLocalScreenShare: (conversationId: string) => void;
   stopLocalScreenShare: () => void;
-  showChat: () => void,
-  hideChat: () => void,
+  showChat: () => void;
+  hideChat: () => void;
   endCall: () => void;
 }
 
@@ -62,57 +62,44 @@ export function CallActionsDisplay(props: ICallActionsDisplayProps) {
     hideChat,
     endCall,
   } = props;
-  const classes = useStyles()
+  const classes = useStyles();
   return (
     <div>
-      <Fab
-        onClick={isChatShown ? hideChat : showChat}
-        color={isChatShown ? 'primary' : 'secondary'}
-      >
-        {
-          isChatShown ?
-            <SpeakerNotes fontSize='large' /> :
-            <SpeakerNotesOff fontSize='large' />
-        }
+      <Fab onClick={isChatShown ? hideChat : showChat} color={isChatShown ? 'primary' : 'secondary'}>
+        {isChatShown ? <SpeakerNotes fontSize="large" /> : <SpeakerNotesOff fontSize="large" />}
       </Fab>
       <Fab
         onClick={toggleAudio}
         color={localInputs?.audio.isActive ? 'primary' : 'secondary'}
         disabled={!localInputs?.audio.isAvailable}
       >
-        {
-          localInputs?.audio.isActive ?
-          <Mic  fontSize='large' /> :
-          <MicOff  fontSize='large' />
-        }
+        {localInputs?.audio.isActive ? <Mic fontSize="large" /> : <MicOff fontSize="large" />}
       </Fab>
       <Fab
         onClick={toggleVideo}
         color={localInputs?.video.isActive ? 'primary' : 'secondary'}
         disabled={!localInputs?.video.isAvailable}
       >
-        {
-          localInputs?.video.isActive ?
-          <Videocam  fontSize='large' /> :
-          <VideocamOff  fontSize='large' />
-        }
+        {localInputs?.video.isActive ? <Videocam fontSize="large" /> : <VideocamOff fontSize="large" />}
       </Fab>
       <Fab
-        onClick={screenShareStream ? stopLocalScreenShare : () => {if (conversationId) startLocalScreenShare(conversationId)}}
-        color={!!localScreenShare ? 'primary' : 'secondary'}
-        disabled={!localScreenShare && (!!screenShareStream) as boolean}
-      >
-        {
-          !!localScreenShare ?
-          <ScreenShare  fontSize='large' /> :
-          <StopScreenShare  fontSize='large' />
+        onClick={
+          screenShareStream
+            ? stopLocalScreenShare
+            : () => {
+                if (conversationId) startLocalScreenShare(conversationId);
+              }
         }
+        color={!!localScreenShare ? 'primary' : 'secondary'}
+        disabled={!localScreenShare && (!!screenShareStream as boolean)}
+      >
+        {!!localScreenShare ? <ScreenShare fontSize="large" /> : <StopScreenShare fontSize="large" />}
       </Fab>
       <Fab onClick={endCall} className={classes.dangerous}>
-        <CallEnd  fontSize='large' />
+        <CallEnd fontSize="large" />
       </Fab>
     </div>
-  )
+  );
 }
 
 const mapStateToProps = ({ layout, call }: IAppState) => ({
@@ -120,10 +107,7 @@ const mapStateToProps = ({ layout, call }: IAppState) => ({
   isChatShown: layout.showDrawer,
   localInputs: call.inputs,
   localScreenShare: call.screenShare,
-  screenShareStream: [
-    call.screenShare?.stream,
-    ...call.remotes.map(({ screenShare }) => screenShare)
-  ].find(Boolean),
+  screenShareStream: [call.screenShare?.stream, ...call.remotes.map(({ screenShare }) => screenShare)].find(Boolean),
 });
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<IAppState, void, Action>) => ({

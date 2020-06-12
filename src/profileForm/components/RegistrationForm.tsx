@@ -22,14 +22,25 @@ export interface IRegistrationDisplayFormProps {
   saveProfile(): void;
 }
 
-export function RegistrationFormDisplay({ status, optionalPassword, fields, update, saveProfile }: IRegistrationDisplayFormProps) {
+export function RegistrationFormDisplay({
+  status,
+  optionalPassword,
+  fields,
+  update,
+  saveProfile,
+}: IRegistrationDisplayFormProps) {
   const { email, firstName, lastName, password, confirmation } = fields;
   return (
     <Container>
       <Box style={{ margin: '2rem 0' }}>
         <Alert status={status} />
       </Box>
-      <form onSubmit={(e) => { e.preventDefault(); saveProfile()}}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          saveProfile();
+        }}
+      >
         <Box style={{ margin: '2rem 0' }}>
           <Grid container justify="space-evenly" alignItems="flex-start">
             <Grid item xs={4}>
@@ -43,10 +54,10 @@ export function RegistrationFormDisplay({ status, optionalPassword, fields, upda
             </Grid>
             <Grid item xs={4}>
               <CredentialsSection
-              password={password}
-              confirmation={confirmation}
-              optionalPassword={optionalPassword}
-              update={update}
+                password={password}
+                confirmation={confirmation}
+                optionalPassword={optionalPassword}
+                update={update}
               />
             </Grid>
           </Grid>

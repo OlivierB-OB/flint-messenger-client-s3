@@ -1,4 +1,11 @@
-import { ILoginState, ILoginAction, LOGIN_UPDATE_STATUS, LOGIN_UPDATE_FORM, LOGIN_RESET, LOGIN_VALIDATE_FORM } from './types';
+import {
+  ILoginState,
+  ILoginAction,
+  LOGIN_UPDATE_STATUS,
+  LOGIN_UPDATE_FORM,
+  LOGIN_RESET,
+  LOGIN_VALIDATE_FORM,
+} from './types';
 import { loginUpdateFormCase } from './cases/loginUpdateFormCase';
 import { updateLoginStatusCase } from './cases/updateLoginStatusCase';
 import { defaultLoginState } from './utils';

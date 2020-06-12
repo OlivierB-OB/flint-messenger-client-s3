@@ -20,7 +20,7 @@ export const makeStartCall = action((conversationId: string) => {
     // Create local media inputs
     const localInputs = await getLocalInputs();
     dispatch(updateCallLocalInputs(localInputs));
-    
+
     // Initial call peerings
     for (const target of targets) {
       dispatch(makeCallPeeringInitiate(conversationId, target, 'call', true));

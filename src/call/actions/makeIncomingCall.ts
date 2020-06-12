@@ -10,13 +10,8 @@ import { setCallConversationId } from './setCallConversationId';
 import { IPeeringPurpose } from '../types';
 import { makeCallPeeringAccept } from './makeCallPeeringAccept';
 
-export const makeIncomingCall = action((
-  conversationId: string,
-  target: string,
-  purpose: IPeeringPurpose,
-) => {
+export const makeIncomingCall = action((conversationId: string, target: string, purpose: IPeeringPurpose) => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
-
     const callConversationId = getState().call.conversationId;
     if (callConversationId) {
       // already in call
@@ -24,22 +19,23 @@ export const makeIncomingCall = action((
         // different call => reject
         dispatch(makeEmit('call-left', { target, conversationId }));
         return;
-      }
-      else {
+      } else {
         // same call => accept silently by creating a peering offer
-        dispatch(makeCallPeeringAccept(conversationId, target, purpose))
+        dispatch(makeCallPeeringAccept(conversationId, target, purpose));
         return;
       }
     }
 
     dispatch(setCallConversationId(conversationId));
-    dispatch(setIncomingCall({
-      target,
-      accept: () => dispatch(makeAcceptCall(conversationId, target)),
-      reject: () => {
-        dispatch(callReset());
-        dispatch(makeEmit('call-left', { target, conversationId }));
-      },
-    }));
-  }
+    dispatch(
+      setIncomingCall({
+        target,
+        accept: () => dispatch(makeAcceptCall(conversationId, target)),
+        reject: () => {
+          dispatch(callReset());
+          dispatch(makeEmit('call-left', { target, conversationId }));
+        },
+      }),
+    );
+  };
 });

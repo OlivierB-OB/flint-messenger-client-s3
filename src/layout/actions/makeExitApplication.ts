@@ -15,7 +15,7 @@ import { usersReset } from '../../users/actions/usersReset';
 
 export const makeExitApplication = action(() => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>) => {
-    console.log('======================= EXIT APP')
+    console.log('======================= EXIT APP');
     batch(() => {
       dispatch(callReset());
       dispatch(conversationsReset());

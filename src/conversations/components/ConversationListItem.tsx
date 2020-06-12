@@ -19,7 +19,9 @@ export function ConversationListItem({ conversation }: IConversationListItemProp
       <ListItemAvatar>
         <Badge badgeContent={unseenMessages} color="primary">
           <AvatarGroup max={3}>
-            {targets.map((target) => <ContactAvatar key={target} target={target} />)}
+            {targets.map((target) => (
+              <ContactAvatar key={target} target={target} />
+            ))}
           </AvatarGroup>
         </Badge>
       </ListItemAvatar>

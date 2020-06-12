@@ -27,7 +27,7 @@ export interface IContactListProps {
 export function ContactList(props: IContactListProps) {
   const { status, list, createConversation, addToConversation } = props;
   const loading = status === 'unavailable' ? <Loading /> : null;
-  const match = useRouteMatch<{ conversationId: string }>("/conversation/:conversationId");
+  const match = useRouteMatch<{ conversationId: string }>('/conversation/:conversationId');
   const conversationId = match?.params.conversationId;
   return (
     <Box style={{ minWidth: '300px' }}>
@@ -41,15 +41,13 @@ export function ContactList(props: IContactListProps) {
         {list.map((user) => (
           <ListItem button onClick={() => createConversation(user._id)} key={user._id}>
             <ContactListItem info={user} />
-            {
-              !conversationId ? null : (
-                <ListItemSecondaryAction>
-                  <IconButton onClick={() => addToConversation(conversationId, user._id)}>
-                    <PersonAdd />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              )
-            }
+            {!conversationId ? null : (
+              <ListItemSecondaryAction>
+                <IconButton onClick={() => addToConversation(conversationId, user._id)}>
+                  <PersonAdd />
+                </IconButton>
+              </ListItemSecondaryAction>
+            )}
           </ListItem>
         ))}
       </List>
@@ -64,7 +62,8 @@ const mapStateToProps = ({ users }: IAppState) => ({
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<IAppState, void, Action>) => ({
   createConversation: (targetId: string) => dispatch(makeCreateConversation(targetId)),
-  addToConversation: (conversationId: string, targetId: string) => dispatch(addConversationTarget(conversationId, targetId)),
+  addToConversation: (conversationId: string, targetId: string) =>
+    dispatch(addConversationTarget(conversationId, targetId)),
 });
 
 export const MyContacts = connect(mapStateToProps, mapDispatchToProps)(ContactList);

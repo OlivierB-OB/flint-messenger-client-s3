@@ -28,7 +28,12 @@ export function ChatInputDisplay({
   const startCallBtn = isCallChat ? null : <StartCallButton conversationId={conversationId} />;
   useEffect(() => updateMessageEdition(''), [updateMessageEdition, conversationId]);
   return (
-    <form onSubmit={(e) => {e.preventDefault(); sendMessage(conversationId)}}>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        sendMessage(conversationId);
+      }}
+    >
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <div style={{ flexGrow: 1 }}>
           <TextField
@@ -38,9 +43,15 @@ export function ChatInputDisplay({
             onChange={(event) => updateMessageEdition(event.target.value)}
           />
         </div>
-        <div style={{
-          flexGrow: 0, display: 'flex', width: '150px', justifyContent: 'space-around' }}>
-          <Fab type='submit' color='primary' aria-label="send">
+        <div
+          style={{
+            flexGrow: 0,
+            display: 'flex',
+            width: '150px',
+            justifyContent: 'space-around',
+          }}
+        >
+          <Fab type="submit" color="primary" aria-label="send">
             <Send fontSize="large" />
           </Fab>
           {startCallBtn}
@@ -51,7 +62,7 @@ export function ChatInputDisplay({
 }
 
 export interface IChatInputProps {
-  isCallChat: boolean,
+  isCallChat: boolean;
   conversationId: string;
 }
 

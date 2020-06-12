@@ -4,9 +4,8 @@ export function updateCallRemoteCase(state: ICallState, { remote }: IUpdateCallR
   console.log(`===== updateCallRemoteCase ${remote.target}`);
   return {
     ...state,
-    remotes: [
-      ...state.remotes.filter(({ target }) => target !== remote.target),
-      remote,
-    ].filter(({ isDisconnected }) => !isDisconnected),
+    remotes: [...state.remotes.filter(({ target }) => target !== remote.target), remote].filter(
+      ({ isDisconnected }) => !isDisconnected,
+    ),
   };
 }

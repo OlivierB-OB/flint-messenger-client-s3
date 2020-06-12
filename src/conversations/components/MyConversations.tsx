@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export function ConversationList({ status, list }: IConversationListProps) {
   const loading = status === 'unavailable' ? <Loading /> : null;
   const { selected } = useStyles();
-  const match = useRouteMatch<{ conversationId: string }>("/conversation/:conversationId");
+  const match = useRouteMatch<{ conversationId: string }>('/conversation/:conversationId');
   const conversationId = match?.params.conversationId;
   return (
     <Box style={{ minWidth: '300px' }}>

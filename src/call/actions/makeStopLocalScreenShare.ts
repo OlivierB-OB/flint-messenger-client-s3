@@ -8,7 +8,6 @@ import { updateCallRemote } from './updateCallRemote';
 
 export const makeStopLocalScreenShare = action(() => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
-    
     const { screenShare, remotes } = getState().call;
 
     for (const remote of remotes) {

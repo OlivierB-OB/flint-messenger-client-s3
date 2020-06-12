@@ -7,7 +7,7 @@ describe('ShowConversationsButton', () => {
     const props: any = {
       unseenMessages: 'nb unseen messages',
       showConversationList: jest.fn(),
-    }
+    };
     const component = shallow(<ShowConversationsButton {...props} />);
     expect(component).toMatchSnapshot();
     component.simulate('click');

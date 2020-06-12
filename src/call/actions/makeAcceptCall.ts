@@ -8,10 +8,7 @@ import { assertValidConversationId } from '../utils';
 import { makeCallModeEnter } from './makeCallModeEnter';
 import { makeCallPeeringAccept } from './makeCallPeeringAccept';
 
-export const makeAcceptCall = action((
-  conversationId: string,
-  target: string,
-) => {
+export const makeAcceptCall = action((conversationId: string, target: string) => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
     assertValidConversationId(getState(), conversationId);
 

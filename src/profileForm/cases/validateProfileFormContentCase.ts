@@ -19,9 +19,6 @@ export function validateProfileFormContentCase(
   validateNameField(newState.fields.firstName);
   validateNameField(newState.fields.lastName);
   validatePasswordField(newState.fields.password, newState.optionalPassword);
-  validateConfirmationField(
-    newState.fields.confirmation,
-    newState.fields.password,
-  );
+  validateConfirmationField(newState.fields.confirmation, newState.fields.password);
   return newState;
 }

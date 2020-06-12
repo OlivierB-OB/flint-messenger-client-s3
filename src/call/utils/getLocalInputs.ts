@@ -9,9 +9,9 @@ export async function getLocalInputs(): Promise<ILocalInputs> {
     video: { isAvailable: false },
     close(): void {
       this.stream.getTracks().forEach((track) => track.stop());
-    }
+    },
   };
-  stream.getTracks().forEach(track => {
+  stream.getTracks().forEach((track) => {
     const { enabled, kind } = track;
     if (enabled && (kind === 'audio' || kind === 'video')) {
       inputs[kind] = toggleTrack(track, true);
@@ -27,5 +27,5 @@ function toggleTrack(track: MediaStreamTrack, preventToggle?: boolean): ILocalIn
     isAvailable: true,
     isActive: track.enabled,
     toggle: toggleTrack.bind(undefined, track),
-  }
+  };
 }

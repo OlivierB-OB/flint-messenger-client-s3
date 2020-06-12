@@ -21,7 +21,7 @@ import { makeLogout } from '../actions/makeLogout';
 
 export interface IProfileFormProps {
   identityStatus: IIdentityStatus;
-  info?: IProfile,
+  info?: IProfile;
   formStatus: IProfileFormStatus;
   optionalPassword?: boolean;
   fields: IProfileFormFields;
@@ -68,7 +68,12 @@ export function ProfileForm({
           </Grid>
         </Grid>
       </Box>
-      <form onSubmit={(e) => { e.preventDefault(); saveProfile()}}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          saveProfile();
+        }}
+      >
         <Box style={{ margin: '2rem 0' }}>
           <Grid container justify="space-evenly" alignItems="flex-start">
             <Grid item xs={4}>

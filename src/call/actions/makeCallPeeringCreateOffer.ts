@@ -6,13 +6,9 @@ import { makeEmit } from '../../realtime/actions/makeEmit';
 import { assertValidConversationId, assertExistingPeerConnexion } from '../utils';
 import { IPeeringPurpose } from '../types';
 
-export const makeCallPeeringCreateOffer = action((
-  conversationId: string,
-  target: string,
-  purpose: IPeeringPurpose,
-) => {
+export const makeCallPeeringCreateOffer = action((conversationId: string, target: string, purpose: IPeeringPurpose) => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
-    console.log(`========== START makeCallPeeringCreateOffer: ${target} - ${purpose}`)
+    console.log(`========== START makeCallPeeringCreateOffer: ${target} - ${purpose}`);
 
     assertValidConversationId(getState(), conversationId);
     const peerConnection = assertExistingPeerConnexion(getState(), target, purpose);
@@ -22,8 +18,10 @@ export const makeCallPeeringCreateOffer = action((
     await peerConnection.setLocalDescription(offer);
 
     // Emit peering offer
-    dispatch(makeEmit('call-peering-offer', { conversationId, target, purpose, offer: peerConnection.localDescription }));
+    dispatch(
+      makeEmit('call-peering-offer', { conversationId, target, purpose, offer: peerConnection.localDescription }),
+    );
 
-    console.log(`========== END makeCallPeeringCreateOffer: ${target} - ${purpose}`)
+    console.log(`========== END makeCallPeeringCreateOffer: ${target} - ${purpose}`);
   };
 });

@@ -9,14 +9,7 @@ export function CallStreamBlock(props: ICallStreamBlockProps) {
   const ref = useRef<any>();
   useEffect(() => {
     if (ref.current) ref.current.srcObject = props.stream;
-  }, [ref, props.stream, props.muted])
+  }, [ref, props.stream, props.muted]);
   if (!props.stream) return null;
-  return (
-    <video
-      ref={ref}
-      style={{ maxWidth: '100%', maxHeight: '100%' }}
-      autoPlay
-      muted={props.muted}
-    />
-  );
+  return <video ref={ref} style={{ maxWidth: '100%', maxHeight: '100%' }} autoPlay muted={props.muted} />;
 }

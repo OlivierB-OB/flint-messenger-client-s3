@@ -105,12 +105,14 @@ export interface IToggleCallVideoInputAction {
   type: typeof TOGGLE_CALL_VIDEO_INPUT;
 }
 
-export type ICallAction = ICallResetAction | IUpdateCallStatusAction
+export type ICallAction =
+  | ICallResetAction
+  | IUpdateCallStatusAction
   | ISetCallConversationIdAction
   | ISetIncomingCallAction
-| IUpdateCallLocalInputsAction
+  | IUpdateCallLocalInputsAction
   | IUpdateCallRemoteAction
- | IUpdateCallRemoteStreamAction
- | IUpdateCallScreenShareStreamAction
+  | IUpdateCallRemoteStreamAction
+  | IUpdateCallScreenShareStreamAction
   | IToggleCallAudioInputAction
   | IToggleCallVideoInputAction;

@@ -5,24 +5,25 @@ import { IAppState } from '../../appReducer';
 import { updateCallRemoteStream } from './updateCallRemoteStream';
 import { updateCallRemote } from './updateCallRemote';
 import { makeEmit } from '../../realtime/actions/makeEmit';
-import { peerConnexionFactory, bindStreamToPeerConnexion, assertValidConversationId, remotePeerFactory, assertExistingLocalInputs, assertExistingRemote } from '../utils';
+import {
+  peerConnexionFactory,
+  bindStreamToPeerConnexion,
+  assertValidConversationId,
+  remotePeerFactory,
+  assertExistingLocalInputs,
+  assertExistingRemote,
+} from '../utils';
 import { makeCallPeeringClosed } from './makeCallPeeringClosed';
 import { IPeeringPurpose } from '../types';
 
-export const makeCallPeeringAccept = action((
-  conversationId: string,
-  target: string,
-  purpose: IPeeringPurpose,
-) => {
+export const makeCallPeeringAccept = action((conversationId: string, target: string, purpose: IPeeringPurpose) => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
-    console.log(`========== START makeCallPeeringAccept: ${target} - ${purpose}`)
-    
+    console.log(`========== START makeCallPeeringAccept: ${target} - ${purpose}`);
+
     assertValidConversationId(getState(), conversationId);
 
     // Create (retrieve) remote remote peer
-    const remote = purpose === 'call' ?
-      remotePeerFactory(target) :
-      assertExistingRemote(getState(), target);
+    const remote = purpose === 'call' ? remotePeerFactory(target) : assertExistingRemote(getState(), target);
 
     // Create peer connection
     const peerConnection = peerConnexionFactory(
@@ -36,8 +37,7 @@ export const makeCallPeeringAccept = action((
       const localInputs = assertExistingLocalInputs(getState());
       bindStreamToPeerConnexion(peerConnection, localInputs.stream);
       remote.peerConnection = peerConnection;
-    }
-    else {
+    } else {
       // screen sharing is one way noting to bind on this side
       remote.screenSharePeer = peerConnection;
     }
@@ -47,6 +47,6 @@ export const makeCallPeeringAccept = action((
     // Emit peering accepted
     dispatch(makeEmit('call-peering-accepted', { conversationId, target, purpose }));
 
-    console.log(`========== END makeCallPeeringAccept: ${target} - ${purpose}`)
+    console.log(`========== END makeCallPeeringAccept: ${target} - ${purpose}`);
   };
 });

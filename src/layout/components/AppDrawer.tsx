@@ -37,17 +37,20 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     drawerContent: {
       height: 'calc(100% - 50px)',
-    }
+    },
   }),
 );
 
 export function DrawerDisplay({ show, content, hideDrawer }: IDrawerDisplayProps) {
   const { drawerHeader, paper, drawerContent } = useStyles();
   const contentDisplay =
-    content === 'contacts' ? <MyContacts /> :
-    content === 'conversations' ? <MyConversations /> :
-    content === 'call' ? <CallChat /> :
-    null;
+    content === 'contacts' ? (
+      <MyContacts />
+    ) : content === 'conversations' ? (
+      <MyConversations />
+    ) : content === 'call' ? (
+      <CallChat />
+    ) : null;
   return (
     <Drawer variant="persistent" anchor="left" open={show} onClose={hideDrawer} classes={{ paper }}>
       <Box className={drawerHeader}>
@@ -55,9 +58,7 @@ export function DrawerDisplay({ show, content, hideDrawer }: IDrawerDisplayProps
           <ArrowBackIos />
         </IconButton>
       </Box>
-      <Box className={drawerContent}>
-        {contentDisplay}
-      </Box>
+      <Box className={drawerContent}>{contentDisplay}</Box>
     </Drawer>
   );
 }

@@ -6,11 +6,8 @@ import { updateCallScreenShareStream } from './updateCallScreenShareStream';
 import { getLocalScreenShare } from '../utils/getLocalScreenShare';
 import { makeCallPeeringInitiate } from './makeCallPeeringInitiate';
 
-export const makeStartLocalScreenShare = action((
-  conversationId: string,
-) => {
+export const makeStartLocalScreenShare = action((conversationId: string) => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
-
     const localScreenShare = await getLocalScreenShare();
     dispatch(updateCallScreenShareStream(localScreenShare));
 

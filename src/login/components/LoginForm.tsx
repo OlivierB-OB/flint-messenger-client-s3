@@ -28,7 +28,12 @@ export function LoginFormDisplay({ status, email, password, update, submit }: IL
       <Box style={{ margin: '2rem 0' }}>
         <Alert status={status} />
       </Box>
-      <form onSubmit={(e) => { e.preventDefault(); submit()}}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          submit();
+        }}
+      >
         <Box style={{ margin: '2rem 0' }}>
           <TextField
             label="Email"

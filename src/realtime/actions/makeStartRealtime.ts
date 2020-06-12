@@ -40,7 +40,7 @@ export const makeStartRealtime = action(() => {
         console.log(`receiving [user-update] <-------`);
         dispatch(makeUpdateUserInfo([data]));
       });
-      
+
       socket.on('chat-message', (data: any) => {
         console.log(`receiving [chat-message] <-------`);
         dispatch(makeUpdateConversation([data]));
@@ -75,7 +75,7 @@ export const makeStartRealtime = action(() => {
         console.log(`receiving [call-peering-ice-candidate] <-------`);
         dispatch(makeCallPeeringAddIceCandidate(data.conversationId, data.emitter, data.purpose, data.candidate));
       });
-      
+
       socket.on('call-left', (data: any) => {
         console.log(`receiving [call-left] <-------`);
         dispatch(makeCallPeeringClosed(data.conversationId, data.emitter, 'call'));

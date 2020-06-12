@@ -1,10 +1,7 @@
 import { ILoginState, ILoginValidateFormAction } from '../types';
 import { validateRequiredField } from '../utils';
 
-export function loginValidateFormCase(
-  state: ILoginState,
-  action: ILoginValidateFormAction,
-): ILoginState {
+export function loginValidateFormCase(state: ILoginState, action: ILoginValidateFormAction): ILoginState {
   const newState = {
     ...state,
     form: {

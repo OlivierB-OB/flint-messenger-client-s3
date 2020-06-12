@@ -1,8 +1,5 @@
 import { IConversationsState, IEnsureConversationAction } from '../types';
-import {
-  conversationFactory,
-  conversationComparator,
-} from '../utils';
+import { conversationFactory, conversationComparator } from '../utils';
 
 export function ensureConversationCase(
   state: IConversationsState,

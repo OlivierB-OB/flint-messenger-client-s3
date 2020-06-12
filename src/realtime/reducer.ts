@@ -1,4 +1,10 @@
-import { IRealtimeState, IRealtimeAction, REALTIME_RESET, UPDATE_REALTIME_STATUS, UPDATE_REALTIME_SOCKET } from './types';
+import {
+  IRealtimeState,
+  IRealtimeAction,
+  REALTIME_RESET,
+  UPDATE_REALTIME_STATUS,
+  UPDATE_REALTIME_SOCKET,
+} from './types';
 import { updateRealtimeStatusCase } from './cases/updateRealtimeStatusCase';
 import { defaultRealtimeState } from './utils/defaultRealtimeState';
 import { updateRealtimeSocketCase } from './cases/updateRealtimeSocketCase';

@@ -1,4 +1,3 @@
-
 interface IConfig {
   api_backend_url: string;
   socket_backend_url: string;
@@ -15,4 +14,4 @@ export const config: IConfig = {
   turn_server_url: process.env.REACT_APP_TURN_SERVER as string,
   stun_turn_user: process.env.REACT_APP_STUN_TURN_USER as string,
   stun_turn_pass: process.env.REACT_APP_STUN_TURN_PASS as string,
-}
+};

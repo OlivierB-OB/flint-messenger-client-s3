@@ -10,6 +10,7 @@ import { IAppState } from '../../appReducer';
 import { IConversation, IConversationsStatus } from '../types';
 import { Alert } from '../../layout/components/Alert';
 import { makeConversationSeen } from '../actions/makeConversationSeen';
+import { AttendeeList } from './AttendeeList';
 
 export interface IChatDisplayProps {
   isCallChat: boolean;
@@ -23,21 +24,46 @@ export function ChatDisplay({ isCallChat, status, conversationId, conversation, 
   if (!conversationId || !conversation) return <Redirect to="/profile" />;
   const progress = status === 'sending' ? <LinearProgress /> : null;
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: 'calc(100% - 2rem)', padding: '1rem', boxSizing: 'border-box' }}>
-      <div style={{ flexGrow: 0, height: '40px' }}>
-        <Alert status={status} />
-        {progress}
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        height: 'calc(100% - 2rem)',
+        padding: '1rem',
+        boxSizing: 'border-box',
+        justifyContent: 'strech',
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
+          padding: '1rem',
+          boxSizing: 'border-box',
+          flexGrow: 1,
+        }}
+      >
+        <div style={{ flexGrow: 0, height: '40px' }}>
+          <Alert status={status} />
+          {progress}
+        </div>
+        <div style={{ flexGrow: 1, overflow: 'auto' }}>
+          <ChatMessages
+            conversationId={conversationId}
+            messages={conversation.messages}
+            conversationSeen={conversationSeen}
+          />
+        </div>
+        <div style={{ flexGrow: 0, height: '60px' }}>
+          <ChatInput isCallChat={isCallChat} conversationId={conversationId} />
+        </div>
       </div>
-      <div style={{ flexGrow: 1, overflow: 'auto' }}>
-        <ChatMessages
-          conversationId={conversationId}
-          messages={conversation.messages}
-          conversationSeen={conversationSeen}
-        />
-      </div>
-      <div style={{ flexGrow: 0, height: '60px' }}>
-        <ChatInput isCallChat={isCallChat} conversationId={conversationId} />
-      </div>
+      {isCallChat ? null : (
+        <div style={{ height: '100%', flexGrow: 0, width: '15%' }}>
+          <AttendeeList targets={conversation.targets} />
+        </div>
+      )}
     </div>
   );
 }

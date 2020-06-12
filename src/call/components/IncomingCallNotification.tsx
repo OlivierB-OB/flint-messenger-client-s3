@@ -32,30 +32,22 @@ export function IncomingCallNotificationDisplay({ show, incomingCall }: IIncomin
   const classes = useStyles();
   if (!incomingCall) return null;
   return (
-    <Dialog open={show} >
+    <Dialog open={show}>
       <DialogContent>
         <DialogContentText>
           Incoming call from <ContactName target={incomingCall.target} />
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        
-        <Button
-          onClick={incomingCall.reject}
-          className={classes.reject}
-        >
+        <Button onClick={incomingCall.reject} className={classes.reject}>
           Reject
         </Button>
-        <Button
-          onClick={incomingCall.accept}
-          className={classes.accept}
-          autoFocus
-        >
+        <Button onClick={incomingCall.accept} className={classes.accept} autoFocus>
           Accept
         </Button>
       </DialogActions>
     </Dialog>
-  )
+  );
 }
 
 const mapStateToProps = ({ call }: IAppState) => ({
