@@ -37,6 +37,10 @@ describe('makeInitializeApplication', () => {
         type: 'UPDATE_IDENTITY',
       },
       {
+        status: 'unavailable',
+        type: 'UPDATE_REALTIME_STATUS',
+      },
+      {
         allowNavigation: true,
         type: 'TOGGLE_NAVIGATION',
       },

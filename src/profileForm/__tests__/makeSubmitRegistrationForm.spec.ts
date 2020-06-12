@@ -36,15 +36,23 @@ describe('makeSubmitRegistrationForm', () => {
         fields: {
           email: {
             value: 'foo@test.com',
+            isValid: true,
           },
           firstName: {
             value: 'foo',
+            isValid: true,
           },
           lastName: {
             value: 'bar',
+            isValid: true,
           },
           password: {
-            value: 'baz',
+            value: 'aB1/aB1/',
+            isValid: true,
+          },
+          confirmation: {
+            value: 'aB1/aB1/',
+            isValid: true,
           },
         },
       },
@@ -59,7 +67,7 @@ describe('makeSubmitRegistrationForm', () => {
         email: 'foo@test.com',
         firstName: 'foo',
         lastName: 'bar',
-        password: 'baz',
+        password: 'aB1/aB1/',
       },
       { withCredentials: true },
     );
@@ -69,6 +77,9 @@ describe('makeSubmitRegistrationForm', () => {
         status: 'unavailable',
         type: 'UPDATE_PROFILE_FORM_STATUS',
       },
+      {
+        type: 'VALIDATE_PROFILE_FORM_CONTENT',
+      },
     ]);
     store.clearActions();
 
@@ -76,7 +87,32 @@ describe('makeSubmitRegistrationForm', () => {
 
     await sleep(10);
 
-    expect(store.getActions()).toEqual([]);
+    expect(store.getActions()).toEqual([
+      {
+        type: 'CALL_RESET',
+      },
+      {
+        type: 'CONVERSATIONS_RESET',
+      },
+      {
+        type: 'IDENTITY_RESET',
+      },
+      {
+        type: 'LAYOUT_RESET',
+      },
+      {
+        type: 'LOGIN_RESET',
+      },
+      {
+        type: 'PROFILE_FORM_RESET',
+      },
+      {
+        type: 'REALTIME_RESET',
+      },
+      {
+        type: 'USERS_RESET',
+      },
+    ]);
     store.clearActions();
 
     expect(spyInitialize).toHaveBeenCalledWith('new updated profile');
@@ -91,15 +127,23 @@ describe('makeSubmitRegistrationForm', () => {
         fields: {
           email: {
             value: 'foo@test.com',
+            isValid: true,
           },
           firstName: {
             value: 'foo',
+            isValid: true,
           },
           lastName: {
             value: 'bar',
+            isValid: true,
           },
           password: {
-            value: 'baz',
+            value: 'aB1/aB1/',
+            isValid: true,
+          },
+          confirmation: {
+            value: 'aB1/aB1/',
+            isValid: true,
           },
         },
       },
@@ -114,7 +158,7 @@ describe('makeSubmitRegistrationForm', () => {
         email: 'foo@test.com',
         firstName: 'foo',
         lastName: 'bar',
-        password: 'baz',
+        password: 'aB1/aB1/',
       },
       { withCredentials: true },
     );
@@ -123,6 +167,9 @@ describe('makeSubmitRegistrationForm', () => {
       {
         status: 'unavailable',
         type: 'UPDATE_PROFILE_FORM_STATUS',
+      },
+      {
+        type: 'VALIDATE_PROFILE_FORM_CONTENT',
       },
     ]);
     store.clearActions();

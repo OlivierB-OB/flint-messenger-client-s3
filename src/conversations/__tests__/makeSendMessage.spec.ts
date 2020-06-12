@@ -34,7 +34,7 @@ describe('makeSendMessage', () => {
         conversations: [
           {
             _id: '123',
-            target: 'target id',
+            targets: ['target id'],
           },
         ],
       },
@@ -47,7 +47,7 @@ describe('makeSendMessage', () => {
       `${api_backend_url}/messages`,
       {
         conversationId: '123',
-        target: 'target id',
+        targets: ['target id'],
         content: 'Hello',
       },
       { withCredentials: true },
@@ -103,7 +103,7 @@ describe('makeSendMessage', () => {
         conversations: [
           {
             _id: '123',
-            target: 'target id',
+            targets: ['target id'],
           },
         ],
       },
@@ -116,7 +116,7 @@ describe('makeSendMessage', () => {
       `${api_backend_url}/messages`,
       {
         conversationId: '123',
-        target: 'target id',
+        targets: ['target id'],
         content: 'Hello',
       },
       { withCredentials: true },

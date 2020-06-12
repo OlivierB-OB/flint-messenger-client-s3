@@ -1,8 +1,14 @@
-import IconButton from '@material-ui/core/IconButton';
+import Fab from '@material-ui/core/Fab';
 import TextField from '@material-ui/core/TextField';
 import React from 'react';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
 import { shallow, mount } from 'enzyme';
 import { ChatInputDisplay } from '../ChatInput';
+import { Provider } from 'react-redux';
+
+const middlewares = [thunk];
+const mockStore = configureMockStore(middlewares);
 
 describe('ChatInputDisplay', () => {
   it('should display the chat input form', async () => {
@@ -36,7 +42,7 @@ describe('ChatInputDisplay', () => {
       sendMessage: jest.fn(),
     };
     const component = shallow(<ChatInputDisplay {...props} />);
-    expect(component.find(IconButton).at(0).prop('type')).toEqual('submit');
+    expect(component.find(Fab).at(0).prop('type')).toEqual('submit');
     component.find('form').simulate('submit', { preventDefault: () => null });
     expect(props.sendMessage).toHaveBeenCalledWith('123');
   });
@@ -48,7 +54,14 @@ describe('ChatInputDisplay', () => {
       updateMessageEdition: jest.fn(),
       sendMessage: jest.fn(),
     };
-    mount(<ChatInputDisplay {...props} />);
+    const store = mockStore({
+      call: {},
+    });
+    mount(
+      <Provider store={store}>
+        <ChatInputDisplay {...props} />
+      </Provider>,
+    );
     expect(props.updateMessageEdition).toHaveBeenCalledWith('');
   });
 });

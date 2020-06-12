@@ -23,11 +23,13 @@ describe('makeExitApplication', () => {
     store.dispatch(makeExitApplication() as any);
 
     expect(store.getActions()).toEqual([
+      { type: 'CALL_RESET' },
       { type: 'CONVERSATIONS_RESET' },
       { type: 'IDENTITY_RESET' },
       { type: 'LAYOUT_RESET' },
       { type: 'LOGIN_RESET' },
       { type: 'PROFILE_FORM_RESET' },
+      { type: 'REALTIME_RESET' },
       { type: 'USERS_RESET' },
     ]);
     store.clearActions();

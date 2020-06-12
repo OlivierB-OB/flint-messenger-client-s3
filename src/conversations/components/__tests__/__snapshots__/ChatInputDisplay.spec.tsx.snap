@@ -4,14 +4,20 @@ exports[`ChatInputDisplay should display the chat input form 1`] = `
 <form
   onSubmit={[Function]}
 >
-  <WithStyles(ForwardRef(Grid))
-    alignItems="center"
-    container={true}
-    justify="center"
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+      }
+    }
   >
-    <WithStyles(ForwardRef(Grid))
-      item={true}
-      xs={11}
+    <div
+      style={
+        Object {
+          "flexGrow": 1,
+        }
+      }
     >
       <WithStyles(ForwardRef(TextField))
         fullWidth={true}
@@ -19,21 +25,30 @@ exports[`ChatInputDisplay should display the chat input form 1`] = `
         value="message edition"
         variant="filled"
       />
-    </WithStyles(ForwardRef(Grid))>
-    <WithStyles(ForwardRef(Grid))
-      item={true}
-      xs={1}
+    </div>
+    <div
+      style={
+        Object {
+          "display": "flex",
+          "flexGrow": 0,
+          "justifyContent": "space-around",
+          "width": "150px",
+        }
+      }
     >
-      <WithStyles(ForwardRef(IconButton))
-        aria-label="contacts"
+      <WithStyles(ForwardRef(Fab))
+        aria-label="send"
+        color="primary"
         type="submit"
       >
         <SendIcon
-          color="primary"
           fontSize="large"
         />
-      </WithStyles(ForwardRef(IconButton))>
-    </WithStyles(ForwardRef(Grid))>
-  </WithStyles(ForwardRef(Grid))>
+      </WithStyles(ForwardRef(Fab))>
+      <Connect(StartCallButtonDisplay)
+        conversationId="123"
+      />
+    </div>
+  </div>
 </form>
 `;

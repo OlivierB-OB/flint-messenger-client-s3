@@ -2,6 +2,7 @@
 
 exports[`LoginScreen should provide login status, registration status, callbacks to LoginScreenDisplay 1`] = `
 <LoginScreenDisplay
+  exitApplication={[Function]}
   loginStatus="login status"
   registrationStatus="login status"
   resetRegistrationForm={[Function]}

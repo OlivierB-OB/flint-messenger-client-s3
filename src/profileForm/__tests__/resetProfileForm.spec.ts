@@ -49,6 +49,7 @@ describe('resetProfileForm', () => {
     ).toEqual({
       ...defaultProfileFormState(),
       status: 'ready',
+      optionalPassword: true,
       fields: {
         ...defaultProfileFormState().fields,
         email: {

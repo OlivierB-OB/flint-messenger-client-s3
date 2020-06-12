@@ -8,7 +8,7 @@ describe('ConversationListItem', () => {
       conversation: {
         unseenMessages: 'number of unseen messages',
         messages: [{ content: 'first message content' }, { content: 'last message content' }],
-        target: 'conversation target',
+        targets: ['conversation target'],
         updatedAt: 'conversation update date',
       },
     };
@@ -21,7 +21,7 @@ describe('ConversationListItem', () => {
       conversation: {
         unseenMessages: 'number of unseen messages',
         messages: [],
-        target: 'conversation target',
+        targets: ['conversation target'],
         updatedAt: 'conversation update date',
       },
     };

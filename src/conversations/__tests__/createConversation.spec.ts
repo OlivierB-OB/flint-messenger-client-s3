@@ -10,14 +10,14 @@ describe('createConversation', () => {
         {
           ...defaultConversationsState(),
         },
-        createConversation('123', 'targetA'),
+        createConversation('123', ['targetA']),
       ),
     ).toEqual({
       ...defaultConversationsState(),
       conversations: [
         {
           _id: '123',
-          target: 'targetA',
+          targets: ['targetA'],
           messages: [],
           unseenMessages: 0,
           updatedAt: expectAnyDate(),

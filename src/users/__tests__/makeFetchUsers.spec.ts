@@ -24,6 +24,7 @@ describe('makeFetchUsers', () => {
     const [getUsers, resolveGetUsers] = await getDeffered();
 
     const store = mockStore({
+      identity: { info: { _id: 'myId' } },
       users: { list: [] },
     });
 

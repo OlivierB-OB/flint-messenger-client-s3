@@ -7,9 +7,14 @@ exports[`ConversationListItem should display a conversation as a list item 1`] =
       badgeContent="number of unseen messages"
       color="primary"
     >
-      <Connect(UserAvatar)
-        target="conversation target"
-      />
+      <WithStyles(ForwardRef(AvatarGroup))
+        max={3}
+      >
+        <Connect(UserAvatar)
+          key="conversation target"
+          target="conversation target"
+        />
+      </WithStyles(ForwardRef(AvatarGroup))>
     </WithStyles(ForwardRef(Badge))>
   </WithStyles(ForwardRef(ListItemAvatar))>
   <WithStyles(ForwardRef(ListItemText))
@@ -34,9 +39,14 @@ exports[`ConversationListItem should support the case of empty message list 1`] 
       badgeContent="number of unseen messages"
       color="primary"
     >
-      <Connect(UserAvatar)
-        target="conversation target"
-      />
+      <WithStyles(ForwardRef(AvatarGroup))
+        max={3}
+      >
+        <Connect(UserAvatar)
+          key="conversation target"
+          target="conversation target"
+        />
+      </WithStyles(ForwardRef(AvatarGroup))>
     </WithStyles(ForwardRef(Badge))>
   </WithStyles(ForwardRef(ListItemAvatar))>
   <WithStyles(ForwardRef(ListItemText))

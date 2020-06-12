@@ -1,7 +1,7 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { makeUpdateConversation } from '../actions/makeUpdateConversation';
-import { IAxiosMock, mockAxios } from '../../utils/__mocks__';
+import { IAxiosMock, mockAxios, expectAnyDate } from '../../utils/__mocks__';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -31,7 +31,7 @@ describe('makeUpdateConversation', () => {
         {
           conversationId: '1234',
           emitter: 'user B',
-          target: 'user A',
+          targets: ['user A'],
         },
       ] as any) as any,
     );
@@ -39,13 +39,19 @@ describe('makeUpdateConversation', () => {
     expect(store.getActions()).toEqual([
       {
         conversationId: '1234',
-        conversationTarget: 'user B',
+        targets: ['user B'],
+        createdAt: expectAnyDate(),
+        type: 'ENSURE_CONVERSATION',
+      },
+      {
+        conversationId: '1234',
+        targets: ['user B'],
         lastSeen: undefined,
         messages: [
           {
             conversationId: '1234',
             emitter: 'user B',
-            target: 'user A',
+            targets: ['user A'],
           },
         ],
         type: 'UPDATE_CONVERSATION',
@@ -71,12 +77,12 @@ describe('makeUpdateConversation', () => {
         {
           conversationId: '1234',
           emitter: 'user B',
-          target: 'user A',
+          targets: ['user A'],
         },
         {
           conversationId: '4321',
           emitter: 'user C',
-          target: 'user A',
+          targets: ['user A'],
         },
       ] as any) as any,
     );
@@ -84,26 +90,38 @@ describe('makeUpdateConversation', () => {
     expect(store.getActions()).toEqual([
       {
         conversationId: '1234',
-        conversationTarget: 'user B',
+        targets: ['user B'],
+        createdAt: expectAnyDate(),
+        type: 'ENSURE_CONVERSATION',
+      },
+      {
+        conversationId: '1234',
+        targets: ['user B'],
         lastSeen: undefined,
         messages: [
           {
             conversationId: '1234',
             emitter: 'user B',
-            target: 'user A',
+            targets: ['user A'],
           },
         ],
         type: 'UPDATE_CONVERSATION',
       },
       {
         conversationId: '4321',
-        conversationTarget: 'user C',
+        targets: ['user C'],
+        createdAt: expectAnyDate(),
+        type: 'ENSURE_CONVERSATION',
+      },
+      {
+        conversationId: '4321',
+        targets: ['user C'],
         lastSeen: 'last seen value for 4321',
         messages: [
           {
             conversationId: '4321',
             emitter: 'user C',
-            target: 'user A',
+            targets: ['user A'],
           },
         ],
         type: 'UPDATE_CONVERSATION',

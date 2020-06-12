@@ -9,6 +9,7 @@ exports[`LayoutDisplay display with drawer 1`] = `
     <AppContent />
   </div>
   <Connect(DrawerDisplay) />
+  <Connect(IncomingCallNotificationDisplay) />
 </div>
 `;
 
@@ -21,5 +22,6 @@ exports[`LayoutDisplay display without drawer 1`] = `
     <AppContent />
   </div>
   <Connect(DrawerDisplay) />
+  <Connect(IncomingCallNotificationDisplay) />
 </div>
 `;

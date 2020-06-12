@@ -22,7 +22,9 @@ exports[`DrawerDisplay drawer not shown 1`] = `
       <ArrowBackIosIcon />
     </WithStyles(ForwardRef(IconButton))>
   </Styled(MuiBox)>
-  <Styled(MuiBox) />
+  <Styled(MuiBox)
+    className="makeStyles-drawerContent-3"
+  />
 </WithStyles(ForwardRef(Drawer))>
 `;
 
@@ -48,7 +50,9 @@ exports[`DrawerDisplay drawer shown - contacts 1`] = `
       <ArrowBackIosIcon />
     </WithStyles(ForwardRef(IconButton))>
   </Styled(MuiBox)>
-  <Styled(MuiBox)>
+  <Styled(MuiBox)
+    className="makeStyles-drawerContent-3"
+  >
     <Connect(ContactList) />
   </Styled(MuiBox)>
 </WithStyles(ForwardRef(Drawer))>
@@ -76,7 +80,9 @@ exports[`DrawerDisplay drawer shown - conversations 1`] = `
       <ArrowBackIosIcon />
     </WithStyles(ForwardRef(IconButton))>
   </Styled(MuiBox)>
-  <Styled(MuiBox)>
+  <Styled(MuiBox)
+    className="makeStyles-drawerContent-3"
+  >
     <Connect(ConversationList) />
   </Styled(MuiBox)>
 </WithStyles(ForwardRef(Drawer))>
@@ -104,6 +110,8 @@ exports[`DrawerDisplay drawer shown - no content 1`] = `
       <ArrowBackIosIcon />
     </WithStyles(ForwardRef(IconButton))>
   </Styled(MuiBox)>
-  <Styled(MuiBox) />
+  <Styled(MuiBox)
+    className="makeStyles-drawerContent-3"
+  />
 </WithStyles(ForwardRef(Drawer))>
 `;

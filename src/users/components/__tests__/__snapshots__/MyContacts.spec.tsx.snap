@@ -2,6 +2,7 @@
 
 exports[`MyContacts should provide the status, user list and a createConversation function to UserList 1`] = `
 <ContactList
+  addToConversation={[Function]}
   createConversation={[Function]}
   list="the user list"
   status="the status"

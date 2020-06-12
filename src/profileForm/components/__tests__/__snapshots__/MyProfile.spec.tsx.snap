@@ -6,6 +6,7 @@ exports[`MyProfile should provide status, fields and callbacks to ProfileForm 1`
   fields="profileForm fields"
   formStatus="profileForm status"
   identityStatus="identity status"
+  logout={[Function]}
   resetProfile={[Function]}
   saveProfile={[Function]}
   store={

@@ -36,9 +36,11 @@ describe('makeSubmitLogin', () => {
         form: {
           email: {
             value: 'foo@test.com',
+            isValid: true,
           },
           password: {
             value: 'baz',
+            isValid: true,
           },
         },
       },
@@ -60,6 +62,9 @@ describe('makeSubmitLogin', () => {
       {
         status: 'unavailable',
         type: 'LOGIN_UPDATE_STATUS',
+      },
+      {
+        type: 'LOGIN_VALIDATE_FORM',
       },
     ]);
     store.clearActions();
@@ -83,9 +88,11 @@ describe('makeSubmitLogin', () => {
         form: {
           email: {
             value: 'foo@test.com',
+            isValid: true,
           },
           password: {
             value: 'baz',
+            isValid: true,
           },
         },
       },
@@ -107,6 +114,9 @@ describe('makeSubmitLogin', () => {
       {
         status: 'unavailable',
         type: 'LOGIN_UPDATE_STATUS',
+      },
+      {
+        type: 'LOGIN_VALIDATE_FORM',
       },
     ]);
     store.clearActions();

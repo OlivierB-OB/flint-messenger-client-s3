@@ -36,6 +36,18 @@ exports[`ProfileForm should display the profile form 1`] = `
         <WithStyles(ForwardRef(Button))
           color="secondary"
           fullWidth={true}
+          variant="contained"
+        >
+          Logout
+        </WithStyles(ForwardRef(Button))>
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={2}
+      >
+        <WithStyles(ForwardRef(Button))
+          color="secondary"
+          fullWidth={true}
           onClick="deleteProfile"
           variant="contained"
         >

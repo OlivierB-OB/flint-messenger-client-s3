@@ -4,6 +4,7 @@ exports[`Chat should not crash if the conversation is not found 1`] = `
 <ChatDisplay
   conversationId="222"
   conversationSeen={[Function]}
+  isCallChat={false}
   match={
     Object {
       "params": Object {
@@ -28,6 +29,7 @@ exports[`Chat should not crash if the conversation is not found 1`] = `
 exports[`Chat should not crash if the match is not clean 1`] = `
 <ChatDisplay
   conversationSeen={[Function]}
+  isCallChat={false}
   match={Object {}}
   status="conversation status"
   store={
@@ -53,6 +55,7 @@ exports[`Chat should provide status, conversationId, conversation and callbacks 
   }
   conversationId="123"
   conversationSeen={[Function]}
+  isCallChat={false}
   match={
     Object {
       "params": Object {

@@ -52,7 +52,7 @@ describe('ProfileForm', () => {
       deleteProfile: jest.fn(),
     };
     const component = shallow(<ProfileForm {...props} />);
-    component.find(Button).at(0).simulate('click');
+    component.find(Button).at(1).simulate('click');
     expect(props.deleteProfile).toHaveBeenCalled();
   });
 
@@ -64,7 +64,7 @@ describe('ProfileForm', () => {
       resetProfile: jest.fn(),
     };
     const component = shallow(<ProfileForm {...props} />);
-    component.find(Button).at(1).simulate('click');
+    component.find(Button).at(2).simulate('click');
     expect(props.resetProfile).toHaveBeenCalled();
   });
 
@@ -76,7 +76,7 @@ describe('ProfileForm', () => {
       saveProfile: jest.fn(),
     };
     const component = shallow(<ProfileForm {...props} />);
-    expect(component.find(Button).at(2).prop('type')).toEqual('submit');
+    expect(component.find(Button).at(3).prop('type')).toEqual('submit');
     component.find('form').simulate('submit', { preventDefault: () => null });
     expect(props.saveProfile).toHaveBeenCalled();
   });

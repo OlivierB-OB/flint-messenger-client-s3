@@ -1,104 +1,170 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ChatDisplay should display a progress bar while sending 1`] = `
-<WithStyles(ForwardRef(Container))
+<div
   style={
     Object {
       "boxSizing": "border-box",
-      "height": "100%",
+      "display": "flex",
+      "flexDirection": "row",
+      "height": "calc(100% - 2rem)",
+      "justifyContent": "strech",
       "padding": "1rem",
     }
   }
 >
-  <Styled(MuiBox)
+  <div
     style={
       Object {
-        "height": "5%",
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "flexGrow": 1,
+        "height": "100%",
+        "padding": "1rem",
       }
     }
   >
-    <Alert
-      status="sending"
-    />
-    <WithStyles(ForwardRef(LinearProgress)) />
-  </Styled(MuiBox)>
-  <Styled(MuiBox)
+    <div
+      style={
+        Object {
+          "flexGrow": 0,
+          "height": "40px",
+        }
+      }
+    >
+      <Alert
+        status="sending"
+      />
+      <WithStyles(ForwardRef(LinearProgress)) />
+    </div>
+    <div
+      style={
+        Object {
+          "flexGrow": 1,
+          "overflow": "auto",
+        }
+      }
+    >
+      <ChatMessages
+        conversationId="conversation id"
+        conversationSeen={[MockFunction]}
+        messages="conversation messages"
+      />
+    </div>
+    <div
+      style={
+        Object {
+          "flexGrow": 0,
+          "height": "60px",
+        }
+      }
+    >
+      <Connect(ChatInputDisplay)
+        conversationId="conversation id"
+      />
+    </div>
+  </div>
+  <div
     style={
       Object {
-        "height": "70%",
-        "overflow": "auto",
+        "flexGrow": 0,
+        "height": "100%",
+        "width": "15%",
       }
     }
   >
-    <ChatMessages
-      conversationId="conversation id"
-      conversationSeen={[MockFunction]}
-      messages="conversation messages"
-    />
-  </Styled(MuiBox)>
-  <Styled(MuiBox)
-    style={
-      Object {
-        "height": "20%",
-      }
-    }
-  >
-    <Connect(ChatInputDisplay)
-      conversationId="conversation id"
-    />
-  </Styled(MuiBox)>
-</WithStyles(ForwardRef(Container))>
+    <AttendeeList />
+  </div>
+</div>
 `;
 
 exports[`ChatDisplay should display the chat 1`] = `
-<WithStyles(ForwardRef(Container))
+<div
   style={
     Object {
       "boxSizing": "border-box",
-      "height": "100%",
+      "display": "flex",
+      "flexDirection": "row",
+      "height": "calc(100% - 2rem)",
+      "justifyContent": "strech",
       "padding": "1rem",
     }
   }
 >
-  <Styled(MuiBox)
+  <div
     style={
       Object {
-        "height": "5%",
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "flexGrow": 1,
+        "height": "100%",
+        "padding": "1rem",
       }
     }
   >
-    <Alert
-      status="conversation status"
-    />
-  </Styled(MuiBox)>
-  <Styled(MuiBox)
+    <div
+      style={
+        Object {
+          "flexGrow": 0,
+          "height": "40px",
+        }
+      }
+    >
+      <Alert
+        status="conversation status"
+      />
+    </div>
+    <div
+      style={
+        Object {
+          "flexGrow": 1,
+          "overflow": "auto",
+        }
+      }
+    >
+      <ChatMessages
+        conversationId="conversation id"
+        conversationSeen={[MockFunction]}
+        messages="conversation messages"
+      />
+    </div>
+    <div
+      style={
+        Object {
+          "flexGrow": 0,
+          "height": "60px",
+        }
+      }
+    >
+      <Connect(ChatInputDisplay)
+        conversationId="conversation id"
+      />
+    </div>
+  </div>
+  <div
     style={
       Object {
-        "height": "70%",
-        "overflow": "auto",
+        "flexGrow": 0,
+        "height": "100%",
+        "width": "15%",
       }
     }
   >
-    <ChatMessages
-      conversationId="conversation id"
-      conversationSeen={[MockFunction]}
-      messages="conversation messages"
-    />
-  </Styled(MuiBox)>
-  <Styled(MuiBox)
-    style={
-      Object {
-        "height": "20%",
-      }
-    }
-  >
-    <Connect(ChatInputDisplay)
-      conversationId="conversation id"
-    />
-  </Styled(MuiBox)>
-</WithStyles(ForwardRef(Container))>
+    <AttendeeList />
+  </div>
+</div>
 `;
 
-exports[`ChatDisplay should return null if conversation has not been provided 1`] = `""`;
+exports[`ChatDisplay should return null if conversation has not been provided 1`] = `
+<Redirect
+  to="/profile"
+/>
+`;
 
-exports[`ChatDisplay should return null if conversationId has not been provided 1`] = `""`;
+exports[`ChatDisplay should return null if conversationId has not been provided 1`] = `
+<Redirect
+  to="/profile"
+/>
+`;

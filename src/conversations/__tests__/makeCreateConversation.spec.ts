@@ -35,7 +35,7 @@ describe('makeCreateConversation', () => {
       },
       {
         conversationId: expect.any(String),
-        targetId: 'target id',
+        targets: ['target id'],
         type: 'CREATE_CONVERSATION',
       },
     ]);

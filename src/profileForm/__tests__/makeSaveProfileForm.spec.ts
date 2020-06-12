@@ -26,14 +26,25 @@ describe('makeSaveProfileForm', () => {
     const store = mockStore({
       profileForm: {
         fields: {
+          email: {
+            value: 'test@test.com',
+            isValid: true,
+          },
           firstName: {
             value: 'foo',
+            isValid: true,
           },
           lastName: {
             value: 'bar',
+            isValid: true,
           },
           password: {
-            value: 'baz',
+            value: 'aB1/aB1/',
+            isValid: true,
+          },
+          confirmation: {
+            value: 'aB1/aB1/',
+            isValid: true,
           },
         },
       },
@@ -47,7 +58,7 @@ describe('makeSaveProfileForm', () => {
       {
         firstName: 'foo',
         lastName: 'bar',
-        password: 'baz',
+        password: 'aB1/aB1/',
       },
       { withCredentials: true },
     );
@@ -56,6 +67,9 @@ describe('makeSaveProfileForm', () => {
       {
         status: 'unavailable',
         type: 'UPDATE_PROFILE_FORM_STATUS',
+      },
+      {
+        type: 'VALIDATE_PROFILE_FORM_CONTENT',
       },
     ]);
     store.clearActions();
@@ -83,14 +97,25 @@ describe('makeSaveProfileForm', () => {
     const store = mockStore({
       profileForm: {
         fields: {
+          email: {
+            value: 'test@test.com',
+            isValid: true,
+          },
           firstName: {
             value: 'foo',
+            isValid: true,
           },
           lastName: {
             value: 'bar',
+            isValid: true,
           },
           password: {
             value: '',
+            isValid: true,
+          },
+          confirmation: {
+            value: '',
+            isValid: true,
           },
         },
       },
@@ -112,6 +137,9 @@ describe('makeSaveProfileForm', () => {
       {
         status: 'unavailable',
         type: 'UPDATE_PROFILE_FORM_STATUS',
+      },
+      {
+        type: 'VALIDATE_PROFILE_FORM_CONTENT',
       },
     ]);
     store.clearActions();
@@ -139,14 +167,25 @@ describe('makeSaveProfileForm', () => {
     const store = mockStore({
       profileForm: {
         fields: {
+          email: {
+            value: 'test@test.com',
+            isValid: true,
+          },
           firstName: {
             value: 'foo',
+            isValid: true,
           },
           lastName: {
             value: 'bar',
+            isValid: true,
           },
           password: {
-            value: 'baz',
+            value: 'aB1/aB1/',
+            isValid: true,
+          },
+          confirmation: {
+            value: 'aB1/aB1/',
+            isValid: true,
           },
         },
       },
@@ -160,7 +199,7 @@ describe('makeSaveProfileForm', () => {
       {
         firstName: 'foo',
         lastName: 'bar',
-        password: 'baz',
+        password: 'aB1/aB1/',
       },
       { withCredentials: true },
     );
@@ -169,6 +208,9 @@ describe('makeSaveProfileForm', () => {
       {
         status: 'unavailable',
         type: 'UPDATE_PROFILE_FORM_STATUS',
+      },
+      {
+        type: 'VALIDATE_PROFILE_FORM_CONTENT',
       },
     ]);
     store.clearActions();
