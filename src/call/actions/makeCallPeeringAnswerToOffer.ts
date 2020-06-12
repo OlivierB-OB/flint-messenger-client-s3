@@ -3,9 +3,8 @@ import { ThunkDispatch } from 'redux-thunk';
 import { action } from '../../utils/action';
 import { IAppState } from '../../appReducer';
 import { makeEmit } from '../../realtime/actions/makeEmit';
-import { assertValidConversationId, assertExistingPeerConnexion } from '../utils';
+import { assertValidConversationId, assertExistingPeerConnexion, assertExistingRemote } from '../utils';
 import { updateCallRemote } from './updateCallRemote';
-import { assertExistingRemote } from '../utils/assertExistingRemote';
 
 export const makeCallPeeringAnswerToOffer = action((
   conversationId: string,

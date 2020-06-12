@@ -8,7 +8,7 @@ import { makeUpdateConversation } from '../../conversations/actions/makeUpdateCo
 import { updateRealtimeSocket } from './updateRealtimeSocket';
 import { realtimeReset } from './realtimeReset';
 import { makeCallPeeringAnswerToOffer } from '../../call/actions/makeCallPeeringAnswerToOffer';
-import { makeLeftCall } from '../../call/actions/makeLeftCall';
+import { makeCallPeeringClosed } from '../../call/actions/makeCallPeeringClosed';
 import { makeIncomingCall } from '../../call/actions/makeIncomingCall';
 import { makeCallPeeringAddIceCandidate } from '../../call/actions/makeCallPeeringAddIceCandidate';
 import { makeCallPeeringFinalized } from '../../call/actions/makeCallPeeringFinalized';
@@ -66,7 +66,7 @@ export const makeStartRealtime = action(() => {
       
       socket.on('call-left', function (data: any) {
         console.log(`receiving [call-left] <-------`);
-        dispatch(makeLeftCall(data.conversationId));
+        dispatch(makeCallPeeringClosed(data.conversationId));
       });
     } catch (error) {
       dispatch(updateRealtimeStatus('unavailable'));

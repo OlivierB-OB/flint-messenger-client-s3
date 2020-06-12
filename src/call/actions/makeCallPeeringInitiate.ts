@@ -5,8 +5,7 @@ import { IAppState } from '../../appReducer';
 import { updateCallRemote } from './updateCallRemote';
 import { makeEmit } from '../../realtime/actions/makeEmit';
 import { updateCallRemoteStream } from './updateCallRemoteStream';
-import { peerConnexionFactory, bindStreamToPeerConnexion, assertValidConversationId } from '../utils';
-import { remotePeerFactory } from '../utils/remotePeerFactory';
+import { peerConnexionFactory, bindStreamToPeerConnexion, assertValidConversationId, remotePeerFactory } from '../utils';
 import { assertExistingLocalInputs } from '../utils/assertExistingLocalInputs';
 
 export const makeCallPeeringInitiate = action((conversationId: string, target: string, fromStartCall?: boolean) => {

@@ -5,7 +5,7 @@ import { IAppState } from '../../appReducer';
 import { updateCallLocalInputs } from './updateCallLocalInputs';
 import { getLocalInputs } from '../utils/getLocalInputs';
 import { assertValidConversationId } from '../utils';
-import { makeStartCallMode } from './makeStartCallMode';
+import { makeCallModeEnter } from './makeCallModeEnter';
 import { makeCallPeeringCreateOffer } from './makeCallPeeringCreateOffer';
 
 export const makeAcceptCall = action((
@@ -17,7 +17,7 @@ export const makeAcceptCall = action((
     assertValidConversationId(getState(), conversationId);
 
     // start call mode
-    dispatch(makeStartCallMode(conversationId, [target]));
+    dispatch(makeCallModeEnter(conversationId, [target]));
 
     // Create local media inputs
     const localInputs = await getLocalInputs();

@@ -4,7 +4,7 @@ import { action } from '../../utils/action';
 import { IAppState } from '../../appReducer';
 import { updateCallLocalInputs } from './updateCallLocalInputs';
 import { getLocalInputs } from '../utils/getLocalInputs';
-import { makeStartCallMode } from './makeStartCallMode';
+import { makeCallModeEnter } from './makeCallModeEnter';
 import { makeCallPeeringInitiate } from './makeCallPeeringInitiate';
 
 export const makeStartCall = action((conversationId: string) => {
@@ -17,7 +17,7 @@ export const makeStartCall = action((conversationId: string) => {
     const { targets } = conversation;
 
     // Start call mode
-    dispatch(makeStartCallMode(conversationId, targets));
+    dispatch(makeCallModeEnter(conversationId, targets));
 
     // Create local media inputs
     const localInputs = await getLocalInputs();

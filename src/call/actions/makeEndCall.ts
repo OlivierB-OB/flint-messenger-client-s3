@@ -9,7 +9,8 @@ import { callReset } from './callReset';
 import { showNavigation } from '../../layout/actions/showNavigation';
 import { makeEmit } from '../../realtime/actions/makeEmit';
 import { updateCallRemote } from './updateCallRemote';
-import { closeRemotePeer } from '../utils/remotePeerFactory';
+import { closeRemotePeer } from '../utils';
+import { makeCallModeExit } from './makeCallModeExit';
 
 export const makeEndCall = action(() => {
   return async (dispatch: ThunkDispatch<IAppState, void, Action>, getState: () => IAppState) => {
@@ -25,13 +26,6 @@ export const makeEndCall = action(() => {
       dispatch(updateCallRemote(closeRemotePeer(remote)));
     }
 
-    if (!conversationId) return;
-
-    dispatch(updateDrawerContent('conversations'));
-    dispatch(showNavigation());
-    dispatch(makeStopLocalScreenShare());
-    dispatch(callReset());
-    
-    history.push(`/conversation/${conversationId}`);
+    dispatch(makeCallModeExit());
   };
 });

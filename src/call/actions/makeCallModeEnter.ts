@@ -12,7 +12,7 @@ import { updateDrawerContent } from '../../layout/actions/updateDrawerContent';
 import { toggleCallAudioInput } from './toggleCallAudioInput';
 import { updateCallStatus } from './updateCallStatus';
 
-export const makeStartCallMode = action((
+export const makeCallModeEnter = action((
   conversationId: string,
   targets: string[],
 ) => {
