@@ -7,8 +7,14 @@ describe('ContactList', () => {
   it('should appear as loading if users service is unavailable', async () => {
     const list: any = [];
     function createConversation() {}
+    function addToConversation() {}
     const component = shallow(
-      <ContactList status="unavailable" list={list} createConversation={createConversation} />,
+      <ContactList
+        status="unavailable"
+        list={list}
+        createConversation={createConversation}
+        addToConversation={addToConversation}
+      />,
     ).dive();
     expect(component).toMatchSnapshot();
   });
@@ -16,8 +22,14 @@ describe('ContactList', () => {
   it('should display a message if no contact', async () => {
     const list: any = [];
     function createConversation() {}
+    function addToConversation() {}
     const component = shallow(
-      <ContactList status="ready" list={list} createConversation={createConversation} />,
+      <ContactList
+        status="ready"
+        list={list}
+        createConversation={createConversation}
+        addToConversation={addToConversation}
+      />,
     ).dive();
     expect(component).toMatchSnapshot();
   });
@@ -32,8 +44,14 @@ describe('ContactList', () => {
       },
     ];
     function createConversation() {}
+    function addToConversation() {}
     const component = shallow(
-      <ContactList status="ready" list={list} createConversation={createConversation} />,
+      <ContactList
+        status="ready"
+        list={list}
+        createConversation={createConversation}
+        addToConversation={addToConversation}
+      />,
     ).dive();
     expect(component).toMatchSnapshot();
   });
@@ -48,8 +66,14 @@ describe('ContactList', () => {
       },
     ];
     const createConversation = jest.fn();
+    function addToConversation() {}
     const component = shallow(
-      <ContactList status="ready" list={list} createConversation={createConversation} />,
+      <ContactList
+        status="ready"
+        list={list}
+        createConversation={createConversation}
+        addToConversation={addToConversation}
+      />,
     ).dive();
     component.find(ListItem).at(0).simulate('click');
     expect(createConversation).toHaveBeenCalledWith('123');

@@ -20,6 +20,7 @@ export function updateConversationCase(
     ...conversation,
     messages: [...conversation.messages, ...messages],
   };
+  conversation.targets = [...new Set([...conversation.targets, ...targets])];
   conversation.messages.sort(messageComparator);
   conversation.updatedAt = lastMessageDate(conversation.messages);
   conversation.unseenMessages = countUnseenMessages(lastSeen, conversation.messages);

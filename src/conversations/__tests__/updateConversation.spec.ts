@@ -26,12 +26,12 @@ describe('updateConversation', () => {
           ],
           unseenMessages: 0,
         },
-        updateConversation('124', ['not used'], '2020-06-06T13:00:00.000Z', [
+        updateConversation('124', ['targetB', 'target C'], '2020-06-06T13:00:00.000Z', [
           {
             _id: 'x',
             conversationId: '124',
             emitter: 'targetB',
-            targets: ['myId'],
+            targets: ['myId', 'target C'],
             content: 'Hello',
             createdAt: '2020-06-06T15:00:00.000Z',
           },
@@ -42,13 +42,13 @@ describe('updateConversation', () => {
       conversations: [
         {
           _id: '124',
-          targets: ['targetB'],
+          targets: ['targetB', 'target C'],
           messages: [
             {
               _id: 'x',
               conversationId: '124',
               emitter: 'targetB',
-              targets: ['myId'],
+              targets: ['myId', 'target C'],
               content: 'Hello',
               createdAt: '2020-06-06T15:00:00.000Z',
             },
