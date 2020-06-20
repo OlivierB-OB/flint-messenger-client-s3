@@ -28,7 +28,7 @@ export const makeCallPeeringInitiate = action(
       const remote = purpose === 'call' ? remotePeerFactory(target) : assertExistingRemote(getState(), target);
 
       // Create peer connection
-      const peerConnection = peerConnexionFactory(
+      const peerConnection = await peerConnexionFactory(
         (candidate) => dispatch(makeEmit('call-peering-ice-candidate', { conversationId, target, purpose, candidate })),
         () => dispatch(makeCallPeeringClosed(conversationId, target, purpose)),
         (stream) => dispatch(updateCallRemoteStream(target, purpose, stream)),
